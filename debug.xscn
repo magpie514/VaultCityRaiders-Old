@@ -1,80 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="3" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://battle/Battle_choice.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://ubuntuB_20.fnt" type="Font" index="1"></ext_resource>
+<resource_file type="PackedScene" subresource_count="2" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://debug.gd" type="Script" index="0"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
-			<int> 6 </int>
+			<int> 2 </int>
 			<string> "conns" </string>
-			<int_array  len="36"> 				3, 0, 36, 35, 2, 0, 4, 0, 36, 37, 2, 0, 5, 0, 36, 38, 2, 0, 6, 0, 36, 39, 2, 0, 7, 0, 36, 40, 2, 0, 8, 0, 42, 41, 2, 0 </int_array>
+			<int_array  len="12"> 				4, 0, 31, 30, 2, 0, 5, 0, 31, 32, 2, 0 </int_array>
 			<string> "names" </string>
-			<string_array  len="43">
-				<string> "BattleChoice1" </string>
+			<string_array  len="33">
+				<string> "Main" </string>
+				<string> "Node" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
 				<string> "Panel" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
 				<string> "margin/right" </string>
 				<string> "margin/bottom" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
-				<string> "script/script" </string>
-				<string> "__meta__" </string>
-				<string> "TimerLabel" </string>
 				<string> "Label" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "custom_fonts/font" </string>
 				<string> "text" </string>
+				<string> "align" </string>
+				<string> "valign" </string>
 				<string> "percent_visible" </string>
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
-				<string> "Text" </string>
-				<string> "align" </string>
-				<string> "B_Fight" </string>
+				<string> "Label1" </string>
+				<string> "B_Board" </string>
 				<string> "Button" </string>
 				<string> "toggle_mode" </string>
 				<string> "flat" </string>
-				<string> "B_Run" </string>
-				<string> "B_Talk" </string>
-				<string> "B_Skill" </string>
-				<string> "B_Item" </string>
-				<string> "Countdown" </string>
-				<string> "Timer" </string>
-				<string> "process_mode" </string>
-				<string> "wait_time" </string>
-				<string> "one_shot" </string>
-				<string> "autostart" </string>
-				<string> "_on_B_Fight_pressed" </string>
+				<string> "B_Battle" </string>
+				<string> "Button2" </string>
+				<string> "disabled" </string>
+				<string> "Button3" </string>
+				<string> "Button4" </string>
+				<string> "_on_B_Board_pressed" </string>
 				<string> "pressed" </string>
-				<string> "_on_B_Run_pressed" </string>
-				<string> "_on_B_Talk_pressed" </string>
-				<string> "_on_B_Skill_pressed" </string>
-				<string> "_on_B_Item_pressed" </string>
-				<string> "_on_Countdown_timeout" </string>
-				<string> "timeout" </string>
+				<string> "_on_B_Battle_pressed" </string>
 			</string_array>
 			<string> "node_count" </string>
 			<int> 9 </int>
 			<string> "nodes" </string>
-			<int_array  len="245"> 				-1, -1, 1, 0, -1, 8, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 4, 8, 5, 9, 6, 0, 0, 0, 11, 10, -1, 12, 12, 7, 13, 8, 2, 9, 3, 10, 4, 3, 5, 3, 6, 4, 14, 11, 15, 12, 16, 13, 17, 14, 18, 15, 0, 0, 0, 11, 19, -1, 12, 12, 16, 13, 8, 2, 17, 3, 18, 4, 3, 5, 3, 6, 4, 15, 19, 20, 20, 16, 13, 17, 14, 18, 15, 0, 0, 0, 22, 21, -1, 11, 12, 8, 13, 21, 2, 22, 3, 23, 4, 2, 5, 3, 6, 4, 7, 4, 23, 2, 15, 24, 24, 2, 0, 0, 0, 22, 25, -1, 11, 12, 25, 13, 21, 2, 26, 3, 23, 4, 2, 5, 3, 6, 4, 7, 4, 23, 2, 15, 27, 24, 2, 0, 0, 0, 22, 26, -1, 11, 12, 28, 13, 21, 2, 29, 3, 23, 4, 2, 5, 3, 6, 4, 7, 4, 23, 2, 15, 30, 24, 2, 0, 0, 0, 22, 27, -1, 11, 12, 31, 13, 21, 2, 32, 3, 23, 4, 2, 5, 3, 6, 4, 7, 4, 23, 2, 15, 33, 24, 2, 0, 0, 0, 22, 28, -1, 11, 12, 34, 13, 21, 2, 35, 3, 23, 4, 2, 5, 3, 6, 4, 7, 4, 23, 2, 15, 36, 24, 2, 0, 0, 0, 30, 29, -1, 4, 31, 20, 32, 13, 33, 2, 34, 2, 0 </int_array>
+			<int_array  len="251"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 8, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12, 8, 0, 1, 0, 13, 13, -1, 13, 5, 9, 6, 10, 7, 11, 8, 12, 9, 7, 10, 7, 11, 8, 14, 13, 15, 14, 16, 14, 17, 15, 18, 16, 19, 17, 0, 1, 0, 13, 20, -1, 13, 5, 9, 6, 18, 7, 11, 8, 19, 9, 7, 10, 7, 11, 8, 14, 20, 15, 14, 16, 14, 17, 15, 18, 16, 19, 17, 0, 1, 0, 22, 21, -1, 11, 5, 9, 6, 21, 7, 11, 8, 22, 9, 6, 10, 7, 11, 8, 12, 8, 23, 6, 14, 23, 24, 6, 0, 1, 0, 22, 25, -1, 11, 5, 9, 6, 24, 7, 11, 8, 25, 9, 6, 10, 7, 11, 8, 12, 8, 23, 6, 14, 26, 24, 6, 0, 1, 0, 22, 26, -1, 12, 5, 9, 6, 3, 7, 11, 8, 27, 9, 6, 10, 7, 11, 8, 12, 8, 27, 7, 23, 6, 14, 28, 24, 6, 0, 1, 0, 22, 28, -1, 12, 5, 9, 6, 29, 7, 11, 8, 30, 9, 6, 10, 7, 11, 8, 12, 8, 27, 7, 23, 6, 14, 31, 24, 6, 0, 1, 0, 22, 29, -1, 12, 5, 9, 6, 32, 7, 11, 8, 33, 9, 6, 10, 7, 11, 8, 12, 8, 27, 7, 23, 6, 14, 34, 24, 6, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="37" shared="false">
-				<real> 800 </real>
-				<real> 100 </real>
-				<bool> False </bool>
-				<bool> True </bool>
-				<int> 2 </int>
+			<array  len="35" shared="false">
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -133.398, -227.596 </vector2>
+							<vector2> -15.1235, -73.3555 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -94,7 +78,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 1 </real>
+							<real> 1.108034 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -202,36 +186,39 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<real> 760 </real>
+				<real> 190 </real>
+				<real> 180 </real>
+				<real> 640 </real>
+				<real> 470 </real>
+				<bool> False </bool>
+				<bool> True </bool>
+				<int> 2 </int>
+				<real> 20 </real>
 				<real> 10 </real>
-				<real> 786 </real>
-				<real> 25 </real>
-				<resource  external="1">  </resource>
-				<string> "99" </string>
+				<real> 430 </real>
+				<real> 50 </real>
+				<string> "Project Fallvale: Vault City Raiders" </string>
+				<int> 1 </int>
 				<real> 1 </real>
 				<int> 0 </int>
 				<int> -1 </int>
-				<real> 50 </real>
-				<real> 750 </real>
-				<real> 23 </real>
-				<string> "What will you do?" </string>
-				<int> 1 </int>
-				<real> 30 </real>
+				<real> 80 </real>
+				<real> 100 </real>
+				<string> "Debug menu" </string>
+				<real> 120 </real>
+				<real> 141 </real>
+				<string> "Board generation" </string>
 				<real> 150 </real>
-				<real> 90 </real>
-				<string> "Fight" </string>
-				<real> 170 </real>
-				<real> 310 </real>
-				<string> "Run" </string>
-				<real> 330 </real>
-				<real> 470 </real>
-				<string> "Talk" </string>
-				<real> 490 </real>
-				<real> 630 </real>
-				<string> "Skill" </string>
-				<real> 650 </real>
-				<real> 790 </real>
-				<string> "Item" </string>
+				<real> 171 </real>
+				<string> "Battle" </string>
+				<real> 201 </real>
+				<string> "Party generation" </string>
+				<real> 210 </real>
+				<real> 231 </real>
+				<string> "Board navigation" </string>
+				<real> 240 </real>
+				<real> 261 </real>
+				<string> "Party base management" </string>
 			</array>
 			<string> "version" </string>
 			<int> 1 </int>

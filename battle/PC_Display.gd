@@ -1,8 +1,8 @@
 extends Control
 
 var nodes = {
-	bars = { vital = "", EP = "" },
-	labels = { name = "", vital = "", EP = ""	},
+	bars = { vital = null, EP = null, over = null },
+	labels = { name = null, vitalN = null, EPN = null, vital = null, EP = null, overN = null, over = null },
 }
 
 var character = {}
@@ -10,6 +10,7 @@ var character = {}
 
 var vital_colors = [Color(.9, .9, .9), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
 var ep_colors = [Color(.9, .9, .9), Color(0, .9, .9), Color(0, .5, .9), Color(0, 0, .9), Color(.9, 0, 0)]
+var status_colors = [Color(.9, .9, 0), Color(.9, 0, 0)] # 0 = Negative status, 1 = incapacitated.
 var blink = 1
 
 #TODO:5 Display OVERDRIVE gauge
@@ -26,16 +27,15 @@ func bar_color(val):
 		return 3
 	else:
 		return 3 + blink
-	
+
 
 func setVital(v, mv):
 	var val = float(v) / float(mv)
 	nodes.bars.vital.color = vital_colors[bar_color(val)]
-	if v > 0 and val < 0.0001:
-		val = 0.0001
+	if v > 0 and val < 0.0001: 	#A safeguard in case it's a very low percentage, but still over 1, so it still shows a bit of bar.
+		val = 0.0001			#You know, to ensure the typical "I survived with just one pixel of life left!" scenario.
 	nodes.bars.vital.set_value(val)
-	nodes.labels.vital.set_text(str(v, "/", mv))
-
+	nodes.labels.vitalN.set_text(str(v, "/", mv))
 
 func setEP(ep, mep):
 	var val = float(ep) / float(mep)
@@ -43,15 +43,29 @@ func setEP(ep, mep):
 	if ep > 0 and val < 0.0001:
 		val = 0.0001
 	nodes.bars.EP.set_value(val)
-	nodes.labels.EP.set_text(str(ep))
+	nodes.labels.EPN.set_text(str(ep))
+
+func setOver(o):
+	var val = float(o) / 100.0
+	nodes.bars.over.color = Color(1,.5,0)
+	nodes.bars.over.set_value(val)
+	nodes.labels.overN.set_text(str(o, "%"))
+
+
+
+func text_color_overrides(color):
+	nodes.labels.name.add_color_override("font_color", color)
+	nodes.labels.vital.add_color_override("font_color", color)
+	nodes.labels.vitalN.add_color_override("font_color", color)
+	nodes.labels.EP.add_color_override("font_color", color)
+	nodes.labels.EPN.add_color_override("font_color", color)
 
 func char_update(C):
 	setVital(C.V, C.MV)
 	setEP(C.EP, C.MEP)
+	setOver(C.over)
 	if C.status == "ded":
-		nodes.labels.name.add_color_override("font_color", Color(.9,0,0))
-		get_node("Vital").add_color_override("font_color", Color(.9,0,0))
-		get_node("EP").add_color_override("font_color", Color(.9,0,0))
+		text_color_overrides(status_colors[1])
 		#FIXME:0 Only update on change
 	
 func _fixed_process(delta):
@@ -65,10 +79,15 @@ func init(C):
 	
 func _ready():
 	nodes.labels.name = get_node("Name")
-	nodes.labels.vital = get_node("Vital/Label")
-	nodes.labels.EP = get_node("EP/Label")
-	nodes.bars.vital = get_node("Vital/Bar")
-	nodes.bars.EP = get_node("EP/Bar")
+
+	nodes.labels.vitalN = get_node("Vital/Label")
+	nodes.labels.vital = get_node("Vital");		nodes.bars.vital = get_node("Vital/Bar")
+	
+	nodes.labels.EPN = get_node("EP/Label")
+	nodes.labels.EP = get_node("EP");			nodes.bars.EP = get_node("EP/Bar")
+	
+	nodes.labels.overN = get_node("Over/Label")
+	nodes.labels.over = get_node("Over/Label");	nodes.bars.over = get_node("Over/Bar")
 
 func _on_BlinkTimer_timeout():
 	if blink == 0:
