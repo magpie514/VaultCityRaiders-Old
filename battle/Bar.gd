@@ -18,3 +18,4 @@ func _draw():
 		f = 0
 	var rect = Rect2(Vector2(), get_size()*Vector2(f, 1.0))
 	draw_rect(rect, color)
+	#FIXME:8 Can be optimized? Can be made prettier? @GUI

@@ -2,6 +2,7 @@ extends Button
 
 export var result = 0
 
+#TODO:5 Decide action format. @Character +Brainstorm
 var testaction = {
 	name = "Megaton Impact",
 	energy = false,
@@ -17,7 +18,7 @@ var testaction = {
 	
 }
 
-#TODO: Find a way to make the last power level be remembered.
+#TODO:5 Find a way to make the last power level be remembered. @Combat @GUI +Brainstorm
 func init(act):
 	get_node("NameLabel").set_text(act.name)
 

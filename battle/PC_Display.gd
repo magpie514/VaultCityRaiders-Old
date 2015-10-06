@@ -13,8 +13,9 @@ var ep_colors = [Color(.9, .9, .9), Color(0, .9, .9), Color(0, .5, .9), Color(0,
 var status_colors = [Color(.9, .9, 0), Color(.9, 0, 0)] # 0 = Negative status, 1 = incapacitated.
 var blink = 1
 
-#TODO:5 Display OVERDRIVE gauge
-#TODO:4 Display status effects.
+#IDEA:9 Remove node variables to nodes only called once. +Optimize
+#TODO:5 Display OVERDRIVE gauge @GUI
+#TODO:4 Display status effects. @GUI
 
 func bar_color(val):
 	if val >= 0.999999:

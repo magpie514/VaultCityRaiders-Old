@@ -1,5 +1,5 @@
 extends Panel
-
+#IDEA:10 Find instances where nodes are only called once, don't store those in variables. +Optimize
 var nodes = {
 	bars = { vital = "", EP = "" },
 	labels = { name = "", vital = "", EP = ""	},
@@ -51,6 +51,3 @@ func _ready():
 	nodes.bars.vital = get_node("VitalBar")
 	nodes.bars.EP = get_node("EPBar")
 	pass
-
-
-

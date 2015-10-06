@@ -6,11 +6,11 @@ func _receive_battlechoice1(choice):
 	elif choice == 2:
 		print("nigeru~")
 	
-
 var decision = false
 var phase setget set_phase
 
 func set_phase(phase):
+	#TODO:4 Define combat phases properly. @Combat +Brainstorm
 	print("Setting combat phase: ", phase)
 	if phase == 0:
 		phase = 0
@@ -25,7 +25,7 @@ func set_phase(phase):
 		print("Combat phase 2: Resolution")
 
 
-
+#FIXME:3 Add weapon attacks, skills, overdrives and a minimal inventory. @Character
 var party = [
 	{
 		name = "Koishi",
