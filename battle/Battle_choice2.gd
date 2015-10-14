@@ -5,3 +5,7 @@ func _ready():
 	pass
 
 
+
+
+func _on_SkillButton_skillChoice( slot, power ):
+	pass # replace with function body

@@ -5,17 +5,36 @@ var nodes = {
 	labels = { name = null, vitalN = null, EPN = null, vital = null, EP = null, overN = null, over = null },
 }
 
-var character = {}
-
-
+var character = null
 var vital_colors = [Color(.9, .9, .9), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
 var ep_colors = [Color(.9, .9, .9), Color(0, .9, .9), Color(0, .5, .9), Color(0, 0, .9), Color(.9, 0, 0)]
 var status_colors = [Color(.9, .9, 0), Color(.9, 0, 0)] # 0 = Negative status, 1 = incapacitated.
 var blink = 1
 
 #NOTE:9 Remove node variables to nodes only called once. +Optimize
-#TODO:5 Display OVERDRIVE gauge @GUI
-#TODO:4 Display status effects. @GUI
+#TODO:0 Display OVERDRIVE gauge @GUI
+#TODO:30 Display status effects. @GUI
+
+func _ready():
+	nodes.labels.name = get_node("Name")
+
+	nodes.labels.vitalN = get_node("Vital/Label")
+	nodes.labels.vital = get_node("Vital");		nodes.bars.vital = get_node("Vital/Bar")
+	
+	nodes.labels.EPN = get_node("EP/Label")
+	nodes.labels.EP = get_node("EP");			nodes.bars.EP = get_node("EP/Bar")
+	
+	nodes.labels.overN = get_node("Over/Label")
+	nodes.labels.over = get_node("Over/Label");	nodes.bars.over = get_node("Over/Bar")
+
+func _fixed_process(delta):
+	char_update(character)
+
+func init(C):
+	character = C
+	nodes.labels.name.set_text(character.name)
+	char_update(character)
+	self.set_fixed_process(true)
 
 func bar_color(val):
 	if val >= 0.999999:
@@ -28,7 +47,6 @@ func bar_color(val):
 		return 3
 	else:
 		return 3 + blink
-
 
 func setVital(v, mv):
 	var val = float(v) / float(mv)
@@ -52,8 +70,6 @@ func setOver(o):
 	nodes.bars.over.set_value(val)
 	nodes.labels.overN.set_text(str(o, "%"))
 
-
-
 func text_color_overrides(color):
 	nodes.labels.name.add_color_override("font_color", color)
 	nodes.labels.vital.add_color_override("font_color", color)
@@ -68,27 +84,6 @@ func char_update(C):
 	if C.status == "ded":
 		text_color_overrides(status_colors[1])
 		#FIXME:0 Only update on change
-	
-func _fixed_process(delta):
-	char_update(character)
-
-func init(C):
-	character = C
-	nodes.labels.name.set_text(character.name)
-	char_update(character)
-	self.set_fixed_process(true)
-	
-func _ready():
-	nodes.labels.name = get_node("Name")
-
-	nodes.labels.vitalN = get_node("Vital/Label")
-	nodes.labels.vital = get_node("Vital");		nodes.bars.vital = get_node("Vital/Bar")
-	
-	nodes.labels.EPN = get_node("EP/Label")
-	nodes.labels.EP = get_node("EP");			nodes.bars.EP = get_node("EP/Bar")
-	
-	nodes.labels.overN = get_node("Over/Label")
-	nodes.labels.over = get_node("Over/Label");	nodes.bars.over = get_node("Over/Bar")
 
 func _on_BlinkTimer_timeout():
 	if blink == 0:

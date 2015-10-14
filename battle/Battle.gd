@@ -10,7 +10,7 @@ var decision = false
 var phase setget set_phase
 
 func set_phase(phase):
-	#TODO:4 Define combat phases properly. @Combat +Brainstorm
+	#TODO:20 Define combat phases properly. @Combat +Brainstorm
 	print("Setting combat phase: ", phase)
 	if phase == 0:
 		phase = 0
