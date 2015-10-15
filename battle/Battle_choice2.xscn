@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="4" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://battle/Battle_choice2.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://gothic_15.fnt" type="Font" index="1"></ext_resource>
+	<ext_resource path="res://battle/Battle_choice2.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://battle/SkillButton.xscn" type="PackedScene" index="2"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
-			<int> 1 </int>
+			<int> 6 </int>
 			<string> "conns" </string>
-			<int_array  len="6"> 				12, 0, 45, 44, 2, 0 </int_array>
+			<int_array  len="36"> 				3, 0, 49, 48, 2, 0, 11, 0, 49, 50, 2, 0, 13, 0, 52, 51, 2, 0, 14, 0, 52, 51, 2, 0, 15, 0, 52, 51, 2, 0, 16, 0, 52, 51, 2, 0 </int_array>
 			<string> "names" </string>
-			<string_array  len="46">
+			<string_array  len="53">
 				<string> "BattleChoice2" </string>
-				<string> "Node" </string>
-				<string> "script/script" </string>
-				<string> "__meta__" </string>
-				<string> "Root" </string>
-				<string> "Panel" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
+				<string> "Control" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
+				<string> "script/script" </string>
+				<string> "__meta__" </string>
+				<string> "Main" </string>
+				<string> "Panel" </string>
+				<string> "visibility/opacity" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
 				<string> "B_Weapon" </string>
 				<string> "Button" </string>
 				<string> "margin/left" </string>
 				<string> "margin/top" </string>
+				<string> "disabled" </string>
 				<string> "toggle_mode" </string>
 				<string> "text" </string>
 				<string> "flat" </string>
 				<string> "B_Skill" </string>
 				<string> "B_Over" </string>
-				<string> "disabled" </string>
 				<string> "B_Defend" </string>
 				<string> "B_Item" </string>
 				<string> "B_Switch" </string>
@@ -44,30 +45,39 @@
 				<string> "percent_visible" </string>
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
-				<string> "SkillChoice" </string>
-				<string> "B_Back" </string>
-				<string> "SkillButton" </string>
-				<string> "_import_path" </string>
-				<string> "SkillButton1" </string>
-				<string> "SkillButton2" </string>
-				<string> "SkillButton3" </string>
 				<string> "WeaponChoice" </string>
 				<string> "visibility/visible" </string>
+				<string> "SkillChoice" </string>
+				<string> "B_SkillBack" </string>
+				<string> "SkillLabel" </string>
+				<string> "S1" </string>
+				<string> "_import_path" </string>
+				<string> "debug" </string>
+				<string> "S2" </string>
+				<string> "slot" </string>
+				<string> "S3" </string>
+				<string> "S4" </string>
 				<string> "OverdriveChoice" </string>
 				<string> "ItemChoice" </string>
-				<string> "_on_SkillButton_skillChoice" </string>
+				<string> "_on_B_Skill_pressed" </string>
+				<string> "pressed" </string>
+				<string> "_on_B_Back_pressed" </string>
+				<string> "_on_skillChoice" </string>
 				<string> "skillChoice" </string>
 			</string_array>
 			<string> "node_count" </string>
 			<int> 19 </int>
 			<string> "nodes" </string>
-			<int_array  len="467"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, -1, 7, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 6, 3, 7, 0, 1, 0, 13, 12, -1, 11, 14, 8, 15, 9, 6, 10, 7, 11, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 12, 18, 4, 0, 1, 0, 13, 19, -1, 11, 14, 8, 15, 11, 6, 10, 7, 13, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 14, 18, 4, 0, 1, 0, 13, 20, -1, 12, 14, 8, 15, 13, 6, 10, 7, 2, 8, 4, 9, 5, 10, 6, 11, 6, 21, 5, 16, 4, 17, 15, 18, 4, 0, 1, 0, 13, 22, -1, 11, 14, 8, 15, 16, 6, 10, 7, 17, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 18, 18, 4, 0, 1, 0, 13, 23, -1, 11, 14, 8, 15, 2, 6, 10, 7, 16, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 19, 18, 4, 0, 1, 0, 13, 24, -1, 11, 14, 8, 15, 17, 6, 10, 7, 20, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 21, 18, 4, 0, 1, 0, 26, 25, -1, 13, 14, 22, 6, 23, 7, 22, 8, 5, 9, 5, 10, 6, 27, 24, 17, 25, 28, 26, 29, 26, 30, 27, 31, 28, 32, 29, 0, 0, 0, 5, 33, -1, 7, 14, 2, 6, 30, 7, 3, 8, 4, 9, 5, 10, 6, 11, 6, 0, 9, 0, 13, 34, -1, 11, 14, 8, 15, 8, 6, 31, 7, 32, 8, 4, 9, 5, 10, 6, 11, 6, 16, 4, 17, 33, 18, 4, 0, 9, 0, 26, 26, -1, 12, 14, 23, 15, 22, 6, 34, 7, 35, 8, 5, 9, 5, 10, 6, 17, 36, 28, 26, 30, 27, 31, 28, 32, 29, 0, 9, 0, 13, 35, 37, 6, 36, 38, 14, 8, 15, 11, 6, 39, 7, 40, 3, 41, 0, 9, 0, 13, 37, 37, 6, 36, 38, 14, 16, 15, 11, 6, 42, 7, 40, 3, 41, 0, 9, 0, 13, 38, 37, 6, 36, 38, 14, 8, 15, 39, 6, 39, 7, 20, 3, 41, 0, 9, 0, 13, 39, 37, 6, 36, 38, 14, 16, 15, 39, 6, 42, 7, 20, 3, 41, 0, 0, 0, 5, 40, -1, 8, 41, 4, 14, 2, 6, 30, 7, 3, 8, 4, 9, 5, 10, 6, 11, 6, 0, 0, 0, 5, 42, -1, 8, 41, 4, 14, 2, 6, 30, 7, 3, 8, 4, 9, 5, 10, 6, 11, 6, 0, 0, 0, 5, 43, -1, 8, 41, 4, 14, 2, 6, 30, 7, 3, 8, 4, 9, 5, 10, 6, 11, 6, 0 </int_array>
+			<int_array  len="501"> 				-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 0, 0, 0, 9, 8, -1, 7, 10, 5, 11, 6, 12, 7, 2, 0, 3, 1, 4, 2, 5, 2, 0, 1, 0, 14, 13, -1, 12, 15, 8, 16, 9, 11, 10, 12, 11, 2, 0, 3, 1, 4, 2, 5, 2, 17, 1, 18, 0, 19, 12, 20, 0, 0, 1, 0, 14, 21, -1, 11, 15, 8, 16, 11, 11, 10, 12, 13, 2, 0, 3, 1, 4, 2, 5, 2, 18, 0, 19, 14, 20, 0, 0, 1, 0, 14, 22, -1, 12, 15, 8, 16, 13, 11, 10, 12, 6, 2, 0, 3, 1, 4, 2, 5, 2, 17, 1, 18, 0, 19, 15, 20, 0, 0, 1, 0, 14, 23, -1, 12, 15, 8, 16, 16, 11, 10, 12, 17, 2, 0, 3, 1, 4, 2, 5, 2, 17, 1, 18, 0, 19, 18, 20, 0, 0, 1, 0, 14, 24, -1, 12, 15, 8, 16, 6, 11, 10, 12, 16, 2, 0, 3, 1, 4, 2, 5, 2, 17, 1, 18, 0, 19, 19, 20, 0, 0, 1, 0, 14, 25, -1, 12, 15, 8, 16, 17, 11, 10, 12, 20, 2, 0, 3, 1, 4, 2, 5, 2, 17, 1, 18, 0, 19, 21, 20, 0, 0, 1, 0, 27, 26, -1, 13, 15, 22, 11, 23, 12, 22, 2, 1, 3, 1, 4, 2, 28, 24, 19, 25, 29, 26, 30, 26, 31, 27, 32, 28, 33, 29, 0, 0, 0, 9, 34, -1, 8, 35, 0, 15, 6, 11, 30, 12, 7, 2, 0, 3, 1, 4, 2, 5, 2, 0, 0, 0, 9, 36, -1, 9, 35, 0, 10, 5, 15, 6, 11, 30, 12, 7, 2, 0, 3, 1, 4, 2, 5, 2, 0, 10, 0, 14, 37, -1, 11, 15, 8, 16, 8, 11, 31, 12, 32, 2, 0, 3, 1, 4, 2, 5, 2, 18, 0, 19, 33, 20, 0, 0, 10, 0, 27, 38, -1, 12, 15, 23, 16, 22, 11, 34, 12, 35, 2, 1, 3, 1, 4, 2, 19, 36, 29, 26, 31, 27, 32, 28, 33, 29, 0, 10, 0, 14, 39, 37, 7, 40, 38, 15, 8, 16, 39, 11, 40, 12, 41, 7, 42, 41, 0, 0, 10, 0, 14, 42, 37, 8, 40, 38, 15, 16, 16, 39, 11, 43, 12, 41, 7, 42, 43, 26, 41, 0, 0, 10, 0, 14, 44, 37, 8, 40, 38, 15, 8, 16, 40, 11, 40, 12, 20, 7, 42, 43, 2, 41, 0, 0, 10, 0, 14, 45, 37, 8, 40, 38, 15, 16, 16, 40, 11, 43, 12, 20, 7, 42, 43, 44, 41, 0, 0, 0, 0, 9, 46, -1, 8, 35, 0, 15, 6, 11, 30, 12, 7, 2, 0, 3, 1, 4, 2, 5, 2, 0, 0, 0, 9, 47, -1, 8, 35, 0, 15, 6, 11, 30, 12, 7, 2, 0, 3, 1, 4, 2, 5, 2, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="43" shared="false">
+			<array  len="45" shared="false">
+				<bool> False </bool>
+				<bool> True </bool>
+				<int> 2 </int>
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
@@ -201,15 +211,9 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
+				<real> 0.9 </real>
 				<real> 180 </real>
 				<real> 310 </real>
-				<bool> False </bool>
-				<bool> True </bool>
-				<int> 2 </int>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
 				<real> 10 </real>
 				<real> 60 </real>
 				<real> 170 </real>
@@ -238,11 +242,12 @@
 				<string> "Back" </string>
 				<real> 266 </real>
 				<real> 33 </real>
-				<string> "Select a skill" </string>
+				<string> "Select skill" </string>
 				<resource  external="2">  </resource>
 				<node_path> "" </node_path>
+				<real> 110 </real>
 				<real> 210 </real>
-				<real> 190 </real>
+				<real> 200 </real>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
@@ -251,7 +256,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -11.8482, 2.05082 </vector2>
+							<vector2> -42.9858, -43.2608 </vector2>
 							<string> "snap_grid" </string>
 							<bool> True </bool>
 							<string> "snap_offset" </string>
@@ -271,7 +276,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 2.789509 </real>
+							<real> 2.272073 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -380,6 +385,7 @@
 					</dictionary>
 				</dictionary>
 				<real> 420 </real>
+				<int> 3 </int>
 			</array>
 			<string> "version" </string>
 			<int> 1 </int>

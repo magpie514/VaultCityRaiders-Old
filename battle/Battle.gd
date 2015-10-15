@@ -20,6 +20,8 @@ func set_phase(phase):
 	elif phase == 1:
 		phase = 1
 		print("Combat phase 1: Character actions")
+		get_node("BattleUI/BattleChoice2").show()
+		get_node("BattleUI/BattleChoice2").init(party[0])
 	elif phase == 2:
 		phase = 2
 		print("Combat phase 2: Resolution")
@@ -35,6 +37,50 @@ var party = [
 		EP = 1340500,
 		MEP = 99999999,
 		over = 99,
+		OD = false,
+		skills = [
+			{
+				name = "Youkai Polygraph",
+				energy = true,
+				melee = false,
+				element = 0,
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,
+				levelMax = 1,
+				levels = [50, 100, 200, 0, 0, 0, 0, 0, 0, 0, 0],
+			},{
+				name = "Embers of Love",
+				energy = true,
+				melee = false,
+				element = 0,
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,
+				levelMax = 2,
+				levels = [1000, 10000, 100000, 1000000, 0, 0, 0, 0, 0, 0, 0],
+			},{
+				name = "Release of the Id",
+				energy = true,
+				melee = false,
+				element = 0,
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,
+				levelMax = 3,
+				levels = [50000, 80000, 160000, 320000, 640000, 0, 0, 0, 0, 0, 0],
+			},{
+				name = "Subterranean Rose",
+				energy = true,
+				melee = false,
+				element = 0,
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,
+				levelMax = 0,
+				levels = [100000, 200000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			}
+		]
 	},{
 		name = "Magpie",
 		status = "burn",
@@ -43,6 +89,49 @@ var party = [
 		EP = 22304,
 		MEP = 999999,
 		over = 50,
+		skills = [
+			{
+				name = "Debug Cannon",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Absolute Caliber",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Graviton Field",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Spatial Step",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			}
+		]
 	},{
 		name = "Kirarin",
 		status = "OK",
@@ -51,6 +140,49 @@ var party = [
 		EP = 5000,
 		MEP = 10000,
 		over = 99,
+		skills = [
+			{
+				name = "Kirarin Attack",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Kirarin Voice",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Kirarin Dance",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Kirarin Buster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			}
+		]
 	},{
 		name = "カメラあべ",
 		status = "OK",
@@ -59,6 +191,49 @@ var party = [
 		EP = 500,
 		MEP = 500,
 		over = 29,
+		skills = [
+			{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			}
+		]
 	},{
 		name = "Solid Snake",
 		status = "ded",
@@ -67,6 +242,49 @@ var party = [
 		EP = 45,
 		MEP = 500,
 		over = 1,
+		skills = [
+			{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			},{
+				name = "Debug Blaster",
+				energy = true,	#false = kinetic, true = energy
+				melee = false, 	#false = ranged, true = melee
+				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
+				element_secondary = false,
+				element2 = 0,
+				power_source = 0,	#SOURCE_VP, SOURCE_EP
+				levelMax = 5,
+				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
+			}
+		]
 	},{
 		name = "Angry Nerd",
 		status = "OK",

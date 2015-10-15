@@ -6,7 +6,7 @@ export var value = float(1.0) setget set_value
 var rect = 0
 
 func set_value(val):
-	if val > 1:
+	if val > 1.0:
 		val = 1.0
 	elif val < 0:
 		val = 0.0
