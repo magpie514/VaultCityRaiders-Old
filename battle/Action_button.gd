@@ -86,6 +86,7 @@ func _process(delta):
 
 #TODO:50 Find a way to make the last power level be remembered. @Combat @GUI +Brainstorm
 func init(act, char):
+	var test = AtlasTexture.new()
 	skill = act
 	character = char
 	get_node("NameLabel").set_text(act.name)

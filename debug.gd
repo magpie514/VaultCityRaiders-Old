@@ -9,7 +9,7 @@ func _ready():
 	nodes.tree = get_tree()
 
 func _on_B_Board_pressed():
-	nodes.tree.change_scene("res://Generator.xscn")
+	nodes.tree.change_scene("res://board/Generator.xscn")
 
 func _on_B_Battle_pressed():
 	nodes.tree.change_scene("res://battle/Battle.xscn")

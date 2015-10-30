@@ -31,7 +31,9 @@ func _process(delta):
 	if fade:
 		if anim_timer < ANIM_TIME:
 			anim_timer += delta
-			self.set_opacity(1 - anim_timer/ANIM_TIME)
+			if anim_timer > ANIM_TIME:
+				anim_timer = ANIM_TIME
+			self.set_opacity(1.0 - anim_timer/ANIM_TIME)
 			set_pos(t_pos - Vector2(0, interpolate(0, t_rect.size.y, anim_timer / ANIM_TIME)))
 		else:
 			self.hide()
@@ -39,10 +41,11 @@ func _process(delta):
 	else:
 		if anim_timer < ANIM_TIME:
 			anim_timer += delta
+			if anim_timer > ANIM_TIME:
+				anim_timer = ANIM_TIME
 			self.set_opacity(anim_timer/ANIM_TIME * 0.75)
 			set_pos(t_pos - Vector2(0, interpolate(t_rect.size.y, 0, anim_timer / ANIM_TIME)))
 		else:
-			set_pos(t_pos)
 			set_process(false)
 
 func start():
@@ -87,7 +90,6 @@ func _on_B_Fight_pressed():
 	self.stop()
 
 func _on_B_Run_pressed():
-	print(get_tree())
 	get_tree().quit()
 
 func _on_B_Talk_pressed():
@@ -95,7 +97,7 @@ func _on_B_Talk_pressed():
 	self.stop()
 
 func _on_B_Skill_pressed():
-	self.emit_signal("_battlechoice1", 4)
+	self.emit_signal("_battlechoice1", 1)
 	self.stop()
 
 func _on_B_Item_pressed():

@@ -16,25 +16,33 @@ var blink = 1
 #TODO:30 Display status effects. @GUI
 
 func _ready():
-	nodes.labels.name = get_node("Name")
+	nodes.labels.name = get_node("Display/Name")
 
-	nodes.labels.vitalN = get_node("Vital/Label")
-	nodes.labels.vital = get_node("Vital");		nodes.bars.vital = get_node("Vital/Bar")
+	nodes.labels.vitalN = get_node("Display/Vital/Label")
+	nodes.labels.vital = get_node("Display/Vital")
+	nodes.bars.vital = get_node("Display/Vital/Bar")
 	
-	nodes.labels.EPN = get_node("EP/Label")
-	nodes.labels.EP = get_node("EP");			nodes.bars.EP = get_node("EP/Bar")
+	nodes.labels.EPN = get_node("Display/EP/Label")
+	nodes.labels.EP = get_node("Display/EP")
+	nodes.bars.EP = get_node("Display/EP/Bar")
 	
-	nodes.labels.overN = get_node("Over/Label")
-	nodes.labels.over = get_node("Over/Label");	nodes.bars.over = get_node("Over/Bar")
+	nodes.labels.overN = get_node("Display/Over/Label")
+	nodes.labels.over = get_node("Display/Over/Label")
+	nodes.bars.over = get_node("Display/Over/Bar")
 
-func _fixed_process(delta):
+func _process(delta):
 	char_update(character)
 
 func init(C):
+	if C == null:
+		get_node("Display").hide() #NOTE:0 Failsafe. If that party slot is empty, bail out immediately.
+		return
+	else:
+		get_node("Display").show() #Just in case...
 	character = C
 	nodes.labels.name.set_text(character.name)
 	char_update(character)
-	self.set_fixed_process(true)
+	self.set_process(true)
 
 func bar_color(val):
 	if val >= 0.999999:
@@ -51,8 +59,8 @@ func bar_color(val):
 func setVital(v, mv):
 	var val = float(v) / float(mv)
 	nodes.bars.vital.color = vital_colors[bar_color(val)]
-	if v > 0 and val < 0.0001: 	#A safeguard in case it's a very low percentage, but still over 1, so it still shows a bit of bar.
-		val = 0.0001			#You know, to ensure the typical "I survived with just one pixel of life left!" scenario.
+	if v > 0 and val < 0.0001: 	#NOTE:0 A safeguard in case it's a very low percentage, but still over 1, so it still shows a bit of bar.
+		val = 0.0001
 	nodes.bars.vital.set_value(val)
 	nodes.labels.vitalN.set_text(str(v, "/", mv))
 

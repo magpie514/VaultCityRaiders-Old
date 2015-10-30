@@ -1,357 +1,116 @@
 extends Node
+	
+var decision = false
+var phase setget set_phase
+var currentChoice = 0
+var playerChoices = []
+var party = null
+
+func printAction(act):
+	var typelabels = ["weapon", "skill", "overdrive", "defend"]
+	if act.action in [0, 1, 2]:
+		print(party[act.char].name, " used ", typelabels[act.action], " ", party[act.char].skills[act.slot].name, " with power ", act.power)
+	else:
+		print(party[act.char].name, " defended!")
+
+func set_phase(phase):
+	#TODO:20 Define combat phases properly. @Combat +Brainstorm
+	if phase == 0:
+		phase = 0
+		print("Combat phase 0: Party action")
+		get_node("BattleUI/BattleChoice1").start()
+	elif phase == 1:
+		phase = 1
+		print("Combat phase 1: Character actions")
+		get_node("BattleUI/BattleChoice2").show()
+		currentChoice = 0
+		get_node("BattleUI/BattleChoice2").init(party[0])
+	elif phase == 2:
+		phase = 2
+		print("Combat phase 2: Processing")
+		for i in range(0, 3):
+			printAction(playerChoices[i])
+		set_phase(3)
+	elif phase == 3:
+		phase = 3
+		print("Combat phase 3: Normal effects")
+		set_phase(4)
+	elif phase == 4:
+		phase = 4
+		print("Combat phase 4: End of turn effects")
+		set_phase(5)
+	elif phase == 5:
+		phase = 5
+		print("Combat phase 5: Conclusion")
+		set_phase(0)
+
+#FIXME:3 Add weapon attacks, skills, overdrives and a minimal inventory. @Character
+
+
+var enemyParty = [
+	{
+		name = "G-HAMMER Pod",
+		V = 14000,
+		MV = 14000,
+		EP = 9999,
+		MEP = 9999
+	},{
+		name = "G-HAMMER Pod",
+		V = 14000,
+		MV = 14000,
+		EP = 9999,
+		MEP = 9999
+	},{
+		name = "G-HAMMER Pod",
+		V = 14000,
+		MV = 14000,
+		EP = 9999,
+		MEP = 9999
+	}
+]
+
+func _process(delta):
+	pass
+
+func _ready():
+	playerChoices.resize(5)
+	var debugp = preload("res://battle/debugparty.gd").new()
+	get_node("BattleUI/BattleChoice1").connect("_battlechoice1", self, "_receive_battlechoice1")
+	get_node("BattleUI/BattleChoice2").connect("_battlechoice2", self, "_receive_battlechoice2")
+	init(debugp.party)
+
+func init(P):
+	party = P
+	for i in range(0, 8):
+		get_node(str("BattleUI/Display_Player/P", i)).init(party[i])
+	get_node("BattleUI/Display_Foe/P0").init(enemyParty[0])
+	get_node("BattleUI/Display_Foe/P1").init(enemyParty[1])
+	get_node("BattleUI/Display_Foe/P2").init(enemyParty[2])
+	get_node("/root/Global/StreamPlayer").play()
+	set_process(false)
+	self.phase = 0
+
 
 func _receive_battlechoice1(choice):
 	if choice == 1:
 		self.phase = 1
 	elif choice == 2:
 		print("nigeru~")
-	
-var decision = false
-var phase setget set_phase
 
-func set_phase(phase):
-	#TODO:20 Define combat phases properly. @Combat +Brainstorm
-	print("Setting combat phase: ", phase)
-	if phase == 0:
-		phase = 0
-		print("Combat phase 0: Party action")
-		get_node("BattleUI/BattleChoice1").connect("_battlechoice1", self, "_receive_battlechoice1")
-		get_node("BattleUI/BattleChoice1").start()
-	elif phase == 1:
-		phase = 1
-		print("Combat phase 1: Character actions")
-		get_node("BattleUI/BattleChoice2").show()
-		get_node("BattleUI/BattleChoice2").init(party[0])
-	elif phase == 2:
-		phase = 2
-		print("Combat phase 2: Resolution")
-
-
-#FIXME:3 Add weapon attacks, skills, overdrives and a minimal inventory. @Character
-var party = [
-	{
-		name = "Koishi",
-		status = "OK",
-		V = 5500,
-		MV = 9999,
-		EP = 1340500,
-		MEP = 99999999,
-		over = 99,
-		OD = false,
-		skills = [
-			{
-				name = "Youkai Polygraph",
-				energy = true,
-				melee = false,
-				element = 0,
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,
-				levelMax = 1,
-				levels = [50, 100, 200, 0, 0, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Embers of Love",
-				energy = true,
-				melee = false,
-				element = 0,
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,
-				levelMax = 2,
-				levels = [1000, 10000, 100000, 1000000, 0, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Release of the Id",
-				energy = true,
-				melee = false,
-				element = 0,
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,
-				levelMax = 3,
-				levels = [50000, 80000, 160000, 320000, 640000, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Subterranean Rose",
-				energy = true,
-				melee = false,
-				element = 0,
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,
-				levelMax = 0,
-				levels = [100000, 200000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			}
-		]
-	},{
-		name = "Magpie",
-		status = "burn",
-		V = 800,
-		MV = 5400,
-		EP = 22304,
-		MEP = 999999,
-		over = 50,
-		skills = [
-			{
-				name = "Debug Cannon",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Absolute Caliber",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Graviton Field",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Spatial Step",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			}
-		]
-	},{
-		name = "Kirarin",
-		status = "OK",
-		V = 9999,
-		MV = 9999,
-		EP = 5000,
-		MEP = 10000,
-		over = 99,
-		skills = [
-			{
-				name = "Kirarin Attack",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Voice",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Dance",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Buster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			}
-		]
-	},{
-		name = "カメラあべ",
-		status = "OK",
-		V = 500,
-		MV = 999,
-		EP = 500,
-		MEP = 500,
-		over = 29,
-		skills = [
-			{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			}
-		]
-	},{
-		name = "Solid Snake",
-		status = "ded",
-		V = 0,
-		MV = 999,
-		EP = 45,
-		MEP = 500,
-		over = 1,
-		skills = [
-			{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Debug Blaster",
-				energy = true,	#false = kinetic, true = energy
-				melee = false, 	#false = ranged, true = melee
-				element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-				element_secondary = false,
-				element2 = 0,
-				power_source = 0,	#SOURCE_VP, SOURCE_EP
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			}
-		]
-	},{
-		name = "Angry Nerd",
-		status = "OK",
-		V = 1,
-		MV = 99,
-		EP = 99999,
-		MEP = 99999,
-		over = 100,
-	},{
-		name = "Gooby",
-		status = "OK",
-		V = 99999,
-		MV = 99999,
-		EP = 99999,
-		MEP = 99999,
-		over = 50,
-	},{
-		name = "Diancie",
-		status = "OK",
-		V = 90000,
-		MV = 99999,
-		EP = 19999,
-		MEP = 99999,
-		over = 50,
+func _receive_battlechoice2(action, slot, power, target):
+	print(party[currentChoice].name, ":", action, ",", slot, ",", power, ",", target)
+	get_node("/root/Global/UI_SFX").play("blip")
+	playerChoices[currentChoice] = {
+		char = currentChoice,
+		action = action,
+		slot = slot,
+		power = power,
+		target = target
 	}
-]
-
-var enemy_party = [
-	{
-		name = "Gun Enforcer",
-		V = 2900,
-		MV = 14000,
-		EP = 1,
-		MEP = 5400
-	},{
-		name = "Satellite Pod",
-		V = 5000,
-		MV = 14000,
-		EP = 9999,
-		MEP = 9999
-	},{
-		name = "Steel Slave",
-		V = 100,
-		MV = 50000,
-		EP = 500,
-		MEP = 2000
-	}
-]
-
-
-
-func _fixed_process(delta):
-	pass
-
-func _ready():
-	get_node("BattleUI/Display_Player/P0").init(party[0])
-	get_node("BattleUI/Display_Player/P1").init(party[1])
-	get_node("BattleUI/Display_Player/P2").init(party[2])
-	get_node("BattleUI/Display_Player/P3").init(party[3])
-	get_node("BattleUI/Display_Player/P4").init(party[4])
-	get_node("BattleUI/Display_Player/P5").init(party[5])
-	get_node("BattleUI/Display_Player/P6").init(party[6])
-	get_node("BattleUI/Display_Player/P7").init(party[7])
+	if currentChoice < 2:
+		currentChoice += 1
+		get_node("BattleUI/BattleChoice2").init(party[currentChoice])
+	else:
+		get_node("BattleUI/BattleChoice2/Main").stop()
+		self.phase = 2
 	
-	get_node("BattleUI/Display_Foe/P0").init(enemy_party[0])
-	get_node("BattleUI/Display_Foe/P1").init(enemy_party[1])
-	get_node("BattleUI/Display_Foe/P2").init(enemy_party[2])
-
-	set_fixed_process(true)
-	self.phase = 0
