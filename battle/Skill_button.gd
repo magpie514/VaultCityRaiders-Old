@@ -1,31 +1,23 @@
 extends Button
 
-export var slot = 0 #NOTE:10 Let's store the skill values/pointers/everything in the character, and have the interface merely return the slot it's used at. @Skill @Combat
-export var debug = false
+signal skillChoice(slot, power)
+
+
 const SOURCE_EP = 0
 const SOURCE_VP = 1
 
-signal skillChoice(slot, power)
+const TYPE_EFFECT = 0
+const TYPE_ENERGY = 1
+const TYPE_KINETIC = 2
+const TYPE_FIELD = 3 #NOTE:4 Should this be used, or a subform of EFFECT? @Data
 
-#TODO:40 Decide action format. @Character +Brainstorm
-var testaction = {
-	name = "Debug Blaster",
-	energy = true,	#false = kinetic, true = energy
-	melee = false, 	#false = ranged, true = melee
-	element = 0, #TODO:60 Decide the element list! @Skill @Character +Brainstorm
-	element_secondary = false,
-	element2 = 0,
-	power_source = 0,	#SOURCE_VP, SOURCE_EP
-	levelMax = 5,
-	target = 0, #TODO:45 Define range as a small grid of 5x2.
-	levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0], #TODO:10 Make a pretty setter function (with sort, for safety) somewhere @Skill
-}
+const TARGET_SELF = 0
+const TARGET_SINGLE = 1
+const TARGET_ALL_ALLY = 2
+const TARGET_ALL_ENEMY = 3
 
-var testchar = {
-	EP = 500000,
-	MEP = 500000,
-	OD = false
-}
+export var slot = 0 #NOTE:10 Have the interface just return slots. @Skill @Combat
+export var debug = false
 
 var power = 0
 var powerMod = 0
@@ -34,9 +26,26 @@ var levelMax = 0
 var character = null
 var skill = null
 var epMax = 0
-var epMin = 0
 var tex_rects = [Rect2(0,0,20,20), Rect2(20,0,20,20), Rect2(0,20,20,20), Rect2(20,20,20,20)]
-var increase_spd = 0
+var increase_spd = 0.0
+
+var testaction = {
+	name = "Debug Blaster",
+	sType = TYPE_ENERGY,
+	target = TARGET_SINGLE,
+	contact = false,
+	sRange = 3,
+	elements = [0, 0],
+	power_source = SOURCE_EP,	#SOURCE_VP, SOURCE_EP
+	levelMax = 5,
+	levels = [10, 20, 30, 40, 50, 60, 70, 0, 0, 0, 0], #TODO:10 Make a pretty setter function (with sort, for safety) somewhere @Skill
+}
+
+var testchar = {
+	EP = 500000,
+	MEP = 500000,
+	OD = false
+}
 
 static func levelCheck(power, levelMax, levelList):
 	if power == levelList[levelMax]:
@@ -55,8 +64,8 @@ func _ready():
 func _process(delta):
 	if powerMod != 0:
 		power += int(increase_spd) * powerMod
-		if power < epMin:
-			power = epMin
+		if power < skill.levels[0]:
+			power = skill.levels[0]
 			powerMod = 0
 			self.set_process(false)
 		if power > epMax:
@@ -72,7 +81,7 @@ func _process(delta):
 		if character.OD:
 			levelLabel = "EX"
 		else:
-			levelLabel = "MAX"
+			levelLabel = "OVER"
 	else:
 		levelLabel = str(level + 1)
 
@@ -91,21 +100,25 @@ func init(act, char):
 	skill = act
 	character = char
 	get_node("NameLabel").set_text(act.name)
-	if skill.energy:
+	if skill.sType == TYPE_ENERGY:
 		get_node("TypeIcon").get_texture().set_region(tex_rects[1])
 		get_node("TypeIcon").set_modulate(Color(.8,0,.8))
-	else:
+	elif skill.sType == TYPE_KINETIC:
 		get_node("TypeIcon").get_texture().set_region(tex_rects[0])
 		get_node("TypeIcon").set_modulate(Color(.4,.4,.4))
-	if skill.melee:
+	elif skill.sType == TYPE_EFFECT:
+		get_node("TypeIcon").get_texture().set_region(tex_rects[0])
+		get_node("TypeIcon").set_modulate(Color(.4,.4,.8))
+		
+	if skill.contact:
 		get_node("RangeIcon").get_texture().set_region(tex_rects[2])
 		get_node("RangeIcon").set_modulate(Color(.6,.2,.2))
 	else:
 		get_node("RangeIcon").get_texture().set_region(tex_rects[3])
 		get_node("RangeIcon").set_modulate(Color(.2,.6,.8))
 
-	epMin = skill.levels[0]
-	if epMin > character.EP:
+	
+	if skill.levels[0] > character.EP:
 		get_node("EP_Display/LevelLabel/MaxBar").value = 0
 		self.set_opacity(0.5)
 		self.set_disabled(true)
@@ -117,7 +130,7 @@ func init(act, char):
 		get_node("B_Increase").set_disabled(true)
 		return
 	else:
-		power = epMin
+		power = skill.levels[0]
 
 	if character.OD:
 		levelMax = skill.levelMax + 1
