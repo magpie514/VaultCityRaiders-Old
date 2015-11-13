@@ -50,7 +50,7 @@ func _process(delta):
 
 func _ready():
 	playerChoices.resize(5)
-	var debugp = preload("res://battle/debugparty.gd").new()
+	var debugp = preload("res://battle/debug/debugparty.gd").new()
 	get_node("BattleUI/BattleChoice1").connect("_battlechoice1", self, "_receive_battlechoice1")
 	get_node("BattleUI/BattleChoice2").connect("_battlechoice2", self, "_receive_battlechoice2")
 	init(debugp.party)
