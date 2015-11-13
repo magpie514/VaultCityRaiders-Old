@@ -6,8 +6,8 @@ var nodes = {
 }
 
 var character = null
-var vital_colors = [Color(.9, .9, .9), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
-var ep_colors = [Color(.9, .9, .9), Color(0, .9, .9), Color(0, .5, .9), Color(0, 0, .9), Color(.9, 0, 0)]
+var vital_colors = [Color(.75, .95, .75), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
+var ep_colors = [Color(.75, .75, .95), Color(0, .9, .9), Color(0, .5, .9), Color(0, 0, .9), Color(.9, 0, 0)]
 var status_colors = [Color(.9, .9, 0), Color(.9, 0, 0)] # 0 = Negative status, 1 = incapacitated.
 var blink = 1
 
@@ -41,6 +41,8 @@ func init(C):
 		get_node("Display").show() #Just in case...
 	character = C
 	nodes.labels.name.set_text(character.name)
+	if C.stats.awakening == false:
+		get_node("Display/Over").set_text("???")
 	char_update(character)
 	self.set_process(true)
 
@@ -74,7 +76,7 @@ func setEP(ep, mep):
 
 func setOver(o):
 	var val = float(o) / 100.0
-	nodes.bars.over.color = Color(1,.5,0)
+	nodes.bars.over.color = Color(1,.6,0)
 	nodes.bars.over.set_value(val)
 	nodes.labels.overN.set_text(str(o, "%"))
 
@@ -86,9 +88,9 @@ func text_color_overrides(color):
 	nodes.labels.EPN.add_color_override("font_color", color)
 
 func char_update(C):
-	setVital(C.V, C.MV)
-	setEP(C.EP, C.MEP)
-	setOver(C.over)
+	setVital(C.stats.V, C.stats.MV)
+	setEP(C.stats.EP, C.stats.MEP)
+	setOver(C.stats.over)
 	if C.status == "ded":
 		text_color_overrides(status_colors[1])
 		#FIXME:0 Only update on change

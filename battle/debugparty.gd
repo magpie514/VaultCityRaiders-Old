@@ -12,17 +12,22 @@ const TARGET_SELF = 0
 const TARGET_SINGLE = 1
 const TARGET_ALL_ALLY = 2
 const TARGET_ALL_ENEMY = 3
+#TODO:99 Move this kind of constant to the control node.
+#TODO:98 Add a way to load parties from disk, from gdscript first, then json, then binary data when defined.
+
 
 var party = [
 	{
 		name = "Koishi",
 		status = "OK",
-		V = 9999,
-		MV = 9999,
-		EP = 99999999,
-		MEP = 99999999,
-		over = 99,
-		OD = false,
+		stats = {
+			V = 99999,
+			MV = 99999,
+			EP = 99999999,
+			MEP = 99999999,
+			over = 100,
+			awakening = true,
+		},
 		skills = [
 			{
 				name = "Youkai Polygraph",
@@ -68,13 +73,15 @@ var party = [
 		]
 	},{
 		name = "Magpie",
-		status = "burn",
-		V = 5400,
-		MV = 5400,
-		EP = 999999,
-		MEP = 999999,
-		over = 50,
-		OD = false,
+		status = "OK",
+		stats = {
+			V = 12000,
+			MV = 54000,
+			EP = 999999,
+			MEP = 999999,
+			over = 50,
+			awakening = true,
+		},
 		skills = [
 			{
 				name = "G-Crystal Field",
@@ -121,12 +128,14 @@ var party = [
 	},{
 		name = "Kirarin",
 		status = "OK",
-		V = 9999,
-		MV = 9999,
-		EP = 10000,
-		MEP = 10000,
-		over = 99,
-		OD = false,
+		stats = {
+			V = 9999,
+			MV = 9999,
+			EP = 10000,
+			MEP = 10000,
+			over = 99,
+			awakening = false,
+		},
 		skills = [
 			{
 				name = "Kirarin Attack",
@@ -177,18 +186,24 @@ var party = [
 	{
 		name = "Gooby",
 		status = "OK",
-		V = 99999,
-		MV = 99999,
-		EP = 99999,
-		MEP = 99999,
-		over = 50,
+		stats = {
+			V = 99999,
+			MV = 99999,
+			EP = 99999,
+			MEP = 99999,
+			over = 50,
+			awakening = false,
+		},
 	},{
 		name = "G-SLAVE bit",
 		status = "OK",
-		V = 1000,
-		MV = 9999,
-		EP = 1999,
-		MEP = 9999,
-		over = 0,
+		stats = {
+			V = 1000,
+			MV = 9999,
+			EP = 1999,
+			MEP = 9999,
+			over = 0,
+			awakening = false,
+		},
 	}
 ]

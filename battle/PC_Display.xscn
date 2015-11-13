@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://battle/PC_Display.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://fonts/gothic_15.fnt" type="Font" index="1"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="2"></ext_resource>
 	<ext_resource path="res://battle/Bar.xscn" type="PackedScene" index="3"></ext_resource>
 	<ext_resource path="res://fonts/ubuntuB_20.fnt" type="Font" index="5"></ext_resource>
-	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="2"></ext_resource>
-	<ext_resource path="res://battle/PC_Display.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://fonts/ubuntuB_15.fnt" type="Font" index="4"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
@@ -61,9 +61,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="335"> 				-1, -1, 9, 0, -1, 8, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 4, 7, 5, 8, 6, 0, 0, 0, 11, 10, -1, 6, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 4, 0, 1, 0, 21, 12, -1, 13, 13, 7, 1, 8, 2, 9, 3, 3, 4, 3, 5, 4, 14, 10, 15, 11, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 22, -1, 12, 13, 7, 23, 16, 1, 17, 2, 18, 3, 3, 4, 2, 5, 4, 14, 19, 15, 20, 18, 13, 19, 14, 20, 15, 0, 3, 0, 2147483647, 24, 21, 4, 23, 22, 1, 23, 2, 24, 25, 25, 0, 3, 0, 21, 21, -1, 15, 13, 26, 23, 13, 1, 23, 2, 22, 3, 3, 4, 2, 5, 4, 14, 27, 15, 28, 16, 4, 17, 4, 26, 3, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 27, -1, 12, 13, 7, 23, 29, 1, 16, 2, 30, 3, 3, 4, 2, 5, 4, 14, 19, 15, 31, 18, 13, 19, 14, 20, 15, 0, 6, 0, 2147483647, 24, 21, 4, 23, 22, 1, 23, 2, 24, 25, 32, 0, 6, 0, 21, 21, -1, 14, 13, 16, 1, 23, 2, 33, 3, 3, 4, 2, 5, 4, 14, 34, 15, 35, 16, 4, 17, 12, 26, 3, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 28, -1, 12, 13, 7, 23, 36, 1, 17, 2, 37, 3, 3, 4, 2, 5, 4, 14, 19, 15, 38, 18, 13, 19, 14, 20, 15, 0, 9, 0, 2147483647, 24, 21, 4, 23, 39, 1, 23, 2, 33, 25, 40, 0, 9, 0, 21, 21, -1, 14, 13, 26, 1, 23, 2, 33, 3, 3, 4, 2, 5, 4, 14, 27, 15, 41, 16, 4, 17, 4, 26, 3, 18, 13, 19, 14, 20, 15, 0, 0, 0, 34, 29, -1, 4, 30, 12, 31, 42, 32, 2, 33, 3, 0 </int_array>
+			<int_array  len="335"> 				-1, -1, 9, 0, -1, 8, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 4, 7, 5, 8, 6, 0, 0, 0, 11, 10, -1, 6, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 4, 0, 1, 0, 21, 12, -1, 13, 13, 7, 1, 8, 2, 9, 3, 3, 4, 3, 5, 4, 14, 10, 15, 11, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 22, -1, 12, 13, 7, 23, 16, 1, 17, 2, 18, 3, 3, 4, 2, 5, 4, 14, 19, 15, 20, 18, 13, 19, 14, 20, 15, 0, 3, 0, 2147483647, 24, 21, 4, 23, 22, 1, 23, 2, 24, 25, 25, 0, 3, 0, 21, 21, -1, 15, 13, 26, 23, 13, 1, 23, 2, 22, 3, 3, 4, 2, 5, 4, 14, 27, 15, 28, 16, 4, 17, 4, 26, 3, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 27, -1, 12, 13, 7, 23, 29, 1, 16, 2, 30, 3, 3, 4, 2, 5, 4, 14, 19, 15, 31, 18, 13, 19, 14, 20, 15, 0, 6, 0, 2147483647, 24, 21, 4, 23, 22, 1, 23, 2, 24, 25, 32, 0, 6, 0, 21, 21, -1, 14, 13, 16, 1, 23, 2, 33, 3, 3, 4, 2, 5, 4, 14, 34, 15, 35, 16, 4, 17, 12, 26, 3, 18, 13, 19, 14, 20, 15, 0, 1, 0, 21, 28, -1, 12, 13, 7, 23, 36, 1, 37, 2, 38, 3, 3, 4, 2, 5, 4, 14, 19, 15, 39, 18, 13, 19, 14, 20, 15, 0, 9, 0, 2147483647, 24, 21, 4, 23, 40, 1, 23, 2, 33, 25, 41, 0, 9, 0, 21, 21, -1, 14, 13, 26, 1, 23, 2, 33, 3, 3, 4, 2, 5, 4, 14, 27, 15, 42, 16, 4, 17, 4, 26, 3, 18, 13, 19, 14, 20, 15, 0, 0, 0, 34, 29, -1, 4, 30, 12, 31, 43, 32, 2, 33, 3, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="43" shared="false">
+			<array  len="44" shared="false">
 				<real> 160 </real>
 				<real> 80 </real>
 				<bool> False </bool>
@@ -216,8 +216,8 @@
 				<int> 0 </int>
 				<int> -1 </int>
 				<real> 22 </real>
-				<real> 50 </real>
 				<real> 35 </real>
+				<real> 31 </real>
 				<resource  external="2">  </resource>
 				<string> "Vital" </string>
 				<resource  external="3">  </resource>
@@ -229,14 +229,15 @@
 				<resource  external="4">  </resource>
 				<string> "99999/99999" </string>
 				<real> 42 </real>
-				<real> 55 </real>
+				<real> 51 </real>
 				<string> "EP" </string>
 				<color> 0, 1, 1, 1 </color>
 				<real> 15 </real>
 				<resource  external="5">  </resource>
 				<string> "999999999" </string>
 				<real> 62 </real>
-				<real> 75 </real>
+				<real> 30 </real>
+				<real> 71 </real>
 				<string> "Over" </string>
 				<real> 13 </real>
 				<color> 1, 0.500698, 0, 1 </color>

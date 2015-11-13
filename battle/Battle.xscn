@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="4" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+<resource_file type="PackedScene" subresource_count="3" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://battle/Battle.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://battle/BattleUI.xscn" type="PackedScene" index="1"></ext_resource>
-	<resource type="ColorRamp" path="local://1">
-		<real_array name="offsets" len="3"> 			0, 0.169897, 0.991602 </real_array>
-		<color_array name="colors" len="3"> 			1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1 </color_array>
-
-	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -17,7 +12,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="56">
+			<string_array  len="33">
 				<string> "BattleScene" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
@@ -45,35 +40,12 @@
 				<string> "audio_listener/enable_2d" </string>
 				<string> "audio_listener/enable_3d" </string>
 				<string> "physics/object_picking" </string>
-				<string> "Particles2D" </string>
-				<string> "transform/pos" </string>
-				<string> "transform/scale" </string>
-				<string> "config/amount" </string>
-				<string> "config/lifetime" </string>
-				<string> "config/preprocess" </string>
-				<string> "config/half_extents" </string>
-				<string> "config/local_space" </string>
-				<string> "params/direction" </string>
-				<string> "params/spread" </string>
-				<string> "params/linear_velocity" </string>
-				<string> "params/spin_velocity" </string>
-				<string> "params/orbit_velocity" </string>
-				<string> "params/gravity_direction" </string>
-				<string> "params/gravity_strength" </string>
-				<string> "params/radial_accel" </string>
-				<string> "params/tangential_accel" </string>
-				<string> "params/damping" </string>
-				<string> "params/initial_angle" </string>
-				<string> "params/initial_size" </string>
-				<string> "params/final_size" </string>
-				<string> "params/hue_variation" </string>
-				<string> "params/anim_speed_scale" </string>
-				<string> "params/anim_initial_pos" </string>
-				<string> "randomness/linear_velocity" </string>
-				<string> "randomness/hue_variation" </string>
-				<string> "color/color" </string>
-				<string> "color/color_ramp" </string>
 				<string> "BattleUI" </string>
+				<string> "Timer" </string>
+				<string> "process_mode" </string>
+				<string> "wait_time" </string>
+				<string> "one_shot" </string>
+				<string> "autostart" </string>
 			</string_array>
 			<string> "node_count" </string>
 			<int> 5 </int>
@@ -81,9 +53,9 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="133"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 12, 4, -1, 7, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 7, 0, 1, 0, 13, 13, -1, 13, 14, 8, 15, 5, 16, 9, 17, 6, 18, 5, 19, 6, 20, 6, 21, 5, 22, 5, 23, 7, 24, 5, 25, 5, 26, 5, 0, 2, 0, 27, 27, -1, 27, 28, 10, 29, 11, 30, 12, 31, 2, 32, 13, 33, 14, 34, 5, 35, 15, 36, 16, 37, 2, 38, 16, 39, 16, 40, 16, 41, 16, 42, 16, 43, 16, 44, 17, 45, 16, 46, 16, 47, 18, 48, 16, 49, 17, 50, 16, 51, 19, 52, 20, 53, 21, 54, 22, 0, 0, 0, 2147483647, 55, 23, 0, 0 </int_array>
+			<int_array  len="87"> 				-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 12, 4, -1, 7, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 7, 0, 1, 0, 13, 13, -1, 13, 14, 8, 15, 5, 16, 9, 17, 6, 18, 5, 19, 6, 20, 6, 21, 5, 22, 5, 23, 7, 24, 5, 25, 5, 26, 5, 0, 0, 0, 2147483647, 27, 10, 0, 0, 0, 0, 28, 28, -1, 4, 29, 11, 30, 12, 31, 5, 32, 5, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="24" shared="false">
+			<array  len="13" shared="false">
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
@@ -221,27 +193,16 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<real> 20 </real>
+				<real> 10 </real>
 				<real> 800 </real>
-				<real> 390 </real>
+				<real> 470 </real>
 				<bool> False </bool>
 				<bool> True </bool>
 				<int> 2 </int>
-				<rect2> 0, 0, 800, 370 </rect2>
-				<resource name=""></resource>				<vector2> 400, 365 </vector2>
-				<vector2> 12.5, 0.46875 </vector2>
-				<int> 64 </int>
-				<real> 0.1 </real>
-				<vector2> 50, 20 </vector2>
-				<real> 180 </real>
-				<real> 0 </real>
+				<rect2> 0, 0, 800, 460 </rect2>
+				<resource name=""></resource>				<resource  external="1">  </resource>
+				<int> 1 </int>
 				<real> 1 </real>
-				<real> 10 </real>
-				<real> 0.4 </real>
-				<real> 0.06 </real>
-				<color> 0.546166, 0, 1, 1 </color>
-				<resource  resource_type="ColorRamp" path="local://1">  </resource>
-				<resource  external="1">  </resource>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

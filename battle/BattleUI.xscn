@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="6" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+<resource_file type="PackedScene" subresource_count="9" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<ext_resource path="res://battle/BattleChoice2_sub.gd" type="Script" index="5"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="6"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuB_20.fnt" type="Font" index="7"></ext_resource>
+	<ext_resource path="res://battle/FOE_Display.xscn" type="PackedScene" index="1"></ext_resource>
+	<ext_resource path="res://battle/Battle_choice.xscn" type="PackedScene" index="3"></ext_resource>
+	<ext_resource path="res://battle/Battle_choice2.xscn" type="PackedScene" index="2"></ext_resource>
+	<ext_resource path="res://battle/Action_display.gd" type="Script" index="4"></ext_resource>
 	<ext_resource path="res://battle/PC_Display.xscn" type="PackedScene" index="0"></ext_resource>
-	<ext_resource path="res://battle/FOE_Display.xscn" type="PackedScene" index="2"></ext_resource>
-	<ext_resource path="res://battle/Battle_choice.xscn" type="PackedScene" index="4"></ext_resource>
-	<ext_resource path="res://battle/PC_Display_backrow.xscn" type="PackedScene" index="1"></ext_resource>
-	<ext_resource path="res://battle/Battle_choice2.xscn" type="PackedScene" index="3"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -15,7 +18,7 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="37">
+			<string_array  len="41">
 				<string> "BattleUI" </string>
 				<string> "__meta__" </string>
 				<string> "Node" </string>
@@ -34,16 +37,17 @@
 				<string> "P2" </string>
 				<string> "P6" </string>
 				<string> "P7" </string>
+				<string> "Display_Foe" </string>
 				<string> "P3" </string>
 				<string> "P4" </string>
-				<string> "P5" </string>
-				<string> "Display_Foe" </string>
 				<string> "BattleChoice2" </string>
 				<string> "visibility/visible" </string>
 				<string> "BattleChoice1" </string>
-				<string> "EnemyActionDisplay" </string>
-				<string> "visibility/self_opacity" </string>
+				<string> "ActionDisplay" </string>
+				<string> "script/script" </string>
 				<string> "Panel" </string>
+				<string> "visibility/self_opacity" </string>
+				<string> "direction" </string>
 				<string> "Name" </string>
 				<string> "text" </string>
 				<string> "align" </string>
@@ -52,17 +56,20 @@
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
 				<string> "Label" </string>
-				<string> "PartyActionDisplay" </string>
+				<string> "Power" </string>
+				<string> "custom_fonts/font" </string>
+				<string> "EP" </string>
+				<string> "uppercase" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 22 </int>
+			<int> 20 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="338"> 				-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 11, 3, -1, 8, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 6, 1, 7, 0, 1, 0, 2147483647, 12, 8, 2, 13, 9, 5, 10, 0, 1, 0, 2147483647, 14, 8, 2, 13, 10, 5, 3, 0, 1, 0, 2147483647, 15, 8, 2, 13, 3, 5, 11, 0, 1, 0, 2147483647, 16, 8, 0, 0, 1, 0, 2147483647, 17, 8, 2, 13, 11, 5, 2, 0, 1, 0, 2147483647, 18, 12, 2, 4, 13, 6, 14, 0, 1, 0, 2147483647, 19, 12, 4, 13, 15, 4, 13, 5, 16, 6, 14, 0, 1, 0, 2147483647, 20, 12, 4, 13, 17, 4, 13, 5, 2, 6, 14, 0, 0, 0, 11, 21, -1, 7, 5, 2, 6, 18, 7, 4, 8, 5, 9, 6, 10, 6, 1, 19, 0, 10, 0, 2147483647, 18, 20, 0, 0, 10, 0, 2147483647, 12, 20, 2, 13, 9, 5, 10, 0, 10, 0, 2147483647, 14, 20, 2, 13, 10, 5, 3, 0, 10, 0, 2147483647, 15, 20, 2, 13, 3, 5, 11, 0, 10, 0, 2147483647, 19, 20, 2, 13, 11, 5, 2, 0, 0, 0, 2147483647, 22, 21, 3, 23, 4, 4, 18, 6, 22, 0, 0, 0, 2147483647, 24, 23, 3, 23, 4, 4, 18, 6, 24, 0, 0, 0, 27, 25, -1, 11, 23, 4, 26, 25, 13, 11, 4, 26, 5, 2, 6, 27, 7, 4, 8, 5, 9, 6, 10, 6, 1, 28, 0, 18, 0, 35, 28, -1, 11, 5, 9, 6, 29, 7, 5, 8, 5, 9, 6, 29, 30, 30, 31, 31, 31, 32, 32, 33, 33, 34, 34, 0, 0, 0, 27, 36, -1, 11, 23, 4, 26, 25, 13, 11, 4, 35, 5, 2, 6, 36, 7, 4, 8, 5, 9, 6, 10, 6, 1, 37, 0, 20, 0, 35, 28, -1, 11, 5, 9, 6, 29, 7, 5, 8, 5, 9, 6, 29, 38, 30, 31, 31, 31, 32, 32, 33, 33, 34, 34, 0 </int_array>
+			<int_array  len="348"> 				-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 11, 3, -1, 8, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 6, 1, 7, 0, 1, 0, 2147483647, 12, 8, 4, 13, 9, 4, 10, 5, 11, 6, 12, 0, 1, 0, 2147483647, 14, 8, 4, 13, 11, 4, 10, 5, 3, 6, 12, 0, 1, 0, 2147483647, 15, 8, 4, 13, 3, 4, 10, 5, 13, 6, 12, 0, 1, 0, 2147483647, 16, 8, 2, 4, 10, 6, 12, 0, 1, 0, 2147483647, 17, 8, 4, 13, 13, 4, 10, 5, 2, 6, 12, 0, 0, 0, 11, 18, -1, 7, 5, 2, 6, 14, 7, 4, 8, 5, 9, 6, 10, 6, 1, 15, 0, 7, 0, 2147483647, 12, 16, 2, 13, 9, 5, 11, 0, 7, 0, 2147483647, 14, 16, 2, 13, 11, 5, 3, 0, 7, 0, 2147483647, 15, 16, 2, 13, 3, 5, 13, 0, 7, 0, 2147483647, 19, 16, 0, 0, 7, 0, 2147483647, 20, 16, 2, 13, 13, 5, 2, 0, 0, 0, 2147483647, 21, 17, 3, 22, 4, 4, 14, 6, 18, 0, 0, 0, 2147483647, 23, 19, 3, 22, 4, 4, 14, 6, 20, 0, 0, 0, 11, 24, -1, 9, 13, 13, 4, 14, 5, 2, 6, 21, 7, 4, 8, 5, 9, 6, 10, 6, 25, 22, 0, 15, 0, 26, 26, -1, 9, 27, 23, 5, 9, 6, 14, 7, 4, 8, 5, 9, 6, 10, 6, 25, 24, 28, 25, 0, 16, 0, 36, 29, -1, 11, 5, 9, 6, 26, 7, 5, 8, 5, 9, 6, 30, 27, 31, 28, 32, 28, 33, 29, 34, 30, 35, 31, 0, 16, 0, 36, 37, -1, 12, 13, 32, 4, 26, 5, 33, 6, 34, 7, 5, 8, 4, 9, 6, 38, 35, 30, 36, 33, 29, 34, 30, 35, 31, 0, 18, 0, 36, 39, -1, 15, 13, 37, 4, 29, 5, 38, 6, 39, 7, 5, 8, 4, 9, 6, 38, 40, 30, 41, 31, 6, 32, 28, 40, 5, 33, 29, 34, 30, 35, 31, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="39" shared="false">
+			<array  len="42" shared="false">
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
@@ -71,9 +78,9 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -174.17, -96.0361 </vector2>
+							<vector2> -31.0072, -47.8122 </vector2>
 							<string> "snap_grid" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "snap_offset" </string>
 							<vector2> 0, 0 </vector2>
 							<string> "snap_pixel" </string>
@@ -91,7 +98,7 @@
 							<string> "snap_step" </string>
 							<vector2> 10, 10 </vector2>
 							<string> "zoom" </string>
-							<real> 0.9025 </real>
+							<real> 1.108033 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -211,44 +218,41 @@
 				</dictionary>
 				<resource  external="0">  </resource>
 				<real> 160 </real>
+				<real> 30 </real>
 				<real> 320 </real>
-				<real> 640 </real>
-				<resource  external="1">  </resource>
-				<real> 81 </real>
 				<real> 110 </real>
-				<real> 269 </real>
-				<real> 531 </real>
-				<real> 538 </real>
+				<real> 640 </real>
 				<real> 40 </real>
 				<dictionary  shared="false">
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
+				<resource  external="1">  </resource>
 				<resource  external="2">  </resource>
-				<resource  external="3">  </resource>
 				<real> 360 </real>
-				<resource  external="4">  </resource>
+				<resource  external="3">  </resource>
 				<real> 140 </real>
+				<real> 80 </real>
+				<resource  external="4">  </resource>
 				<real> 0.8 </real>
-				<real> 50 </real>
-				<real> 90 </real>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<real> 30 </real>
-				<string> "ENEMY ACTION NAME" </string>
+				<resource  external="5">  </resource>
+				<int> 3 </int>
+				<real> 20 </real>
+				<string> "PARTY ACTION NAME" </string>
 				<int> 1 </int>
 				<real> 1 </real>
 				<int> 0 </int>
 				<int> -1 </int>
-				<real> 300 </real>
-				<real> 340 </real>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<string> "PARTY ACTION NAME" </string>
+				<real> 2 </real>
+				<real> 27 </real>
+				<real> 33 </real>
+				<resource  external="6">  </resource>
+				<string> "Power" </string>
+				<real> 34 </real>
+				<real> 152 </real>
+				<real> 16 </real>
+				<resource  external="7">  </resource>
+				<string> "999999999" </string>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

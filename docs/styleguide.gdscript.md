@@ -10,6 +10,9 @@ This order should be preserved in order to prevent a complete mess. Will save so
 	* Constant declaration
 	* Export declaration
 	* Variable declaration
+		* Node references (self.nodes)
+		* Data tables
+		* Everything else
 * **Static functions**
 * **GDScript functions**
 	* `_init()`

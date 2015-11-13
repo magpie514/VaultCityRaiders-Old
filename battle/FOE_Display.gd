@@ -7,7 +7,7 @@ var nodes = {
 }
 
 var character = {}
-var vital_colors = [Color(.9, .9, .9), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
+var vital_colors = [Color(.8, .9, .8), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
 var blink = 1
 
 func bar_color(val):
@@ -30,7 +30,7 @@ func setVital(v, mv):
 	nodes.bars.vital.set_value(val)
 
 func char_update(C):
-	setVital(C.V, C.MV)
+	setVital(C.stats.V, C.stats.MV)
 	
 func _fixed_process(delta):
 	char_update(character)
