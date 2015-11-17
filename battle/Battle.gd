@@ -1,5 +1,8 @@
 extends Node
 	
+	
+var debugEffect = preload("res://battle/effect/debug01.xscn")
+
 var decision = false
 var phase setget set_phase
 var currentChoice = 0
@@ -7,15 +10,16 @@ var playerChoices = []
 var party = null
 
 var battleState = {
-	actionStack = {},
+	actionStack = [],
 	actionCurrent = 0,
+	actions = 0
 }
 
 #FIXME:3 Add weapon attacks, skills, overdrives and a minimal inventory. @Character
 
 var enemyParty = [
 	{
-		name = "G-HAMMER Pod",
+		name = "RAYHAMMER Pod",
 		stats = {
 			V = 14000,
 			MV = 14000,
@@ -24,7 +28,7 @@ var enemyParty = [
 			over = 0
 		},
 	},{
-		name = "G-HAMMER Pod",
+		name = "RAYHAMMER Pod",
 		stats = {
 			V = 14000,
 			MV = 14000,
@@ -33,7 +37,7 @@ var enemyParty = [
 			over = 0
 		},
 	},{
-		name = "G-HAMMER Pod",
+		name = "RAYHAMMER Pod",
 		stats = {
 			V = 14000,
 			MV = 14000,
@@ -44,12 +48,12 @@ var enemyParty = [
 	}
 ]
 
-
 func _process(delta):
 	pass
 
 func _ready():
 	playerChoices.resize(5)
+	battleState.actionStack.resize(10)
 	var debugp = preload("res://battle/debug/debugparty.gd").new()
 	get_node("BattleUI/BattleChoice1").connect("_battlechoice1", self, "_receive_battlechoice1")
 	get_node("BattleUI/BattleChoice2").connect("_battlechoice2", self, "_receive_battlechoice2")
@@ -66,7 +70,6 @@ func init(P):
 	set_process(false)
 	self.phase = 0
 
-
 func printAction(act):
 	var typelabels = ["weapon", "skill", "overdrive", "defend"]
 	if act.action in [0, 1, 2]:
@@ -79,7 +82,19 @@ func continueBattle():
 
 func charIsAble(char):
 	return true
+	
+func collectActions():
+	battleState.actionStack[0] = playerChoices[0]
+	battleState.actionStack[1] = playerChoices[1]
+	battleState.actionStack[2] = playerChoices[2]
+	battleState.actions = 2
 
+func actionInit(A):
+	get_node("BattleView/Viewport").add_child(debugEffect.instance())
+	get_node("BattleView/Viewport/BattleEffect").connect("actionNext", self, "_receive_actionNext")
+	get_node("BattleView/Viewport/BattleEffect").set_pos(Vector2(400, 200))
+	get_node("BattleUI/ActionDisplay").init(party[A.char].skills[A.slot].name, A.power, false)
+	
 
 func set_phase(phase):
 	#TODO:20 Define combat phases properly. @Combat +Brainstorm
@@ -99,12 +114,14 @@ func set_phase(phase):
 		for i in range(0, 3):
 			printAction(playerChoices[i])
 		get_node("BattleUI/ActionDisplay").init("test", 500000, false)
+		battleState.actionCurrent = 0
+		battleState.actions = 2
+		collectActions()
 		set_phase(3)
-		set_process(true)
 	elif phase == 3:
 		phase = 3
 		print("Combat phase 3: Normal effects")
-		set_phase(4)
+		actionInit(battleState.actionStack[0])
 	elif phase == 4:
 		phase = 4
 		print("Combat phase 4: End of turn effects")
@@ -146,3 +163,15 @@ func _receive_battlechoice2(action, slot, power, target):
 		get_node("BattleUI/BattleChoice2/Main").stop()
 		self.phase = 2
 	
+func _receive_actionNext():
+	print("Next!", " curr:", battleState.actionCurrent, "/", battleState.actions)
+	if battleState.actionCurrent < battleState.actions:
+		get_node("BattleView/Viewport/BattleEffect").disconnect("actionNext", self, "_receive_actionNext")
+		battleState.actionCurrent += 1
+		get_node("Timer").start()
+	else:
+		set_phase(4)
+
+
+func _on_Timer_timeout():
+	actionInit(battleState.actionStack[battleState.actionCurrent])
