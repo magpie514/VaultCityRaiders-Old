@@ -1,21 +1,5 @@
 extends Node
 
-const SOURCE_EP = 0
-const SOURCE_VP = 1
-
-const TYPE_EFFECT = 0
-const TYPE_ENERGY = 1
-const TYPE_KINETIC = 2
-const TYPE_FIELD = 3 #NOTE:4 Should this be used, or a subform of EFFECT? @Data
-
-const TARGET_SELF = 0
-const TARGET_SINGLE = 1
-const TARGET_ALL_ALLY = 2
-const TARGET_ALL_ENEMY = 3
-#TODO:99 Move this kind of constant to the control node.
-#TODO:98 Add a way to load parties from disk, from gdscript first, then json, then binary data when defined.
-
-
 var party = [
 	{
 		name = "Koishi",
@@ -25,51 +9,15 @@ var party = [
 			MV = 99999,
 			EP = 99999999,
 			MEP = 99999999,
+			AD = 100,
 			over = 100,
 			awakening = true,
 		},
 		skills = [
-			{
-				name = "Youkai Polygraph",
-				sType = TYPE_EFFECT,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 4,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 1,
-				levels = [50, 100, 200, 0, 0, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Embers of Love",
-				sType = TYPE_ENERGY,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 3,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 2,
-				levels = [1000, 10000, 100000, 1000000, 0, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Release of the Id",
-				sType = TYPE_EFFECT,
-				target = TARGET_SELF,
-				contact = false,
-				sRange = 0,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 3,
-				levels = [50000, 80000, 160000, 320000, 640000, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Subterranean Rose",
-				sType = TYPE_ENERGY,
-				target = TARGET_ALL_ENEMY,
-				contact = false,
-				sRange = 4,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 0,
-				levels = [100000, 200000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-			}
+			{	ID = "m_koi01",	lastLevel = 0 },
+			{	ID = "m_koi02",	lastLevel = 0 },
+			{	ID = "m_koi03",	lastLevel = 0 },
+			{	ID = "m_koi04",	lastLevel = 0 },
 		]
 	},{
 		name = "Magpie",
@@ -79,51 +27,15 @@ var party = [
 			MV = 54000,
 			EP = 999999,
 			MEP = 999999,
+			AD = 100,
 			over = 50,
-			awakening = true,
+			awakening = false,
 		},
 		skills = [
-			{
-				name = "G-Crystal Field",
-				sType = TYPE_EFFECT,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 3,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [2500, 8000, 20000, 50000, 90000, 200000, 999999, 0, 0, 0, 0],
-			},{
-				name = "Graviton Pulse",
-				sType = TYPE_ENERGY,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 3,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 2,
-				levels = [15000, 30000, 100000, 200000, 0, 0, 0, 0, 0, 0, 0],
-			},{
-				name = "Dimensional Gear",
-				sType = TYPE_EFFECT,
-				target = TARGET_SELF,
-				contact = false,
-				sRange = 0,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 7,
-				levels = [1000, 2000, 3500, 5000, 8000, 16000, 64000, 100000, 800000, 0, 0],
-			},{
-				name = "Spatial Rupture",
-				sType = TYPE_ENERGY,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 4,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [1000, 1100, 1200, 1400, 1800, 11600, 13200, 0, 0, 0, 0],
-			}
+			{	ID = "magpie01",	lastLevel = 0 },
+			{	ID = "magpie02",	lastLevel = 0 },
+			{	ID = "magpie03",	lastLevel = 0 },
+			{	ID = "magpie04",	lastLevel = 0 },
 		]
 	},{
 		name = "Kirarin",
@@ -133,51 +45,15 @@ var party = [
 			MV = 9999,
 			EP = 10000,
 			MEP = 10000,
+			AD = 120,
 			over = 99,
 			awakening = false,
 		},
 		skills = [
-			{
-				name = "Kirarin Attack",
-				sType = TYPE_KINETIC,
-				target = TARGET_SINGLE,
-				contact = true,
-				sRange = 1,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Voice",
-				sType = TYPE_EFFECT,
-				target = TARGET_ALL_ALLY,
-				contact = false,
-				sRange = 1,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Dance",
-				sType = TYPE_EFFECT,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 1,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			},{
-				name = "Kirarin Beam",
-				sType = TYPE_ENERGY,
-				target = TARGET_SINGLE,
-				contact = false,
-				sRange = 2,
-				elements = [0, 0],
-				power_source = SOURCE_EP,
-				levelMax = 5,
-				levels = [50, 100, 200, 400, 800, 1600, 3200, 0, 0, 0, 0],
-			}
+			{	ID = "m_nyowa01",	lastLevel = 0 },
+			{	ID = "m_nyowa02",	lastLevel = 0 },
+			{	ID = "m_nyowa03",	lastLevel = 0 },
+			{	ID = "m_nyowa04",	lastLevel = 0 },
 		]
 	},
 	null,
@@ -192,18 +68,15 @@ var party = [
 			EP = 99999,
 			MEP = 99999,
 			over = 50,
+			AD = 120,
 			awakening = false,
 		},
-	},{
-		name = "G-SLAVE bit",
-		status = "OK",
-		stats = {
-			V = 1000,
-			MV = 9999,
-			EP = 1999,
-			MEP = 9999,
-			over = 0,
-			awakening = false,
-		},
-	}
+		skills = [
+			{	ID = "m_gooby01",	lastLevel = 0 },
+			{	ID = "m_gooby02",	lastLevel = 0 },
+			{	ID = "m_gooby03",	lastLevel = 0 },
+			{	ID = "m_gooby04",	lastLevel = 0 },		
+		]
+	},
+	null
 ]

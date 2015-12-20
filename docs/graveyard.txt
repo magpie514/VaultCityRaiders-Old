@@ -1,0 +1,23 @@
+static func levelCheck(power, levelMax, levelData):
+	if power == levelData[levelMax].EP:
+		return levelMax
+	else:
+		var ii = 0
+		for i in range(0, levelMax + 1): #NOTE:128 Remember range() is always end+1
+			if power >= levelData[i].EP:
+				ii += 1
+		return ii - 1
+
+
+func ColorRampInterpolate(CR, x):
+	var pos = 1
+	var offsets = CR.get_offsets()
+	var colors = CR.get_colors()
+	for i in range(0, offsets.size()):
+		if offsets[i] > x:
+			pos = i
+			break
+	var x2 = (float(x) - float(offsets[pos-1])) / (float(offsets[pos]) - float(offsets[pos-1]))
+	print(x2)
+	get_node("ElementIcon/Label").set_text(str(pos))
+	return colors[pos-1].linear_interpolate(colors[pos], x2)

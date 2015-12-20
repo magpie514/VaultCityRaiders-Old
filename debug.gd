@@ -13,3 +13,7 @@ func _on_B_Board_pressed():
 
 func _on_B_Battle_pressed():
 	nodes.tree.change_scene("res://battle/Battle.xscn")
+
+
+func _on_B_Skill_pressed():
+	nodes.tree.change_scene("res://tools/skilledit.xscn")

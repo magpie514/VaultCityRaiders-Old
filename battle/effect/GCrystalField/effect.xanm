@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="Animation" subresource_count="1" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
+	<main_resource>
+		<string name="resource/name"> "01" </string>
+		<real name="length"> 5.003472 </real>
+		<bool name="loop"> False </bool>
+		<real name="step"> 0.01 </real>
+		<string name="tracks/0/type"> "value" </string>
+		<node_path name="tracks/0/path"> "Level01/Crystal1:transform/pos" </node_path>
+		<int name="tracks/0/interp"> 2 </int>
+		<dictionary name="tracks/0/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				0, 0.4, 1.6, 1.61 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 21.1121, 0, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<vector2> 636, 39 </vector2>
+				<vector2> 595.365, 72.8621 </vector2>
+				<vector2> 396, 239 </vector2>
+				<vector2> 412, 226 </vector2>
+			</array>
+		</dictionary>
+		<string name="tracks/1/type"> "value" </string>
+		<node_path name="tracks/1/path"> "Level01/Crystal1:visibility/opacity" </node_path>
+		<int name="tracks/1/interp"> 1 </int>
+		<dictionary name="tracks/1/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 0.4 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1.93187, 0 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<real> 0 </real>
+				<real> 1 </real>
+			</array>
+		</dictionary>
+		<string name="tracks/2/type"> "value" </string>
+		<node_path name="tracks/2/path"> "Level01/Crystal1:region_rect" </node_path>
+		<int name="tracks/2/interp"> 1 </int>
+		<dictionary name="tracks/2/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 1.61 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<rect2> 0, 0, 92, 78 </rect2>
+				<rect2> 263, 154, 60, 51 </rect2>
+			</array>
+		</dictionary>
+		<string name="tracks/3/type"> "value" </string>
+		<node_path name="tracks/3/path"> "Level01/Crystal2:transform/pos" </node_path>
+		<int name="tracks/3/interp"> 1 </int>
+		<dictionary name="tracks/3/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				0.4, 0.62, 1.82, 1.83235 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 20.393, 0, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<vector2> 607, 446 </vector2>
+				<vector2> 561.348, 400.348 </vector2>
+				<vector2> 397, 236 </vector2>
+				<vector2> 420, 255 </vector2>
+			</array>
+		</dictionary>
+		<string name="tracks/4/type"> "value" </string>
+		<node_path name="tracks/4/path"> "Level01/Crystal2:visibility/opacity" </node_path>
+		<int name="tracks/4/interp"> 1 </int>
+		<dictionary name="tracks/4/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0.4, 1.2 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 0 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<real> 0 </real>
+				<real> 1 </real>
+			</array>
+		</dictionary>
+		<string name="tracks/5/type"> "value" </string>
+		<node_path name="tracks/5/path"> "Level01/Crystal2:region_rect" </node_path>
+		<int name="tracks/5/interp"> 1 </int>
+		<dictionary name="tracks/5/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 1.83235 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<rect2> 113, 1, 95, 72 </rect2>
+				<rect2> 355, 158, 48, 32 </rect2>
+			</array>
+		</dictionary>
+		<string name="tracks/6/type"> "value" </string>
+		<node_path name="tracks/6/path"> "Level01/Crystal3:transform/pos" </node_path>
+		<int name="tracks/6/interp"> 1 </int>
+		<dictionary name="tracks/6/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="5"> 				0, 0.62, 0.8, 2.00329, 2.01561 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="5"> 				1, 1, 6.9644, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="5" shared="false">
+				<vector2> 59, 231 </vector2>
+				<vector2> 59, 231 </vector2>
+				<vector2> 130.283, 231 </vector2>
+				<vector2> 399, 231 </vector2>
+				<vector2> 376, 232 </vector2>
+			</array>
+		</dictionary>
+		<string name="tracks/7/type"> "value" </string>
+		<node_path name="tracks/7/path"> "Level01/Crystal3:visibility/self_opacity" </node_path>
+		<int name="tracks/7/interp"> 1 </int>
+		<dictionary name="tracks/7/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="3"> 				0, 0.617485, 0.808654 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="3"> 				1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="3" shared="false">
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+			</array>
+		</dictionary>
+		<string name="tracks/8/type"> "value" </string>
+		<node_path name="tracks/8/path"> "Level01/Crystal3:region_rect" </node_path>
+		<int name="tracks/8/interp"> 1 </int>
+		<dictionary name="tracks/8/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="2"> 				0, 2.01561 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="2"> 				1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="2" shared="false">
+				<rect2> 5, 101, 118, 22 </rect2>
+				<rect2> 264, 214, 71, 21 </rect2>
+			</array>
+		</dictionary>
+		<string name="tracks/9/type"> "value" </string>
+		<node_path name="tracks/9/path"> "Level01/Glow1:visibility/self_opacity" </node_path>
+		<int name="tracks/9/interp"> 1 </int>
+		<dictionary name="tracks/9/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="16"> 				0, 3.5, 3.56, 3.62, 3.68, 3.72, 3.78, 3.84, 3.9, 3.96, 4.06, 4.12, 4.16, 4.22, 4.26, 4.32 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="16"> 				1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 </real_array>
+			<string> "values" </string>
+			<array  len="16" shared="false">
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+			</array>
+		</dictionary>
+		<string name="tracks/10/type"> "value" </string>
+		<node_path name="tracks/10/path"> "Level01/Glow1:transform/pos" </node_path>
+		<int name="tracks/10/interp"> 1 </int>
+		<dictionary name="tracks/10/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				3.64, 3.8, 3.98, 4.18 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<vector2> 405, 241 </vector2>
+				<vector2> 385, 221 </vector2>
+				<vector2> 415, 251 </vector2>
+				<vector2> 445, 201 </vector2>
+			</array>
+		</dictionary>
+		<string name="tracks/11/type"> "value" </string>
+		<node_path name="tracks/11/path"> "Level01/Glow2:visibility/self_opacity" </node_path>
+		<int name="tracks/11/interp"> 1 </int>
+		<dictionary name="tracks/11/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="16"> 				0, 3.47, 3.53, 3.59, 3.65, 3.69, 3.75, 3.81, 3.87, 3.93, 4.03, 4.09, 4.13, 4.19, 4.23, 4.29 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="16"> 				1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1 </real_array>
+			<string> "values" </string>
+			<array  len="16" shared="false">
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+				<real> 0 </real>
+			</array>
+		</dictionary>
+		<string name="tracks/12/type"> "value" </string>
+		<node_path name="tracks/12/path"> "Level01/Glow2:transform/pos" </node_path>
+		<int name="tracks/12/interp"> 1 </int>
+		<dictionary name="tracks/12/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				3.61, 3.77, 3.95, 4.15 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<vector2> 372, 261 </vector2>
+				<vector2> 425, 261 </vector2>
+				<vector2> 395, 271 </vector2>
+				<vector2> 405, 251 </vector2>
+			</array>
+		</dictionary>
+		<string name="tracks/13/type"> "value" </string>
+		<node_path name="tracks/13/path"> "Level01/Particles2D:config/emitting" </node_path>
+		<int name="tracks/13/interp"> 0 </int>
+		<dictionary name="tracks/13/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				0, 1.6, 2, 4 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<bool> False </bool>
+				<bool> True </bool>
+				<bool> True </bool>
+				<bool> False </bool>
+			</array>
+		</dictionary>
+		<string name="tracks/14/type"> "value" </string>
+		<node_path name="tracks/14/path"> "Level01/Particles2D1:config/emitting" </node_path>
+		<int name="tracks/14/interp"> 0 </int>
+		<dictionary name="tracks/14/keys" shared="false">
+			<string> "cont" </string>
+			<bool> False </bool>
+			<string> "times" </string>
+			<real_array  len="4"> 				0, 1.82, 2, 4 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="4"> 				1, 1, 1, 1 </real_array>
+			<string> "values" </string>
+			<array  len="4" shared="false">
+				<bool> False </bool>
+				<bool> True </bool>
+				<bool> True </bool>
+				<bool> False </bool>
+			</array>
+		</dictionary>
+		<string name="tracks/15/type"> "value" </string>
+		<node_path name="tracks/15/path"> "Level01/Darkness:visibility/self_opacity" </node_path>
+		<int name="tracks/15/interp"> 2 </int>
+		<dictionary name="tracks/15/keys" shared="false">
+			<string> "cont" </string>
+			<bool> True </bool>
+			<string> "times" </string>
+			<real_array  len="3"> 				0, 2.12, 4 </real_array>
+			<string> "transitions" </string>
+			<real_array  len="3"> 				1, -4, 0 </real_array>
+			<string> "values" </string>
+			<array  len="3" shared="false">
+				<real> 0 </real>
+				<real> 0 </real>
+				<real> 1 </real>
+			</array>
+		</dictionary>
+
+	</main_resource>
+</resource_file>

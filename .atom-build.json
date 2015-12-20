@@ -1,0 +1,10 @@
+{
+  "cmd": "godot",
+  "name": "godot run",
+  "args": [ "-w", "{FILE_ACTIVE}" ],
+  "sh": true,
+  "errorMatch": [
+    "^regexp1$",
+    "^regexp2$"
+  ]
+}
