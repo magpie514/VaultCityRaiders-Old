@@ -66,7 +66,7 @@ func init(P):
 	get_node("BattleUI/Display_Foe/P0").init(enemyParty[0])
 	get_node("BattleUI/Display_Foe/P1").init(enemyParty[1])
 	get_node("BattleUI/Display_Foe/P2").init(enemyParty[2])
-	get_node("/root/Global/StreamPlayer").play()
+	get_node("/root/main/StreamPlayer").play()
 	set_process(false)
 	self.phase = 0
 
@@ -93,7 +93,7 @@ func actionInit(A):
 	get_node("BattleView/Viewport").add_child(debugEffect.instance())
 	get_node("BattleView/Viewport/BattleEffect").connect("actionNext", self, "_receive_actionNext")
 	get_node("BattleView/Viewport/BattleEffect").set_pos(Vector2(400, 200))
-	get_node("BattleUI/ActionDisplay").init(party[A.char].skills[A.slot].name, A.power, false)
+#	get_node("BattleUI/ActionDisplay").init(party[A.char].skills[A.slot].name, A.power, false)
 	
 
 func set_phase(phase):
@@ -148,7 +148,7 @@ func _receive_battlechoice1(choice):
 
 func _receive_battlechoice2(action, slot, power, target):
 	print(party[currentChoice].name, ":", action, ",", slot, ",", power, ",", target)
-	get_node("/root/Global/UI_SFX").play("blip")
+	get_node("/root/main/UI_SFX").play("blip")
 	playerChoices[currentChoice] = {
 		char = currentChoice,
 		action = action,

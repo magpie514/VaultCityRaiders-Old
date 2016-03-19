@@ -2,22 +2,22 @@ extends Node
 
 var party = [
 	{
-		name = "Koishi",
+		name = "Shiro",
 		status = "OK",
 		stats = {
-			V = 99999,
-			MV = 99999,
-			EP = 99999999,
-			MEP = 99999999,
-			AD = 100,
+			V = 75000,
+			MV = 75000,
+			EP = 9999999,
+			MEP = 9999999,
+			AD = 110,
 			over = 100,
 			awakening = true,
 		},
 		skills = [
-			{	ID = "m_koi01",	lastLevel = 0 },
-			{	ID = "m_koi02",	lastLevel = 0 },
-			{	ID = "m_koi03",	lastLevel = 0 },
-			{	ID = "m_koi04",	lastLevel = 0 },
+			{	ID = "shiro01",	lastLevel = 0 },
+			{	ID = "shiro02",	lastLevel = 0 },
+			{	ID = "shiro03",	lastLevel = 0 },
+			{	ID = "shiro04",	lastLevel = 0 },
 		]
 	},{
 		name = "Magpie",
@@ -38,22 +38,22 @@ var party = [
 			{	ID = "magpie04",	lastLevel = 0 },
 		]
 	},{
-		name = "Kirarin",
+		name = "Jay",
 		status = "OK",
 		stats = {
-			V = 9999,
-			MV = 9999,
-			EP = 10000,
-			MEP = 10000,
-			AD = 120,
+			V = 50000,
+			MV = 50000,
+			EP = 99999999,
+			MEP = 99999999,
+			AD = 105,
 			over = 99,
-			awakening = false,
+			awakening = true,
 		},
 		skills = [
-			{	ID = "m_nyowa01",	lastLevel = 0 },
-			{	ID = "m_nyowa02",	lastLevel = 0 },
-			{	ID = "m_nyowa03",	lastLevel = 0 },
-			{	ID = "m_nyowa04",	lastLevel = 0 },
+			{	ID = "jay01",	lastLevel = 0 },
+			{	ID = "jay02",	lastLevel = 0 },
+			{	ID = "jay03",	lastLevel = 0 },
+			{	ID = "jay04",	lastLevel = 0 },
 		]
 	},
 	null,
@@ -75,7 +75,7 @@ var party = [
 			{	ID = "m_gooby01",	lastLevel = 0 },
 			{	ID = "m_gooby02",	lastLevel = 0 },
 			{	ID = "m_gooby03",	lastLevel = 0 },
-			{	ID = "m_gooby04",	lastLevel = 0 },		
+			{	ID = "m_gooby04",	lastLevel = 0 },
 		]
 	},
 	null

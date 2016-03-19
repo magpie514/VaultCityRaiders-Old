@@ -1,148 +1,48 @@
 {
-  "gcrfield": {
-    "levels": 2,
-    "contact": false,
-    "overCost": 1,
-    "sType": 1,
-    "effect": "res://battle/effect/GCrystalField/effect.xscn",
-    "powerSource": 0,
-    "name": "G-Crystal Field",
-    "levelData": [
-      {
-        "accuracy": 90,
-        "absoluteAD": false,
-        "effect": null,
-        "AD": -999,
-        "EP": 200,
-        "damage": [
-          1,
-          20,
-          0,
-          0
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": false,
-        "effect": "paralysis (30%)",
-        "AD": 999,
-        "EP": 1000,
-        "damage": [
-          1,
-          90,
-          1,
-          10
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": true,
-        "effect": "paralysis (50%)",
-        "AD": 100,
-        "EP": 2000,
-        "damage": [
-          1,
-          300,
-          1,
-          50
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": false,
-        "effect": "paralysis (100%)",
-        "AD": 0,
-        "EP": 3000,
-        "damage": [
-          1,
-          350,
-          1,
-          200
-        ],
-        "hitRange": 1
-      },
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ]
-  },
-  "none": {
-    "levels": 2,
-    "contact": false,
-    "overCost": 1,
-    "sType": 1,
-    "effect": "res://battle/effect/debug01.xscn",
-    "powerSource": 0,
-    "name": "Debug Blast",
-    "levelData": [
-      {
-        "accuracy": 90,
-        "absoluteAD": false,
-        "effect": null,
-        "AD": -999,
-        "EP": 200,
-        "damage": [
-          1,
-          20,
-          0,
-          0
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": false,
-        "effect": "paralysis (30%)",
-        "AD": 999,
-        "EP": 1000,
-        "damage": [
-          1,
-          90,
-          1,
-          10
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": true,
-        "effect": "paralysis (50%)",
-        "AD": 100,
-        "EP": 2000,
-        "damage": [
-          1,
-          300,
-          1,
-          50
-        ],
-        "hitRange": 1
-      },
-      {
-        "accuracy": 100,
-        "absoluteAD": false,
-        "effect": "paralysis (100%)",
-        "AD": 0,
-        "EP": 3000,
-        "damage": [
-          1,
-          350,
-          1,
-          200
-        ],
-        "hitRange": 1
-      },
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ]
-  }
+    "none": {
+        "levels": 0,
+        "contact": false,
+        "overCost": 25,
+        "sType": 1,
+        "effect": "res://battle/effect/debug01.xscn",
+        "powerSource": 0,
+        "name": "Skill Name",
+        "levelData": [
+            {
+                "accuracy": 100,
+                "absoluteAD": false,
+                "effect": null,
+                "AD": -5,
+                "EP": 50,
+                "damage": [
+                    1,
+                    50,
+                    2,
+                    50
+                ],
+                "hitRange": 2
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+                "accuracy": 100,
+                "absoluteAD": false,
+                "effect": null,
+                "AD": 5,
+                "EP": 800,
+                "damage": [
+                    1,
+                    2300,
+                    3,
+                    2300
+                ],
+                "hitRange": 3
+            }
+        ]
+    }
 }
