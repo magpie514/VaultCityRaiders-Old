@@ -1,0 +1,13 @@
+[gd_scene format=1]
+
+[node name="PartyEdit" type="Control"]
+
+margin/right = 40.0
+margin/bottom = 40.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+

@@ -1,0 +1,171 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://battle/UI/PC_Display.gd" type="Script" id=1]
+[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=2]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" id=3]
+[ext_resource path="res://battle/UI/Bar.xscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="Font" id=5]
+[ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" id=6]
+
+[node name="PC_Display" type="Panel"]
+
+visibility/opacity = 0.8
+margin/right = 224.0
+margin/bottom = 34.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="Name" type="Label" parent="."]
+
+margin/left = 1.0
+margin/top = 1.0
+margin/right = 189.0
+margin/bottom = 15.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Name"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Vital" type="Label" parent="."]
+
+margin/left = 1.0
+margin/top = 20.0
+margin/right = 26.0
+margin/bottom = 29.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+text = "Vital"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Bar" parent="Vital" instance=ExtResource( 4 )]
+
+margin/top = 10.0
+margin/right = 62.0
+margin/bottom = 13.0
+color = Color( 0, 1, 0, 1 )
+
+[node name="Label" type="Label" parent="Vital"]
+
+margin/left = 32.0
+margin/right = 62.0
+margin/bottom = 12.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+text = "99999"
+align = 2
+valign = 2
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EP" type="Label" parent="."]
+
+margin/left = 66.0
+margin/top = 20.0
+margin/right = 78.0
+margin/bottom = 29.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+text = "EP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Bar" parent="EP" instance=ExtResource( 4 )]
+
+margin/top = 10.0
+margin/right = 63.0
+margin/bottom = 13.0
+color = Color( 0, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="EP"]
+
+margin/left = 15.0
+margin/right = 63.0
+margin/bottom = 12.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+text = "99999999"
+align = 2
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Over" type="Label" parent="."]
+
+margin/left = 132.0
+margin/top = 20.0
+margin/right = 152.0
+margin/bottom = 29.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+text = "Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Bar" parent="Over" instance=ExtResource( 4 )]
+
+margin/top = 10.0
+margin/right = 63.0
+margin/bottom = 13.0
+color = Color( 1, 0.500698, 0, 1 )
+
+[node name="Label" type="Label" parent="Over"]
+
+margin/left = 37.0
+margin/right = 63.0
+margin/bottom = 12.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 5 )
+text = "100%"
+align = 1
+valign = 2
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ADIcon" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 210, 20 )
+
+[node name="BlinkTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.04
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_BlinkTimer_timeout"]
+
+

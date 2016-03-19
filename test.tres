@@ -1,0 +1,17 @@
+[gd_resource type="CanvasItemShaderGraph" load_steps=3 format=1]
+
+[ext_resource path="res://test.png" type="Texture" id=1]
+
+[sub_resource type="ImageTexture" id=5]
+
+flags = 5
+image = Image( 256, 1, 0, GRAYSCALE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5, 6, 8, 9, 11, 12, 14, 16, 17, 19, 20, 22, 24, 26, 27, 29, 31, 33, 34, 36, 38, 40, 42, 43, 46, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 72, 74, 76, 78, 81, 82, 84, 87, 89, 90, 93, 95, 96, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125, 128, 129, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 159, 160, 162, 165, 167, 168, 171, 173, 175, 177, 179, 181, 183, 185, 187, 189, 191, 193, 195, 197, 199, 201, 203, 205, 207, 209, 210, 213, 215, 216, 218, 220, 222, 224, 226, 227, 229, 231, 233, 235, 237, 238, 240, 242, 243, 245, 246, 248, 250, 251, 252, 254, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255 )
+size = Vector2( 256, 1 )
+storage = 0
+lossy_quality = 0.7
+
+[resource]
+
+_code = { "default_tex":[ "Tex", ExtResource( 1 ), "cmap_5", SubResource( 5 ) ], "fragment":"vec3 nd2sl2=vec3(UV,0);\nfloat nd7sl0=TIME;\nvec4 rt_default_tex6=tex(TEXTURE,nd2sl2.xy);\nvec3 nd6sl0=rt_default_tex6.rgb;\nfloat nd6sl1=rt_default_tex6.a;\nfloat nd3sl0=nd6sl0.x;\nfloat nd3sl1=nd6sl0.y;\nfloat nd3sl2=nd6sl0.z;\nuniform texture cmap_5;\nfloat nd5sl0=tex(cmap_5,vec2(nd3sl2,0)).r;\nvec3 nd4sl0=vec3(nd5sl0,nd5sl0,nd5sl0);\nfloat nd8sl0=sin(nd7sl0);\nfloat nd10sl1def=1;\nfloat nd10sl2def=0;\nvec3 nd10sl0=vec3(nd8sl0,nd10sl1def,nd10sl2def);\nuniform texture Tex;vec4 rt_read_tex1=tex(Tex,nd10sl0.xy);\nvec3 nd1sl0=rt_read_tex1.rgb;\nfloat nd1sl1=rt_read_tex1.a;\nvec3 nd9sl0=nd4sl0*nd1sl0;\nvec3 nd11sl0=nd6sl0+nd9sl0;\nCOLOR.rgb=nd11sl0;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_data = { "shaders":[ [ 0, 33, Vector2( 250, 20 ), null, null, [  ] ], [ 0, 33, Vector2( 1176.3, -39.456 ), null, null, [ 0, 11, 0 ], 1, 30, Vector2( 664.224, 177.648 ), "Tex", ExtResource( 1 ), [ 0, 10, 0, 2147483647, 0, null ], 2, 0, Vector2( 70.9041, -17.6479 ), null, null, [  ], 3, 18, Vector2( 379.064, 65.0641 ), null, null, [ 0, 6, 0, 2147483647, 0, null ], 4, 19, Vector2( 663.064, 75.0641 ), null, null, [ 0, 5, 0, 1, 5, 0, 2, 5, 0, 2147483647, 0, null, 2147483647, 1, null, 2147483647, 2, null ], 5, 25, Vector2( 495.064, 32.0641 ), Vector2Array( 0.265625, 0, 0.796875, 1 ), null, [ 0, 3, 2, 2147483647, 0, null ], 6, 32, Vector2( 213.896, -17.7999 ), null, null, [ 0, 2, 2, 2147483647, 0, null ], 7, 5, Vector2( 290.136, 229.672 ), null, null, [  ], 8, 14, Vector2( 383.704, 209.728 ), 0, null, [ 0, 7, 0, 2147483647, 0, null ], 9, 8, Vector2( 805.248, 81.216 ), 2, null, [ 0, 4, 0, 1, 1, 0, 2147483647, 0, null, 2147483647, 1, null ], 10, 19, Vector2( 516.336, 210.672 ), null, null, [ 0, 8, 0, 2147483647, 0, null, 2147483647, 1, 1.0, 2147483647, 2, null ], 11, 8, Vector2( 972, -37.2 ), 0, null, [ 0, 6, 0, 1, 9, 0, 2147483647, 0, null, 2147483647, 1, null ] ], [ 0, 33, Vector2( 250, 20 ), null, null, [  ] ] ] }
+
