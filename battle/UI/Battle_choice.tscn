@@ -1,0 +1,140 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=1]
+[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control\n\nsignal _battlechoice1(choice)\n\nvar active = false\nvar choice = false\nonready var panel = get_node(\"Panel\")\n\nfunc _ready():\n\tself.stop()\n\nfunc start():\n\tself.show()\n\tpanel.start()\n\nfunc stop():\n\tactive = false\n\tpanel.stop()\n\nfunc _on_BFight_pressed():\n\tself.emit_signal(\"_battlechoice1\", 1)\n\tself.stop()\n\nfunc _on_BRun_pressed():\n\tget_tree().quit()\n\nfunc _on_BTalk_pressed():\n\tself.emit_signal(\"_battlechoice1\", 3)\n\tself.stop()\n\nfunc _on_BSkill_pressed():\n\tself.emit_signal(\"_battlechoice1\", 4)\n\tself.stop()\n\nfunc _on_BItem_pressed():\n\tself.emit_signal(\"_battlechoice1\", 5)\n\tself.stop()"
+
+[node name="BattleChoice1" type="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 370.0
+script/script = SubResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 370.0
+script/script = ExtResource( 1 )
+direction = 3
+
+[node name="Label" type="Label" parent="Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 150.0
+margin/bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "What will you do\?"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BFight" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 70.0
+margin/right = 150.0
+margin/bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+text = "Fight"
+flat = false
+
+[node name="BRun" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 130.0
+margin/right = 150.0
+margin/bottom = 180.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+text = "Run"
+flat = false
+
+[node name="BTalk" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 190.0
+margin/right = 150.0
+margin/bottom = 240.0
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+toggle_mode = false
+text = "Talk"
+flat = false
+
+[node name="BSkill" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 250.0
+margin/right = 150.0
+margin/bottom = 300.0
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+toggle_mode = false
+text = "Skill"
+flat = false
+
+[node name="BItem" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 310.0
+margin/right = 150.0
+margin/bottom = 360.0
+custom_fonts/font = ExtResource( 2 )
+disabled = true
+toggle_mode = false
+text = "Item"
+flat = false
+
+[connection signal="pressed" from="Panel/BFight" to="." method="_on_BFight_pressed"]
+
+[connection signal="pressed" from="Panel/BRun" to="." method="_on_BRun_pressed"]
+
+[connection signal="pressed" from="Panel/BTalk" to="." method="_on_BTalk_pressed"]
+
+[connection signal="pressed" from="Panel/BSkill" to="." method="_on_BSkill_pressed"]
+
+[connection signal="pressed" from="Panel/BItem" to="." method="_on_BItem_pressed"]
+
+

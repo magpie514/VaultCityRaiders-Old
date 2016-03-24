@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="9" version="2.0" version_name="Godot Engine v2.0.stable.custom_build">
-	<ext_resource path="res://fonts/ubuntuB_20.fnt" type="Font" index="6"></ext_resource>
-	<ext_resource path="res://battle/UI/Action_display.gd" type="Script" index="3"></ext_resource>
-	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="5"></ext_resource>
-	<ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" index="4"></ext_resource>
-	<ext_resource path="res://battle/UI/Battle_choice.xscn" type="PackedScene" index="2"></ext_resource>
-	<ext_resource path="res://battle/UI/PC_Display.xscn" type="PackedScene" index="0"></ext_resource>
+<resource_file type="PackedScene" subresource_count="9" version="2.1" version_name="Godot Engine v2.1.alpha.custom_build">
+	<ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" index="3"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="4"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuB_20.fnt" type="Font" index="5"></ext_resource>
+	<ext_resource path="res://battle/UI/Action_display.gd" type="Script" index="2"></ext_resource>
+	<ext_resource path="res://battle/UI/PC_Display.tscn" type="PackedScene" index="0"></ext_resource>
+	<ext_resource path="res://battle/UI/Battle_choice.tscn" type="PackedScene" index="7"></ext_resource>
+	<ext_resource path="res://battle/UI/Battle_choice2.xscn" type="PackedScene" index="6"></ext_resource>
 	<ext_resource path="res://battle/UI/FOE_Display.xscn" type="PackedScene" index="1"></ext_resource>
-	<ext_resource path="res://battle/UI/Battle_choice2.xscn" type="PackedScene" index="7"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -18,33 +18,31 @@
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="42">
+			<string_array  len="41">
 				<string> "BattleUI" </string>
 				<string> "__meta__" </string>
 				<string> "Node" </string>
 				<string> "Display_Player" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
 				<string> "Control" </string>
 				<string> "P0" </string>
 				<string> "visibility/opacity" </string>
 				<string> "P1" </string>
 				<string> "P2" </string>
-				<string> "P6" </string>
-				<string> "P7" </string>
-				<string> "Display_Foe" </string>
-				<string> "visibility/self_opacity" </string>
 				<string> "P3" </string>
 				<string> "P4" </string>
-				<string> "BattleChoice1" </string>
-				<string> "visibility/visible" </string>
+				<string> "P5" </string>
+				<string> "Display_Foe" </string>
+				<string> "visibility/self_opacity" </string>
 				<string> "ActionDisplay" </string>
+				<string> "visibility/visible" </string>
 				<string> "script/script" </string>
 				<string> "Panel" </string>
 				<string> "direction" </string>
@@ -61,82 +59,78 @@
 				<string> "EP" </string>
 				<string> "uppercase" </string>
 				<string> "BattleChoice2" </string>
+				<string> "BattleChoice1" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 20 </int>
+			<int> 22 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="374"> 				-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 12, 3, -1, 8, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 7, 0, 1, 0, 2147483647, 13, 8, 1, 14, 9, 0, 1, 0, 2147483647, 15, 8, 3, 14, 9, 5, 10, 7, 11, 0, 1, 0, 2147483647, 16, 8, 3, 14, 9, 5, 11, 7, 12, 0, 1, 0, 2147483647, 17, 8, 5, 14, 9, 4, 13, 5, 14, 6, 15, 7, 16, 0, 1, 0, 2147483647, 18, 8, 5, 14, 9, 4, 13, 5, 16, 6, 15, 7, 17, 0, 0, 0, 12, 19, -1, 8, 4, 18, 5, 19, 6, 20, 7, 21, 8, 5, 9, 6, 10, 7, 11, 7, 0, 7, 0, 2147483647, 13, 22, 3, 20, 23, 4, 24, 6, 25, 0, 7, 0, 2147483647, 15, 22, 5, 20, 23, 4, 24, 5, 26, 6, 25, 7, 27, 0, 7, 0, 2147483647, 16, 22, 5, 20, 23, 4, 24, 5, 27, 6, 25, 7, 28, 0, 7, 0, 2147483647, 21, 22, 3, 20, 23, 5, 29, 7, 30, 0, 7, 0, 2147483647, 22, 22, 3, 20, 23, 5, 30, 7, 31, 0, 0, 0, 2147483647, 23, 32, 3, 24, 5, 5, 33, 7, 34, 0, 0, 0, 12, 25, -1, 11, 24, 5, 20, 9, 4, 35, 5, 36, 6, 37, 7, 38, 8, 5, 9, 6, 10, 7, 11, 7, 26, 39, 0, 14, 0, 27, 27, -1, 12, 20, 23, 4, 40, 5, 19, 6, 41, 7, 42, 8, 5, 9, 6, 10, 7, 11, 7, 26, 43, 1, 44, 28, 45, 0, 15, 0, 36, 29, -1, 11, 6, 46, 7, 36, 8, 6, 9, 6, 10, 7, 30, 47, 31, 48, 32, 48, 33, 49, 34, 50, 35, 51, 0, 15, 0, 36, 37, -1, 12, 4, 52, 5, 36, 6, 53, 7, 26, 8, 6, 9, 5, 10, 7, 38, 54, 30, 55, 33, 49, 34, 50, 35, 51, 0, 17, 0, 36, 39, -1, 14, 4, 56, 6, 57, 7, 29, 8, 6, 9, 5, 10, 7, 38, 58, 30, 59, 31, 7, 32, 48, 40, 6, 33, 49, 34, 50, 35, 51, 0, 0, 0, 2147483647, 41, 60, 1, 24, 5, 0 </int_array>
+			<int_array  len="444"> 				-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 12, 3, -1, 8, 4, 1, 5, 2, 6, 3, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 0, 1, 0, 2147483647, 13, 8, 3, 14, 9, 8, 5, 9, 5, 0, 1, 0, 2147483647, 15, 8, 4, 14, 9, 8, 5, 9, 10, 11, 11, 0, 1, 0, 2147483647, 16, 8, 4, 14, 9, 8, 5, 9, 11, 11, 7, 0, 1, 0, 2147483647, 17, 8, 4, 14, 9, 8, 12, 9, 5, 10, 13, 0, 1, 0, 2147483647, 18, 8, 5, 14, 9, 8, 12, 9, 10, 10, 13, 11, 11, 0, 1, 0, 2147483647, 19, 8, 5, 14, 9, 8, 12, 9, 11, 10, 13, 11, 7, 0, 0, 0, 12, 20, -1, 8, 4, 1, 5, 2, 6, 3, 7, 3, 8, 14, 9, 15, 10, 16, 11, 17, 0, 8, 0, 2147483647, 13, 18, 5, 21, 19, 8, 20, 9, 21, 10, 22, 11, 23, 0, 8, 0, 2147483647, 15, 18, 5, 21, 19, 8, 20, 9, 23, 10, 22, 11, 10, 0, 8, 0, 2147483647, 16, 18, 5, 21, 19, 8, 20, 9, 10, 10, 22, 11, 24, 0, 8, 0, 2147483647, 17, 18, 5, 21, 19, 8, 25, 9, 21, 10, 20, 11, 23, 0, 8, 0, 2147483647, 18, 18, 5, 21, 19, 8, 25, 9, 23, 10, 20, 11, 10, 0, 8, 0, 2147483647, 19, 18, 5, 21, 19, 8, 25, 9, 10, 10, 20, 11, 24, 0, 0, 0, 12, 22, -1, 12, 23, 1, 21, 9, 4, 1, 5, 2, 6, 3, 7, 3, 8, 26, 9, 27, 10, 28, 11, 29, 24, 30, 1, 31, 0, 15, 0, 25, 25, -1, 11, 21, 19, 4, 1, 5, 2, 6, 3, 7, 3, 8, 32, 9, 33, 10, 34, 11, 35, 24, 36, 26, 37, 0, 16, 0, 34, 27, -1, 13, 4, 2, 5, 2, 6, 3, 8, 5, 9, 5, 10, 38, 11, 39, 28, 40, 29, 41, 30, 41, 31, 25, 32, 42, 33, 43, 0, 16, 0, 34, 35, -1, 12, 4, 2, 5, 1, 6, 3, 8, 44, 9, 39, 10, 45, 11, 46, 36, 47, 28, 48, 31, 25, 32, 42, 33, 43, 0, 18, 0, 34, 37, -1, 15, 4, 2, 5, 1, 6, 3, 8, 49, 9, 5, 10, 29, 11, 50, 36, 51, 28, 52, 29, 3, 30, 41, 38, 2, 31, 25, 32, 42, 33, 43, 0, 0, 0, 2147483647, 39, 53, 5, 23, 1, 8, 54, 9, 7, 10, 6, 11, 4, 0, 0, 0, 2147483647, 40, 55, 5, 23, 1, 8, 54, 9, 7, 10, 6, 11, 4, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="61" shared="false">
+			<array  len="56" shared="false">
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<real> 519 </real>
-				<real> 16 </real>
-				<real> 799 </real>
-				<real> 149 </real>
 				<bool> False </bool>
 				<bool> True </bool>
 				<int> 2 </int>
+				<real> 480 </real>
+				<real> 0 </real>
+				<real> 800 </real>
+				<real> 108 </real>
 				<resource  external="0">  </resource>
 				<real> 0.8 </real>
-				<real> 44 </real>
-				<real> 88 </real>
-				<real> 132 </real>
-				<real> 140 </real>
-				<real> 21 </real>
-				<real> 280 </real>
-				<real> 65 </real>
-				<real> 109 </real>
+				<real> 36 </real>
+				<real> 72 </real>
+				<real> 160 </real>
+				<real> 320 </real>
 				<real> -1 </real>
 				<real> 30 </real>
 				<real> 182 </real>
 				<real> 196 </real>
 				<resource  external="1">  </resource>
 				<real> 0.75 </real>
-				<real> 160 </real>
-				<real> 320 </real>
-				<real> 33 </real>
-				<real> 66 </real>
-				<real> 99 </real>
-				<real> 15 </real>
-				<real> 48 </real>
-				<real> 81 </real>
+				<real> 161 </real>
+				<real> -30 </real>
+				<real> 321 </real>
+				<real> 3 </real>
+				<real> 69 </real>
+				<real> 1 </real>
+				<real> 638 </real>
+				<real> 116 </real>
+				<real> 798 </real>
+				<real> 156 </real>
 				<resource  external="2">  </resource>
-				<real> 380 </real>
-				<real> 480 </real>
-				<real> 880 </real>
-				<real> 20 </real>
-				<real> 1040 </real>
-				<real> 60 </real>
-				<resource  external="3">  </resource>
-				<real> -250 </real>
-				<real> -80 </real>
-				<real> 70 </real>
-				<resource  external="4">  </resource>
 				<dictionary  shared="false">
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
+				<real> -8 </real>
+				<real> 7 </real>
+				<real> 162 </real>
+				<real> 47 </real>
+				<resource  external="3">  </resource>
 				<int> 3 </int>
 				<real> 170 </real>
+				<real> 20 </real>
 				<string> "PARTY ACTION NAME" </string>
 				<int> 1 </int>
-				<real> 1 </real>
 				<int> 0 </int>
 				<int> -1 </int>
 				<real> 2 </real>
 				<real> 27 </real>
-				<resource  external="5">  </resource>
+				<real> 33 </real>
+				<resource  external="4">  </resource>
 				<string> "Power" </string>
 				<real> 38 </real>
-				<real> 156 </real>
-				<resource  external="6">  </resource>
+				<real> 15 </real>
+				<resource  external="5">  </resource>
 				<string> "999999999" </string>
+				<resource  external="6">  </resource>
+				<real> 640 </real>
 				<resource  external="7">  </resource>
 			</array>
 			<string> "version" </string>

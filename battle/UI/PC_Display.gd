@@ -51,7 +51,7 @@ func setVital(v, mv):
 	nodes.bars.vital.color = vital_colors[bar_color(val)]
 	if v > 0 and val < 0.0001:	val = 0.0001
 	nodes.bars.vital.set_value(val)
-	nodes.labels.vitalN.set_text(str(v, "/", mv))
+	nodes.labels.vitalN.set_text(str(v))
 
 func setEP(ep, mep):
 	var val = float(ep) / float(mep)

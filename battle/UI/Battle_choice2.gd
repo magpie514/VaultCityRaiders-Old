@@ -2,22 +2,15 @@ extends Control
 
 signal _battlechoice2(action, slot, power, target)
 
-const TIMER_INIT = 60
-const TIMER_LOW = 20
-const TIMER_VLOW = 10
-const TIMER_COLORS = [Color(1,1,1), Color(1,.5,0), Color(1,0,0)]
-
-var timer = TIMER_INIT
-var color = TIMER_COLORS[0]
-var nodes = { timer = null, countdown = null }
 var active = false
 var choice = false
 var character = null
 var block = false
+onready var main = get_node("/root/main") 
+
 
 func _ready():
-	nodes.timer = get_node("Main/TimerLabel")
-	nodes.countdown = get_node("Countdown")
+	pass
 
 func init(char):
 	character = char
@@ -30,14 +23,15 @@ func _on_B_Skill_pressed():
 		return
 	else:
 		block = true
-		get_node("/root/main/UI_SFX").play("blip")
+		main.sfxPlay("blip")
 		for i in range(0, 4):
-			get_node(str("SkillChoice/S",i)).init(character.skills[i], character)
+			#get_node(str("SkillChoice/S",i)).init(character.skills[i], character)
+			get_node(str("SkillChoice/S",i)).init(main.skillLib["none"], character)
 		get_node("SkillChoice").start()
 
 func _on_skillChoice(slot, power):
 	emit_signal("_battlechoice2", 1, slot, power, 0)
-	get_node("/root/main/UI_SFX").play("blip")
+	main.sfxPlay("blip")
 	#TODO:99 Hey, remember that, you know, skills should have a target.
 	get_node("SkillChoice").stop()
 #FIXME:99 Block other buttons when a main category has been chosen.
@@ -54,11 +48,10 @@ func _on_B_WeaponBack_pressed():
 
 
 func _on_B_Weapon_pressed():
-	if block:
-		return
+	if block: return
 	else:
 		block = true
-		get_node("/root/main/UI_SFX").play("blip")
+		main.sfxPlay("blip")
 		get_node("WeaponChoice").start()
 
 

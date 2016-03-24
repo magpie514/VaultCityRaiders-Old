@@ -56,9 +56,44 @@ var party = [
 			{	ID = "jay04",	lastLevel = 0 },
 		]
 	},
-	null,
-	null,
-	null,
+	{
+		name = "Test01",
+		status = "OK",
+		stats = {
+			V = 65000,
+			MV = 75000,
+			EP = 2999,
+			MEP = 9999999,
+			AD = 90,
+			over = 20,
+			awakening = true,
+		},
+		skills = [
+			{	ID = "shiro01",	lastLevel = 0 },
+			{	ID = "shiro02",	lastLevel = 0 },
+			{	ID = "shiro03",	lastLevel = 0 },
+			{	ID = "shiro04",	lastLevel = 0 },
+		]
+	},
+	{
+		name = "Test02",
+		status = "OK",
+		stats = {
+			V = 32500,
+			MV = 75000,
+			EP = 4999999,
+			MEP = 9999999,
+			AD = 100,
+			over = 80,
+			awakening = true,
+		},
+		skills = [
+			{	ID = "shiro01",	lastLevel = 0 },
+			{	ID = "shiro02",	lastLevel = 0 },
+			{	ID = "shiro03",	lastLevel = 0 },
+			{	ID = "shiro04",	lastLevel = 0 },
+		]
+	},
 	{
 		name = "Gooby",
 		status = "OK",
@@ -77,6 +112,5 @@ var party = [
 			{	ID = "m_gooby03",	lastLevel = 0 },
 			{	ID = "m_gooby04",	lastLevel = 0 },
 		]
-	},
-	null
+	}
 ]

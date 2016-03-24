@@ -10,9 +10,6 @@ var mainRect = Rect2(.0, .0, .0, .0)
 var mainSlideTimer = .0
 var mainFade = false
 
-static func interpolate(a, b, x):
-	return (a * (1 - x) + b * x)
-
 func _ready():
 	mainPos = get_pos()
 	stop()
@@ -25,13 +22,13 @@ func _process(delta):
 				mainSlideTimer = ANIM_TIME
 			self.set_opacity(1.0 - mainSlideTimer/ANIM_TIME)
 			if direction == 0:
-				set_pos(mainPos - Vector2(.0, interpolate(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME)))
+				set_pos(mainPos - Vector2(.0, lerp(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME)))
 			elif direction == 1:
-				set_pos(mainPos + Vector2(.0, interpolate(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME)))
+				set_pos(mainPos + Vector2(.0, lerp(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME)))
 			elif direction == 2:
-				set_pos(mainPos - Vector2(interpolate(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME), .0))
+				set_pos(mainPos - Vector2(lerp(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME), .0))
 			elif direction == 3:
-				set_pos(mainPos + Vector2(interpolate(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME), .0))
+				set_pos(mainPos + Vector2(lerp(.0, mainRect.size.x, mainSlideTimer / ANIM_TIME), .0))
 		else:
 			self.hide()
 			set_process(false)
@@ -42,13 +39,13 @@ func _process(delta):
 				mainSlideTimer = ANIM_TIME
 			self.set_opacity(mainSlideTimer/ANIM_TIME * 0.9)
 			if direction == 0:
-				set_pos(mainPos - Vector2(.0, interpolate(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME)))
+				set_pos(mainPos - Vector2(.0, lerp(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME)))
 			elif direction == 1:
-				set_pos(mainPos + Vector2(.0, interpolate(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME)))
+				set_pos(mainPos + Vector2(.0, lerp(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME)))
 			elif direction == 2:
-				set_pos(mainPos - Vector2(interpolate(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME), .0))
+				set_pos(mainPos - Vector2(lerp(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME), .0))
 			elif direction == 3:
-				set_pos(mainPos + Vector2(interpolate(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME), .0))
+				set_pos(mainPos + Vector2(lerp(mainRect.size.x, .0, mainSlideTimer / ANIM_TIME), .0))
 		else:
 			set_process(false)
 

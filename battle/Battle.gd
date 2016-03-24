@@ -61,7 +61,7 @@ func _ready():
 
 func init(P):
 	party = P
-	for i in [0, 1, 2, 6, 7]:
+	for i in [0, 1, 2, 3, 4, 5]:
 		get_node(str("BattleUI/Display_Player/P", i)).init(party[i])
 	get_node("BattleUI/Display_Foe/P0").init(enemyParty[0])
 	get_node("BattleUI/Display_Foe/P1").init(enemyParty[1])
@@ -111,8 +111,8 @@ func set_phase(phase):
 	elif phase == 2:
 		phase = 2
 		print("Combat phase 2: Processing")
-		for i in range(0, 3):
-			printAction(playerChoices[i])
+		#for i in range(0, 3):
+			#printAction(playerChoices[i])
 		get_node("BattleUI/ActionDisplay").init("test", 500000, false)
 		battleState.actionCurrent = 0
 		battleState.actions = 2
@@ -141,10 +141,8 @@ func set_phase(phase):
 
 
 func _receive_battlechoice1(choice):
-	if choice == 1:
-		self.phase = 1
-	elif choice == 2:
-		print("nigeru~")
+	if choice == 1:		self.phase = 1
+	elif choice == 2:	print("ruuun~")
 
 func _receive_battlechoice2(action, slot, power, target):
 	print(party[currentChoice].name, ":", action, ",", slot, ",", power, ",", target)
