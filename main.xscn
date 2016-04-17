@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="2.1" version_name="Godot Engine v2.1.alpha.custom_build">
-	<ext_resource path="res://main.gd" type="Script" index="0">
-	</ext_resource>
-	<ext_resource path="res://music/PSIV_Battle.ogg" type="AudioStream" index="1">
-	</ext_resource>
-	<ext_resource path="res://sfx/hud/blip.wav" type="Sample" index="2">
-	</ext_resource>
+	<ext_resource path="res://main.gd" type="Script" index="0"></ext_resource>
+	<ext_resource path="res://sfx/hud/blip.wav" type="Sample" index="2"></ext_resource>
+	<ext_resource path="res://music/PSIV_Battle.ogg" type="AudioStream" index="1"></ext_resource>
 	<resource type="SampleLibrary" path="local://1">
-
 		<dictionary name="samples/blip" shared="false">
 			<string> "db" </string>
 			<real> 0 </real>

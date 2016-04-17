@@ -24,6 +24,30 @@ onready var nodes = {
 	sfxPlayer = get_node("UI_SFX")
 }
 
+var debugp = preload("res://battle/debug/debugparty.gd").new()
+var enemyp = preload("res://battle/debug/debugparty2.gd").new()
+
+var battleData = {
+	playerParty = null,
+	enemyParty = null,
+	background = "",
+	bgm = "",
+	boss = false,
+}
+
+func newArray(size):
+	var a = []
+	a.resize(size)
+	return a
+
+func battleStart(playerParty, enemyParty, background, bgm, boss):
+	battleData.playerParty = playerParty
+	battleData.enemyParty = enemyParty
+	battleData.background = background
+	battleData.bgm = bgm
+	battleData.boss = boss
+	get_tree().change_scene("res://battle/Battle.tscn")
+
 class Char:
 	var name = ""
 	var race = 0
@@ -48,13 +72,12 @@ func _init():
 	if f.open("res://data/skill/default.json", File.READ) == 0:
 		buffer = f.get_as_text()
 		skillLib.parse_json(buffer)
-		print(skillLib)
+		#print(skillLib)
 		f.close()
 		f = null
 	else: print("res://data/skill/default.json not found!")
 
 func _ready():
-	#print(var2bytes(int(0))[0], var2bytes(-0)[0])
 	pass
 
 func sfxPlay(name):

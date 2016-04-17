@@ -1,34 +1,39 @@
 [gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://battle/UI/PC_Display.gd" type="Script" id=1]
-[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=2]
-[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" id=3]
-[ext_resource path="res://battle/UI/Bar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://fonts/UbuntuC_13.fnt" type="Font" id=5]
-[ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=1]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" id=2]
+[ext_resource path="res://battle/UI/Bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="Font" id=4]
+[ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" id=5]
 
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control\n\nonready var nodes = {\n\tbars = {\n\t\tvital = get_node(\"Vital/Bar\"),\n\t\tEP = get_node(\"EP/Bar\"),\n\t\tover = get_node(\"Over/Bar\")\n\t},\n\tlabels = {\n\t\tname = get_node(\"Name\"),\n\t\tvitalN = get_node(\"Vital/Label\"),\n\t\tvital = get_node(\"Vital\"),\n\t\tEPN = get_node(\"EP/Label\"),\n\t\tEP = get_node(\"EP\"),\n\t\toverN = get_node(\"Over/Label\"),\n\t\tover = get_node(\"Over\")\n\t},\n}\n\nvar character = null\nvar vital_colors = [Color(.75, .95, .75), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]\nvar ep_colors = [Color(.75, .75, .95), Color(0, .9, .9), Color(0, .5, .9), Color(0, 0, .9), Color(.9, 0, 0)]\nvar status_colors = [Color(.9, .9, 0), Color(.9, 0, 0)] # 0 = Negative status, 1 = incapacitated.\nvar blink = 1\n#TODO:30 Display status effects. @GUI\n\nfunc _process(delta):\n\tchar_update(character)\n\nfunc init(C):\n\tif C == null:\n\t\thide()\n\t\treturn\n\telse: show()\n\n\tcharacter = C\n\tnodes.labels.name.set_text(character.name)\n\tif C.stats.awakening == false: nodes.labels.over.set_text(\"\?\?\?\")\n\tchar_update(character)\n\tself.set_process(true)\n\nfunc bar_color(val):\n\tif val >= 0.999999: return 0\n\telif val >= 0.51:\treturn 1\n\telif val >= 0.26:\treturn 2\n\telif val >= 0.06:\treturn 3\n\telse:\t\t\t\treturn 3 + blink\n\nfunc setVital(v, mv):\n\tvar val = float(v) / float(mv)\n\tnodes.bars.vital.color = vital_colors[bar_color(val)]\n\tif v > 0 and val < 0.0001:\tval = 0.0001\n\tnodes.bars.vital.set_value(val)\n\tnodes.labels.vitalN.set_text(str(v))\n\nfunc setEP(ep, mep):\n\tvar val = float(ep) / float(mep)\n\tnodes.bars.EP.color = ep_colors[bar_color(val)]\n\tif ep > 0 and val < 0.0001:\tval = 0.0001\n\tnodes.bars.EP.set_value(val)\n\tnodes.labels.EPN.set_text(str(ep))\n\nfunc setOver(o):\n\tvar val = float(o) / 100.0\n\tnodes.bars.over.color = Color(1,.6,0)\n\tnodes.bars.over.set_value(val)\n\tnodes.labels.overN.set_text(str(o, \"%\"))\n\nfunc text_color_overrides(color):\n\tnodes.labels.name.add_color_override(\"font_color\", color)\n\tnodes.labels.vital.add_color_override(\"font_color\", color)\n\tnodes.labels.vitalN.add_color_override(\"font_color\", color)\n\tnodes.labels.EP.add_color_override(\"font_color\", color)\n\tnodes.labels.EPN.add_color_override(\"font_color\", color)\n\nfunc char_update(C):\n\tsetVital(C.stats.V, C.stats.MV)\n\tsetEP(C.stats.EP, C.stats.MEP)\n\tsetOver(C.stats.over)\n\tget_node(\"ADIcon\").set(C.stats.AD, true)\n\tif C.status == \"ded\":\ttext_color_overrides(status_colors[1]) #FIXME:0 Only update on change\n\nfunc _on_BlinkTimer_timeout():\n\tif blink == 0:\tblink = 1\n\telse:\t\t\tblink = 0\n"
 
 [node name="PC_Display" type="Panel"]
 
 visibility/opacity = 0.8
-margin/right = 160.0
-margin/bottom = 36.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-script/script = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 36.0
+script/script = SubResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="Name" type="Label" parent="."]
 
-margin/left = 1.0
-margin/right = 100.0
-margin/bottom = 14.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 2 )
+margin/left = 1.0
+margin/top = 0.0
+margin/right = 100.0
+margin/bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
 text = "Name"
 valign = 1
 percent_visible = 1.0
@@ -37,21 +42,21 @@ max_lines_visible = -1
 
 [node name="Vital" type="Label" parent="."]
 
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = 3.0
 margin/top = 15.0
 margin/right = 28.0
 margin/bottom = 24.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Vital"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 __meta__ = { "_editor_collapsed":true }
 
-[node name="Bar" parent="Vital" instance=ExtResource( 4 )]
+[node name="Bar" parent="Vital" instance=ExtResource( 3 )]
 
 visibility/behind_parent = true
 margin/left = -2.0
@@ -62,14 +67,14 @@ color = Color( 0, 1, 0, 1 )
 
 [node name="Label" type="Label" parent="Vital"]
 
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = 97.0
 margin/top = -1.0
 margin/right = 127.0
 margin/bottom = 11.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
 text = "99999"
 align = 2
 valign = 2
@@ -80,21 +85,21 @@ max_lines_visible = -1
 
 [node name="EP" type="Label" parent="."]
 
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = 3.0
 margin/top = 26.0
 margin/right = 15.0
 margin/bottom = 35.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "EP"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 __meta__ = { "_editor_collapsed":true }
 
-[node name="Bar" parent="EP" instance=ExtResource( 4 )]
+[node name="Bar" parent="EP" instance=ExtResource( 3 )]
 
 visibility/behind_parent = true
 margin/left = -2.0
@@ -105,14 +110,14 @@ color = Color( 0, 1, 1, 1 )
 
 [node name="Label" type="Label" parent="EP"]
 
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = 79.0
 margin/top = -1.0
 margin/right = 127.0
 margin/bottom = 11.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
 text = "99999999"
 align = 2
 valign = 1
@@ -123,20 +128,20 @@ max_lines_visible = -1
 
 [node name="Over" type="Label" parent="."]
 
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = 135.0
 margin/top = 26.0
 margin/right = 155.0
 margin/bottom = 35.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Over"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Bar" parent="Over" instance=ExtResource( 4 )]
+[node name="Bar" parent="Over" instance=ExtResource( 3 )]
 
 visibility/behind_parent = true
 margin/left = -1.0
@@ -148,14 +153,14 @@ color = Color( 1, 0.500698, 0, 1 )
 [node name="Label" type="Label" parent="Over"]
 
 visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
 margin/left = -1.0
 margin/top = 8.0
 margin/right = 25.0
 margin/bottom = 20.0
-focus/ignore_mouse = true
-focus/stop_mouse = false
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 4 )
 text = "100%"
 align = 1
 valign = 2
@@ -164,7 +169,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ADIcon" parent="." instance=ExtResource( 6 )]
+[node name="ADIcon" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 146, 13 )
 

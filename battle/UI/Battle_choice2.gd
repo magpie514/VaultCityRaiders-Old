@@ -6,8 +6,6 @@ var active = false
 var choice = false
 var character = null
 var block = false
-onready var main = get_node("/root/main") 
-
 
 func _ready():
 	pass

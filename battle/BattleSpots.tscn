@@ -1,0 +1,61 @@
+[gd_scene format=1]
+
+[node name="BattleSpots" type="Position2D"]
+
+[node name="PlayerSide" type="Position2D" parent="."]
+
+transform/pos = Vector2( 170, 0 )
+
+[node name="P3" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 190, -80 )
+
+[node name="P4" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 270, 0 )
+
+[node name="P5" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 340, 90 )
+
+[node name="P0" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 60, -80 )
+
+[node name="P1" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 110, 0 )
+
+[node name="P2" type="Position2D" parent="PlayerSide"]
+
+transform/pos = Vector2( 160, 90 )
+
+[node name="EnemySide" type="Position2D" parent="."]
+
+transform/pos = Vector2( -170, 0 )
+
+[node name="P3" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -190, -80 )
+
+[node name="P4" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -270, 0 )
+
+[node name="P5" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -340, 90 )
+
+[node name="P0" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -60, -80 )
+
+[node name="P1" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -110, 0 )
+
+[node name="P2" type="Position2D" parent="EnemySide"]
+
+transform/pos = Vector2( -160, 90 )
+
+

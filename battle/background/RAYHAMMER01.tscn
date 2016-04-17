@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://battle/background/RAYHAMMER/Sky01.png" type="Texture" id=1]
+[ext_resource path="res://battle/background/RAYHAMMER/RAYHAMMER01.png" type="Texture" id=2]
+[ext_resource path="res://battle/background/RAYHAMMER/BG_02.png" type="Texture" id=3]
+[ext_resource path="res://battle/BattleSpots.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends \"res://system/bg/bg.gd\"\n\nfunc glow():\n\tget_node(\"ParallaxBackground/ParallaxLayer/Sky/Sprite 2/Sprite4\").set_process(true)\n"
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "Intro"
+length = 9.9958
+loop = false
+step = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ { "args":[  ], "method":"glow" }, { "args":[  ], "method":"done" } ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ParallaxBackground:scroll/ignore_camera_zoom")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":false, "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ false, true ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ParallaxBackground/ParallaxLayer/Sky/Sprite 2:transform/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 0, 9.9 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -345.091, -171.636 ), Vector2( -307.2, -174 ) ] }
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Sprite\n\t\nfunc _process(delta):\n\tself.set_self_opacity(0.2 + (randf() * 0.8))"
+
+[node name="BG" type="Node2D"]
+
+script/script = SubResource( 2 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Intro = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.1, 0.1 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 393.2, 206 )
+texture = ExtResource( 1 )
+
+[node name="Sprite 2" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sky"]
+
+visibility/self_opacity = 0.0
+transform/pos = Vector2( -345.091, -171.636 )
+transform/scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 0, 0, 440, 380 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sky/Sprite 2"]
+
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 439, 5, 440, 380 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Sky/Sprite 2"]
+
+visibility/blend_mode = 1
+transform/pos = Vector2( 64, 52.75 )
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 80, 400, 350, 330 )
+script/script = SubResource( 4 )
+
+[node name="Floor" type="Sprite" parent="."]
+
+transform/pos = Vector2( 400, 465 )
+transform/scale = Vector2( 2.75, 1.02778 )
+texture = ExtResource( 3 )
+
+[node name="BattleSpots" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 400, 390 )
+
+
