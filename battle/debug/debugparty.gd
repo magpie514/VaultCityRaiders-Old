@@ -13,6 +13,7 @@ var party = [
 			AD = 110,
 			over = 100,
 			awakening = true,
+			AGI = 35,
 		},
 		charscn = "res://data/char/shiro/shiro01.tscn",
 		skills = [
@@ -33,6 +34,7 @@ var party = [
 			AD = 100,
 			over = 50,
 			awakening = false,
+			AGI = 65,
 		},
 		charscn = "res://data/char/magpie/magpie01.tscn",
 		skills = [
@@ -52,6 +54,7 @@ var party = [
 			MEP = 99999999,
 			AD = 105,
 			over = 99,
+			AGI = 95,
 			awakening = true,
 		},
 		charscn = "res://data/char/jay/jay01.tscn",
@@ -74,6 +77,7 @@ var party = [
 			AD = 90,
 			over = 20,
 			awakening = true,
+			AGI = 50, 
 		},
 		charscn = null,
 		skills = [
@@ -95,6 +99,7 @@ var party = [
 			AD = 100,
 			over = 80,
 			awakening = true,
+			AGI = 50,
 		},
 		charscn = null,
 		skills = [
@@ -116,6 +121,7 @@ var party = [
 			over = 50,
 			AD = 120,
 			awakening = false,
+			AGI = 40, 
 		},
 		charscn = null,
 		skills = [

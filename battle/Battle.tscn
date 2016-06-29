@@ -9,13 +9,6 @@
 script/script = ExtResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"2D" }
 
-[node name="Timer" type="Timer" parent="."]
-
-process_mode = 1
-wait_time = 0.1
-one_shot = true
-autostart = false
-
 [node name="BattleView" type="Control" parent="."]
 
 anchor/right = 1
@@ -68,5 +61,14 @@ drag_margin/bottom = 0.2
 script/script = ExtResource( 2 )
 
 [node name="BattleUI" parent="." instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.01
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

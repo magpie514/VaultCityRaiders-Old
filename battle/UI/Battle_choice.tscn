@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=1]
-[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=2]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Control\n\nsignal _battlechoice1(choice)\n\nvar active = false\nvar choice = false\nonready var panel = get_node(\"Panel\")\n\nfunc _ready():\n\tself.stop()\n\nfunc start():\n\tself.show()\n\tpanel.start()\n\nfunc stop():\n\tactive = false\n\tpanel.stop()\n\nfunc _on_BFight_pressed():\n\tself.emit_signal(\"_battlechoice1\", 1)\n\tself.stop()\n\nfunc _on_BRun_pressed():\n\tget_tree().quit()\n\nfunc _on_BTalk_pressed():\n\tself.emit_signal(\"_battlechoice1\", 3)\n\tself.stop()\n\nfunc _on_BSkill_pressed():\n\tself.emit_signal(\"_battlechoice1\", 4)\n\tself.stop()\n\nfunc _on_BItem_pressed():\n\tself.emit_signal(\"_battlechoice1\", 5)\n\tself.stop()"
+script/source = "extends Control\n\nsignal _battlechoice1(choice)\n\nvar active = false\nvar choice = false\nonready var panel = get_node(\"Panel\")\n\nfunc _ready():\n\tself.stop()\n\nfunc start():\n\tself.show()\n\tpanel.start()\n\nfunc stop():\n\tactive = false\n\tpanel.stop()\n\nfunc _on_BFight_pressed():\n\tmain.sfxPlay(\"blip\")\n\tself.emit_signal(\"_battlechoice1\", 1)\n\tself.stop()\n\nfunc _on_BRun_pressed():\n\tmain.sfxPlay(\"blip\")\n\tget_tree().quit()\n\nfunc _on_BTalk_pressed():\n\tmain.sfxPlay(\"blip\")\n\tself.emit_signal(\"_battlechoice1\", 3)\n\tself.stop()\n\nfunc _on_BSkill_pressed():\n\tmain.sfxPlay(\"blip\")\n\tself.emit_signal(\"_battlechoice1\", 4)\n\tself.stop()\n\nfunc _on_BItem_pressed():\n\tmain.sfxPlay(\"blip\")\n\tself.emit_signal(\"_battlechoice1\", 5)\n\tself.stop()"
 
 [node name="BattleChoice1" type="Control"]
 
@@ -37,6 +37,7 @@ direction = 3
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
 margin/right = 150.0
@@ -61,6 +62,8 @@ margin/right = 150.0
 margin/bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Fight"
 flat = false
 
@@ -76,6 +79,8 @@ margin/right = 150.0
 margin/bottom = 180.0
 custom_fonts/font = ExtResource( 2 )
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Run"
 flat = false
 
@@ -92,6 +97,8 @@ margin/bottom = 240.0
 custom_fonts/font = ExtResource( 2 )
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Talk"
 flat = false
 
@@ -108,6 +115,8 @@ margin/bottom = 300.0
 custom_fonts/font = ExtResource( 2 )
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Skill"
 flat = false
 
@@ -124,6 +133,8 @@ margin/bottom = 360.0
 custom_fonts/font = ExtResource( 2 )
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Item"
 flat = false
 
