@@ -24,30 +24,45 @@ onready var nodes = {
 }
 
 func elementListFill(OB):
-	OB.add_item("None", nodes.main.ELEMENT_NONE)
-	OB.add_item("Kinetic", nodes.main.ELEMENT_KINETIC)
-	OB.add_item("Fire", nodes.main.ELEMENT_FIRE)
-	OB.add_item("Cold", nodes.main.ELEMENT_COLD)
-	OB.add_item("Gravity", nodes.main.ELEMENT_GRAVITY)
-	OB.add_item("Outsider", nodes.main.ELEMENT_OUTSIDER)
+	OB.add_item("None", main.ELEMENT_NONE)
+	OB.add_item("Kinetic", main.ELEMENT_KINETIC)
+	OB.add_item("Fire", main.ELEMENT_FIRE)
+	OB.add_item("Cold", main.ELEMENT_COLD)
+	OB.add_item("Electric", main.ELEMENT_ELEC)
+	OB.add_item("Light", main.ELEMENT_LIGHT)
+	OB.add_item("Dark", main.ELEMENT_DARK)
+	OB.add_item("Gravity", main.ELEMENT_GRAVITY)
+	OB.add_item("Outsider", main.ELEMENT_OUTSIDER)
+
+func targetTypeListFill(N):
+	N.add_item("Self", main.TARGET_SELF)
+	N.add_item("Single", main.TARGET_SINGLE)
+	N.add_item("V-Line", main.TARGET_VLINE)
+	N.add_item("H-Line", main.TARGET_HLINE)
+	N.add_item("Cone", main.TARGET_CONE)
+	N.add_item("All", main.TARGET_ALL)
+
+func targetSideListFill(N):
+	N.add_item("Enemy", main.TARGET_SIDE_ENEMY)
+	N.add_item("Own", main.TARGET_SIDE_OWN)
+	N.add_item("All", main.TARGET_SIDE_ALL)
+
 
 func _ready():
 	get_node("SkillEdit/Effect/FileDialog").set_mode(FileDialog.MODE_OPEN_FILE)
-	get_node("SkillEdit/sType/OptionButton").add_item("Combat", nodes.main.SKILL_TYPE_COMBAT)
-	get_node("SkillEdit/sType/OptionButton").add_item("Status", nodes.main.SKILL_TYPE_EFFECT)
 	get_node("SkillEdit/Source/OptionButton").add_item("EP", nodes.main.SKILL_SOURCE_EP)
 	get_node("SkillEdit/Source/OptionButton").add_item("VP", nodes.main.SKILL_SOURCE_VP)
 	nodes.textEdit.set_wrap(true)
 	elementListFill(get_node("LevelEdit/Damage1/OptionButton"))
 	elementListFill(get_node("LevelEdit/Damage2/OptionButton"))
+	targetTypeListFill(get_node("LevelEdit/Range/FormationChoice"))
+	targetSideListFill(get_node("LevelEdit/Range/SideChoice"))
 
 func init(sk):
 	get_node("SkillEdit").show()
 	get_node("SkillEdit/Name/LineEdit").set_text(sk.name)
 	get_node("SkillEdit/Effect/LineEdit").set_text(sk.effect)
-	get_node("SkillEdit/sType/OptionButton").select(sk.sType)
 	get_node("SkillEdit/Source/OptionButton").select(sk.powerSource)
-	get_node("SkillEdit/Contact/CheckBox").set_pressed(sk.contact)
 	get_node("SkillEdit/Levels/SpinBox").set_value(sk.levels)
 	get_node("SkillEdit/Overcost/SpinBox").set_value(sk.overCost)
 	levelsSet(sk, sk.levels)
@@ -60,8 +75,6 @@ func skillAdd(t):
 		effect = "res://battle/effect/debug01.xscn",
 		levels = 0,
 		powerSource = nodes.main.SKILL_SOURCE_EP,
-		contact = false,
-		sType = nodes.main.SKILL_TYPE_COMBAT,
 		overCost = 25,
 		levelData = [ skillLevelNew(0), null, null, null, null, null, null, null, skillLevelNew(8) ]
 	}
@@ -69,12 +82,14 @@ func skillAdd(t):
 func skillLevelNew(l):
 	print("Adding level... [", l, "]")
 	return {
+		contact = false,
 		EP = l * 100,
 		AD = 0,
 		absoluteAD = false,
 		damage = [0,0, 0,0],
-		hitRange = 0,
-		accuracy = 100,
+		target = [0, 1, 0],
+		ACC = 100,
+		AGI = 0,
 		effect = null
 	}
 
@@ -91,20 +106,22 @@ func levelsEditor(l):
 	var L = skillLib[currentTag].levelData[l]
 	get_node("LevelEdit").show()
 	get_node("LevelEdit/Header").set_text(str("Level ", l + 1))
-	get_node("LevelEdit/EnergyUse/HSlider").set_value(L.EP)
-	get_node("LevelEdit/EnergyUse/Label").set_text(str(L.EP*25))
-	get_node("LevelEdit/Accuracy/SpinBox").set_value(L.accuracy)
+	get_node("LevelEdit/Contact/CheckBox").set_pressed(L.contact)
+	get_node("LevelEdit/EnergyUse/SpinBox").set_value(L.EP)
+	get_node("LevelEdit/Accuracy/SpinBox").set_value(L.ACC)
 	get_node("LevelEdit/AD/SpinBox").set_value(L.AD)
 	get_node("LevelEdit/AD/CheckBox").set_pressed(L.absoluteAD)
 	get_node("LevelEdit/Damage1/OptionButton").select(L.damage[0])
 	get_node("LevelEdit/Damage1/SpinBox").set_value(L.damage[1])
 	get_node("LevelEdit/Damage2/OptionButton").select(L.damage[2])
 	get_node("LevelEdit/Damage2/SpinBox").set_value(L.damage[3])
-	get_node("LevelEdit/Range/SpinBox").set_value(L.hitRange)
+	get_node("LevelEdit/Range/SpinBox").set_value(L.target[2])
+	get_node("LevelEdit/Range/FormationChoice").select(L.target[1])
+	get_node("LevelEdit/Range/SideChoice").select(L.target[0])
+	get_node("LevelEdit/AGIBonus/SpinBox").set_value(L.AGI)
 
 func skillButtonUpdate():
 	get_node("SkillEdit/SkillButton").init(skillLib[currentTag], get_node("SkillEdit/SkillButton").testchar)
-
 
 
 # Signals ######################################################################
@@ -146,12 +163,16 @@ func _on_PrintButton_pressed():
 	nodes.textEdit.show()
 	nodes.textEdit.set_text(out)
 
+func _on_CheckBox_toggled(pressed):
+	skillLib[currentTag].contact = pressed
+	skillButtonUpdate()
+
 
 #- Tag widget signals ----------------------------------------------------------
 func _on_Tag_item_selected(ID):
 	currentTag = get_node("TagSelector/Tag").get_item_text(ID)
 	init(skillLib[currentTag])
-	
+
 func _on_TagButtonAdd_pressed():
 	nodes.tagSelector.tag.edit.show()
 	nodes.tagSelector.tag.edit.grab_focus()
@@ -194,15 +215,21 @@ func _on_levelEditCancelButton_pressed():
 func _on_levelEditOKButton_pressed():
 	var L = skillLib[currentTag].levelData[editorCurrentSkill]
 	editorCurrentSkill = -1
-	L.EP = get_node("LevelEdit/EnergyUse/HSlider").get_value()
-	L.accuracy = get_node("LevelEdit/Accuracy/SpinBox").get_value()
+	L.contact = get_node("LevelEdit/Contact/CheckBox").is_pressed()
+	L.EP = get_node("LevelEdit/EnergyUse/SpinBox").get_value()
+	L.ACC = get_node("LevelEdit/Accuracy/SpinBox").get_value()
 	L.AD = get_node("LevelEdit/AD/SpinBox").get_value()
+	L.AGI = get_node("LevelEdit/AGIBonus/SpinBox").get_value()
 	L.absoluteAD = get_node("LevelEdit/AD/CheckBox").is_pressed()
+
 	L.damage[0] = get_node("LevelEdit/Damage1/OptionButton").get_selected_ID()
 	L.damage[1] = get_node("LevelEdit/Damage1/SpinBox").get_value()
 	L.damage[2] = get_node("LevelEdit/Damage2/OptionButton").get_selected_ID()
 	L.damage[3] = get_node("LevelEdit/Damage2/SpinBox").get_value()
-	L.hitRange = get_node("LevelEdit/Range/SpinBox").get_value()
+
+	L.target[0] = get_node("LevelEdit/Range/SideChoice").get_selected_ID()
+	L.target[1] = get_node("LevelEdit/Range/FormationChoice").get_selected_ID()
+	L.target[2] = get_node("LevelEdit/Range/SpinBox").get_value()
 	skillButtonUpdate()
 	get_node("LevelEdit").hide()
 
@@ -210,4 +237,7 @@ func _on_levelEditRevertButton_pressed():
 	levelsEditor(editorCurrentSkill)
 
 func _on_LevelEditEnergyUseHSlider_value_changed(value):
-	get_node("LevelEdit/EnergyUse/Label").set_text(str(value*25))
+	get_node("LevelEdit/EnergyUse/Label").set_text(str(value))
+
+
+

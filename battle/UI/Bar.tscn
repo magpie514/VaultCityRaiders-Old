@@ -6,13 +6,15 @@ script/source = "tool\nextends Control\n\nexport var color = Color(1.0, 1.0, 1.0
 
 [node name="Bar" type="Control"]
 
-margin/right = 120.0
-margin/bottom = 30.0
 rect/min_size = Vector2( 0, 1 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 120.0
+margin/bottom = 30.0
 script/script = SubResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"Script" }
 color = Color( 1, 1, 1, 1 )

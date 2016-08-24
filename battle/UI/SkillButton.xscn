@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="11" version="2.1" version_name="Godot Engine v2.1.alpha.custom_build">
-	<ext_resource path="res://fonts/gothic_15.fnt" type="Font" index="1"></ext_resource>
-	<ext_resource path="res://fonts/UbuntuC_13.fnt" type="Font" index="6"></ext_resource>
-	<ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" index="7"></ext_resource>
-	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="Font" index="3"></ext_resource>
-	<ext_resource path="res://battle/UI/Icon.png" type="Texture" index="5"></ext_resource>
+<resource_file type="PackedScene" subresource_count="10" version="2.2" version_name="Godot Engine v2.2.alpha.custom_build">
+	<ext_resource path="res://battle/UI/CRBar.xscn" type="PackedScene" index="5"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuB_15.fnt" type="BitmapFont" index="3"></ext_resource>
+	<ext_resource path="res://battle/UI/Icon.png" type="Texture" index="6"></ext_resource>
+	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" index="4"></ext_resource>
+	<ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" index="1"></ext_resource>
+	<ext_resource path="res://battle/UI/support/SkillData.tscn" type="PackedScene" index="2"></ext_resource>
 	<ext_resource path="res://battle/UI/Skill_button.gd" type="Script" index="0"></ext_resource>
-	<ext_resource path="res://battle/UI/CRBar.xscn" type="PackedScene" index="4"></ext_resource>
-	<ext_resource path="res://fonts/ubuntuB_15.fnt" type="Font" index="2"></ext_resource>
 	<resource type="ColorRamp" path="local://3">
 		<real_array name="offsets" len="2"> 			0, 1 </real_array>
 		<color_array name="colors" len="2"> 			0.149732, 0.132808, 0.235261, 1, 0.439886, 0.742971, 0.657607, 1 </color_array>
@@ -23,20 +22,24 @@
 			<string> "conn_count" </string>
 			<int> 3 </int>
 			<string> "conns" </string>
-			<int_array  len="18"> 				0, 0, 53, 52, 2, 0, 18, 0, 53, 54, 2, 0, 19, 0, 53, 55, 2, 0 </int_array>
+			<int_array  len="18"> 				0, 0, 45, 44, 2, 0, 8, 0, 45, 46, 2, 0, 10, 0, 45, 47, 2, 0 </int_array>
 			<string> "editable_instances" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "names" </string>
-			<string_array  len="56">
+			<string_array  len="48">
 				<string> "SkillButton" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
 				<string> "focus/ignore_mouse" </string>
 				<string> "focus/stop_mouse" </string>
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
 				<string> "toggle_mode" </string>
+				<string> "enabled_focus_mode" </string>
+				<string> "shortcut" </string>
 				<string> "flat" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
@@ -44,42 +47,30 @@
 				<string> "debug" </string>
 				<string> "Button" </string>
 				<string> "NameLabel" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
 				<string> "custom_fonts/font" </string>
 				<string> "text" </string>
 				<string> "align" </string>
-				<string> "valign" </string>
 				<string> "percent_visible" </string>
 				<string> "lines_skipped" </string>
 				<string> "max_lines_visible" </string>
 				<string> "Label" </string>
+				<string> "SkillData" </string>
 				<string> "EP_Display" </string>
+				<string> "editor/display_folded" </string>
 				<string> "Control" </string>
 				<string> "EPLabel" </string>
+				<string> "valign" </string>
 				<string> "LevelLabel" </string>
 				<string> "MaxBar" </string>
 				<string> "visibility/behind_parent" </string>
 				<string> "cr" </string>
 				<string> "ColorRampBar" </string>
-				<string> "TypeIcon" </string>
+				<string> "B_Decrease" </string>
+				<string> "Sprite" </string>
 				<string> "transform/pos" </string>
 				<string> "texture" </string>
-				<string> "vframes" </string>
-				<string> "hframes" </string>
 				<string> "region" </string>
 				<string> "region_rect" </string>
-				<string> "Sprite" </string>
-				<string> "ContactIcon" </string>
-				<string> "ElementIcon" </string>
-				<string> "modulate" </string>
-				<string> "ElementIcon2" </string>
-				<string> "ACCIcon" </string>
-				<string> "EffectIcon" </string>
-				<string> "hint/tooltip" </string>
-				<string> "Icon" </string>
-				<string> "ADIcon" </string>
-				<string> "B_Decrease" </string>
 				<string> "B_Increase" </string>
 				<string> "_on_SkillButton_pressed" </string>
 				<string> "pressed" </string>
@@ -87,87 +78,71 @@
 				<string> "_on_B_Increase_pressed" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 20 </int>
+			<int> 12 </int>
 			<string> "node_paths" </string>
 			<array  len="0" shared="false">
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="502"> 				-1, -1, 13, 0, -1, 12, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 4, 7, 2, 8, 2, 9, 5, 10, 6, 11, 7, 12, 3, 0, 0, 0, 24, 14, -1, 14, 15, 8, 16, 9, 1, 10, 2, 11, 3, 3, 4, 3, 5, 4, 17, 12, 18, 13, 19, 14, 20, 14, 21, 15, 22, 7, 23, 16, 0, 0, 0, 26, 25, -1, 8, 15, 17, 16, 18, 1, 19, 2, 20, 3, 3, 4, 2, 5, 4, 6, 4, 0, 2, 0, 24, 27, -1, 14, 15, 21, 16, 15, 1, 22, 2, 23, 3, 3, 4, 2, 5, 4, 17, 24, 18, 25, 19, 14, 20, 14, 21, 15, 22, 7, 23, 16, 0, 2, 0, 24, 28, -1, 13, 15, 17, 16, 26, 1, 27, 2, 28, 3, 3, 4, 2, 5, 4, 17, 29, 18, 30, 19, 14, 21, 15, 22, 7, 23, 16, 0, 4, 0, 2147483647, 29, 31, 6, 30, 3, 15, 32, 16, 33, 1, 34, 2, 8, 31, 35, 0, 4, 0, 2147483647, 32, 31, 6, 30, 3, 15, 32, 16, 33, 1, 34, 2, 36, 31, 37, 0, 0, 0, 40, 33, -1, 6, 34, 38, 35, 39, 36, 40, 37, 40, 38, 3, 39, 41, 0, 0, 0, 40, 41, -1, 6, 34, 42, 35, 39, 36, 40, 37, 40, 38, 3, 39, 41, 0, 0, 0, 40, 42, -1, 7, 34, 43, 35, 39, 36, 40, 37, 40, 43, 44, 38, 3, 39, 41, 0, 9, 0, 24, 24, -1, 12, 15, 45, 16, 33, 1, 46, 2, 47, 3, 3, 4, 3, 5, 4, 17, 48, 18, 49, 21, 15, 22, 7, 23, 16, 0, 0, 0, 40, 44, -1, 7, 34, 50, 35, 39, 36, 40, 37, 40, 43, 44, 38, 3, 39, 41, 0, 11, 0, 24, 24, -1, 12, 15, 45, 16, 33, 1, 46, 2, 47, 3, 3, 4, 3, 5, 4, 17, 48, 18, 49, 21, 15, 22, 7, 23, 16, 0, 0, 0, 40, 45, -1, 7, 34, 51, 35, 39, 36, 40, 37, 40, 43, 52, 38, 3, 39, 53, 0, 13, 0, 24, 24, -1, 13, 15, 54, 16, 33, 1, 23, 2, 47, 3, 3, 4, 3, 5, 4, 17, 48, 18, 55, 19, 14, 21, 15, 22, 7, 23, 16, 0, 0, 0, 26, 46, -1, 9, 15, 56, 16, 11, 1, 57, 2, 58, 47, 59, 3, 2, 4, 3, 5, 4, 6, 4, 0, 15, 0, 40, 48, -1, 6, 34, 60, 35, 39, 36, 40, 37, 40, 38, 3, 39, 61, 0, 0, 0, 2147483647, 49, 62, 1, 34, 63, 0, 0, 0, 13, 50, -1, 11, 15, 9, 16, 64, 1, 65, 2, 66, 3, 2, 4, 3, 5, 4, 6, 4, 7, 2, 18, 67, 8, 2, 0, 0, 0, 13, 51, -1, 11, 15, 68, 16, 64, 1, 57, 2, 66, 3, 2, 4, 3, 5, 4, 6, 4, 7, 2, 18, 69, 8, 2, 0 </int_array>
+			<int_array  len="316"> 				-1, -1, 17, 0, -1, 16, 1, 0, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 0, 10, 2, 11, 6, 12, 0, 13, 7, 14, 8, 15, 9, 16, 1, 0, 0, 0, 25, 18, -1, 14, 1, 1, 2, 1, 3, 2, 4, 9, 5, 10, 6, 11, 7, 12, 8, 13, 19, 14, 20, 15, 21, 16, 22, 17, 23, 9, 24, 18, 0, 0, 0, 2147483647, 26, 19, 2, 6, 20, 8, 21, 0, 0, 0, 29, 27, -1, 9, 28, 1, 1, 1, 2, 0, 3, 2, 4, 2, 5, 21, 6, 22, 7, 23, 8, 24, 0, 3, 0, 25, 30, -1, 15, 1, 1, 2, 0, 3, 2, 4, 9, 5, 3, 6, 25, 7, 26, 8, 27, 19, 28, 20, 29, 21, 16, 31, 16, 22, 17, 23, 9, 24, 18, 0, 3, 0, 25, 32, -1, 14, 1, 1, 2, 0, 3, 2, 4, 9, 5, 30, 6, 31, 7, 32, 8, 33, 19, 34, 20, 35, 21, 16, 22, 17, 23, 9, 24, 18, 0, 5, 0, 2147483647, 33, 36, 6, 34, 1, 5, 37, 6, 38, 7, 39, 8, 40, 35, 41, 0, 5, 0, 2147483647, 36, 36, 6, 34, 1, 5, 37, 6, 42, 7, 39, 8, 40, 35, 43, 0, 0, 0, 17, 37, -1, 13, 28, 1, 1, 0, 2, 1, 3, 2, 4, 2, 5, 44, 6, 45, 7, 46, 8, 47, 9, 0, 10, 2, 11, 6, 12, 0, 0, 8, 0, 38, 38, -1, 4, 39, 48, 40, 49, 41, 1, 42, 50, 0, 0, 0, 17, 43, -1, 13, 28, 1, 1, 0, 2, 1, 3, 2, 4, 2, 5, 51, 6, 45, 7, 52, 8, 47, 9, 0, 10, 2, 11, 6, 12, 0, 0, 10, 0, 38, 38, -1, 4, 39, 53, 40, 49, 41, 1, 42, 54, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="70" shared="false">
-				<real> 200 </real>
-				<real> 71 </real>
+			<array  len="55" shared="false">
 				<bool> False </bool>
 				<bool> True </bool>
 				<int> 2 </int>
-				<resource  external="0">  </resource>
+				<real> 0 </real>
+				<real> 200 </real>
+				<real> 70 </real>
+				<resource name=""></resource>				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
 				<int> 0 </int>
 				<real> 10 </real>
-				<real> 5 </real>
+				<real> 3 </real>
 				<real> 190 </real>
-				<real> 21 </real>
+				<real> 17 </real>
 				<resource  external="1">  </resource>
 				<string> "Skill Name" </string>
 				<int> 1 </int>
 				<real> 1 </real>
 				<int> -1 </int>
-				<real> 40 </real>
-				<real> 44 </real>
-				<real> 160 </real>
-				<real> 74 </real>
-				<real> 3 </real>
-				<real> 121 </real>
-				<real> 16 </real>
 				<resource  external="2">  </resource>
-				<string> "999999999" </string>
-				<real> 15 </real>
-				<real> 80 </real>
-				<real> 25 </real>
-				<resource  external="3">  </resource>
-				<string> "Level 99" </string>
-				<resource  external="4">  </resource>
-				<real> -42 </real>
-				<real> -1 </real>
-				<real> 82 </real>
-				<resource  resource_type="ColorRamp" path="local://3">  </resource>
-				<real> 8 </real>
-				<resource  resource_type="ColorRamp" path="local://2">  </resource>
-				<vector2> 15, 31 </vector2>
-				<resource  external="5">  </resource>
-				<int> 4 </int>
-				<rect2> 20, 0, 20, 20 </rect2>
-				<vector2> 35, 31 </vector2>
-				<vector2> 60, 31 </vector2>
-				<color> 0.5, 0.5, 0.5, 1 </color>
-				<real> -6 </real>
-				<real> 24 </real>
-				<real> 11 </real>
-				<resource  external="6">  </resource>
-				<string> "99999" </string>
-				<vector2> 96, 31 </vector2>
-				<vector2> 134, 31 </vector2>
-				<color> 0.75, 0.75, 0.75, 1 </color>
-				<rect2> 40, 0, 20, 20 </rect2>
-				<real> -10 </real>
-				<string> "100%" </string>
-				<real> 175 </real>
-				<real> 195 </real>
-				<real> 41 </real>
-				<string> "EFFECT DESCRIPTION" </string>
-				<vector2> 10, 10 </vector2>
-				<rect2> 60, 0, 20, 20 </rect2>
-				<resource  external="7">  </resource>
-				<vector2> 163, 30 </vector2>
+				<real> 20 </real>
+				<real> 40 </real>
 				<real> 50 </real>
-				<real> 35 </real>
-				<real> 69 </real>
-				<string> "&lt;" </string>
-				<real> 165 </real>
-				<string> "&gt;" </string>
+				<real> 160 </real>
+				<real> 66 </real>
+				<real> -3 </real>
+				<real> 120 </real>
+				<real> 12 </real>
+				<resource  external="3">  </resource>
+				<string> "999999999" </string>
+				<real> 39 </real>
+				<real> 9 </real>
+				<real> 84 </real>
+				<real> 19 </real>
+				<resource  external="4">  </resource>
+				<string> "Level 9/9" </string>
+				<resource  external="5">  </resource>
+				<real> -42 </real>
+				<real> -4 </real>
+				<real> 82 </real>
+				<real> 7 </real>
+				<resource  resource_type="ColorRamp" path="local://3">  </resource>
+				<real> -2 </real>
+				<resource  resource_type="ColorRamp" path="local://2">  </resource>
+				<real> 2 </real>
+				<real> 47 </real>
+				<real> 32 </real>
+				<real> 67 </real>
+				<vector2> 14, 10 </vector2>
+				<resource  external="6">  </resource>
+				<rect2> 4, 41, 6, 8 </rect2>
+				<real> 168 </real>
+				<real> 198 </real>
+				<vector2> 16, 10 </vector2>
+				<rect2> 11, 41, 6, 8 </rect2>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>

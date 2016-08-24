@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://battle/UI/support/SkillData.gd" type="Script" id=1]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=2]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" id=4]
+[ext_resource path="res://battle/UI/RangeIcon.tscn" type="PackedScene" id=5]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite\n\nvar nodes = { label = null }\n\nfunc _ready():\n\tnodes.label = get_node(\"ADLabel\")\n\t\nfunc set(val, absolute):\n\tvar ADlabel = \"\"\n\tif absolute == true:\n\t\tset_modulate(Color(.6, .6, .6))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,0))\n\telif val == 0:\n\t\tset_modulate(Color(.8, .8, .8))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,1))\n\telif val > 0:\n\t\tADlabel = \"+\"\n\t\tset_modulate(Color(.5, .5, .5))\n\t\tnodes.label.add_color_override(\"font_color\", Color(.6,.8,1))\n\telse:\n\t\tset_modulate(Color(.4, .4, .4))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,0,0))\n\tnodes.label.set_text(str(ADlabel, val))"
+
+[node name="SkillData" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 20.0
+script/script = ExtResource( 1 )
+
+[node name="ContactIcon" type="Sprite" parent="."]
+
+transform/pos = Vector2( 13, 11 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+region = true
+region_rect = Rect2( 100, 0, 20, 20 )
+
+[node name="ElementIcon" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 38, 13 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+modulate = Color( 0.5, 0.5, 0.5, 1 )
+region = true
+region_rect = Rect2( 24, 24, 16, 16 )
+
+[node name="Label" type="Label" parent="ElementIcon"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -1.0
+margin/top = -3.0
+margin/right = 29.0
+margin/bottom = 9.0
+custom_fonts/font = ExtResource( 3 )
+text = "99999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ElementIcon2" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 34, 9 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+modulate = Color( 0.5, 0.5, 0.5, 1 )
+region = true
+region_rect = Rect2( 40, 20, 16, 16 )
+
+[node name="Label" type="Label" parent="ElementIcon2"]
+
+visibility/behind_parent = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 8.0
+margin/top = -9.0
+margin/right = 38.0
+margin/bottom = 3.0
+custom_fonts/font = ExtResource( 3 )
+text = "99999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ACCIcon" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 91, 11 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+modulate = Color( 0.75, 0.75, 0.75, 1 )
+region = true
+region_rect = Rect2( 40, 0, 20, 20 )
+
+[node name="Label" type="Label" parent="ACCIcon"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -12.0
+margin/top = -1.0
+margin/right = 14.0
+margin/bottom = 11.0
+custom_fonts/font = ExtResource( 3 )
+text = "100%"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AGIIcon" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 122, 11 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+region = true
+region_rect = Rect2( 60, 20, 20, 20 )
+
+[node name="Label" type="Label" parent="AGIIcon"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -13.0
+margin/top = -1.0
+margin/right = 14.0
+margin/bottom = 11.0
+custom_fonts/font = ExtResource( 3 )
+text = "+99.9"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ADIcon" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 154, 10 )
+script/script = SubResource( 1 )
+
+[node name="RangeIcon" parent="." instance=ExtResource( 5 )]
+
+margin/left = 175.0
+margin/right = 195.0
+side = 1
+
+

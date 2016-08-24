@@ -1,48 +1,58 @@
 {
-    "none": {
-        "levels": 0,
+  "none": {
+    "levels": 0,
+    "overCost": 25,
+    "effect": "res://battle/effect/debug02.tscn",
+    "powerSource": 0,
+    "name": "none",
+    "levelData": [
+      {
+        "absoluteAD": false,
         "contact": false,
-        "overCost": 25,
-        "sType": 1,
-        "effect": "res://battle/effect/debug01.xscn",
-        "powerSource": 0,
-        "name": "Skill Name",
-        "levelData": [
-            {
-                "accuracy": 100,
-                "absoluteAD": false,
-                "effect": null,
-                "AD": -5,
-                "EP": 50,
-                "damage": [
-                    1,
-                    50,
-                    2,
-                    50
-                ],
-                "hitRange": 2
-            },
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            {
-                "accuracy": 100,
-                "absoluteAD": false,
-                "effect": null,
-                "AD": 5,
-                "EP": 800,
-                "damage": [
-                    1,
-                    2300,
-                    3,
-                    2300
-                ],
-                "hitRange": 3
-            }
-        ]
-    }
+        "effect": null,
+        "AD": 0,
+        "EP": 0,
+        "ACC": 100,
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "damage": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "AGI": 0
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "absoluteAD": false,
+        "contact": false,
+        "effect": null,
+        "AD": 0,
+        "EP": 800,
+        "ACC": 100,
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "damage": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "AGI": 0
+      }
+    ]
+  }
 }

@@ -1,0 +1,184 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://battle/UI/RangeIcon.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "\nextends Panel\n\n# member variables here, example:\n# var a=2\n# var b=\"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\n\n\nfunc _on_Formation_value_changed(i):\n\tget_node(\"RangeIcon\").form = i\n\n\nfunc _on_Range_value_changed(i):\n\tget_node(\"RangeIcon\")._range = i\n\n\nfunc _on_Slot_value_changed(i):\n\tget_node(\"RangeIcon\").slot = i\n\n\nfunc _on_Side_value_changed(i):\n\tget_node(\"RangeIcon\").side = i\n"
+
+[node name="Panel" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 220.0
+margin/bottom = 170.0
+script/script = SubResource( 1 )
+
+[node name="RangeIcon" parent="." instance=ExtResource( 1 )]
+
+margin/left = 100.0
+margin/top = 10.0
+margin/right = 120.0
+margin/bottom = 30.0
+
+[node name="Formation" type="SpinBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 70.0
+margin/right = 174.0
+margin/bottom = 94.0
+range/min = 0.0
+range/max = 3.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Label" type="Label" parent="Formation"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -90.0
+margin/top = 0.0
+margin/right = -10.0
+margin/bottom = 20.0
+text = "Formation"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Range" type="SpinBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 90.0
+margin/right = 174.0
+margin/bottom = 114.0
+range/min = 0.0
+range/max = 6.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Label" type="Label" parent="Range"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -90.0
+margin/top = 0.0
+margin/right = -10.0
+margin/bottom = 20.0
+text = "Range"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Slot" type="SpinBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 110.0
+margin/right = 174.0
+margin/bottom = 134.0
+range/min = 0.0
+range/max = 6.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Label" type="Label" parent="Slot"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -90.0
+margin/top = 0.0
+margin/right = -10.0
+margin/bottom = 20.0
+text = "Slot"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Side" type="SpinBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 130.0
+margin/right = 174.0
+margin/bottom = 154.0
+range/min = 0.0
+range/max = 2.0
+range/step = 1.0
+range/page = 0.0
+range/value = 2.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Label" type="Label" parent="Side"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -90.0
+margin/top = 0.0
+margin/right = -10.0
+margin/bottom = 20.0
+text = "Side"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="value_changed" from="Formation" to="." method="_on_Formation_value_changed"]
+
+[connection signal="value_changed" from="Range" to="." method="_on_Range_value_changed"]
+
+[connection signal="value_changed" from="Slot" to="." method="_on_Slot_value_changed"]
+
+[connection signal="value_changed" from="Side" to="." method="_on_Side_value_changed"]
+
+

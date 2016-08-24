@@ -2,7 +2,7 @@
 
 [ext_resource path="res://battle/Battle.gd" type="Script" id=1]
 [ext_resource path="res://battle/camera2D.gd" type="Script" id=2]
-[ext_resource path="res://battle/UI/BattleUI.xscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/UI/BattleUI.tscn" type="PackedScene" id=3]
 
 [node name="BattleScene" type="Node"]
 
@@ -42,6 +42,7 @@ gui/disable_input = false
 
 [node name="Camera2D" type="Camera2D" parent="BattleView/Viewport"]
 
+visibility/visible = false
 anchor_mode = 1
 rotating = false
 current = false
@@ -61,6 +62,8 @@ drag_margin/bottom = 0.2
 script/script = ExtResource( 2 )
 
 [node name="BattleUI" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
 
 [node name="Timer" type="Timer" parent="."]
 

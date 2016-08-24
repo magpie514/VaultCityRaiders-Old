@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://battle/raiders.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite\n\nfunc _ready():\n\tset_process(true)\n\nfunc _process(delta):\n\tset_self_opacity(0.7 + (cos(OS.get_ticks_msec() * 0.007) * 0.3 ))\n\n\n"
+
+[node name="Highlighter" type="Sprite"]
+
+visibility/behind_parent = true
+visibility/blend_mode = 1
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 3, 208, 116, 38 )
+script/script = SubResource( 1 )
+
+

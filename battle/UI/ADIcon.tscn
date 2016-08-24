@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=1]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite\n\nvar nodes = { label = null }\n\nfunc _ready():\n\tnodes.label = get_node(\"ADLabel\")\n\t\nfunc set(val, absolute):\n\tvar ADlabel = \"\"\n\tif absolute == true:\n\t\tset_modulate(Color(.6, .6, .6))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,0))\n\telif val == 0:\n\t\tset_modulate(Color(.8, .8, .8))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,1))\n\telif val > 0:\n\t\tADlabel = \"+\"\n\t\tset_modulate(Color(.5, .5, .5))\n\t\tnodes.label.add_color_override(\"font_color\", Color(.6,.8,1))\n\telse:\n\t\tset_modulate(Color(.4, .4, .4))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,0,0))\n\tnodes.label.set_text(str(ADlabel, val))"
+
+[node name="ADIcon" type="Sprite"]
+
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+region = true
+region_rect = Rect2( 0, 0, 20, 20 )
+script/script = SubResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+
+[node name="ADLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -12.0
+margin/top = 0.0
+margin/right = 12.0
+margin/bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+text = "+999"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

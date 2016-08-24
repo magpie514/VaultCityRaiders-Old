@@ -56,3 +56,7 @@ func _on_B_Weapon_pressed():
 func _on_B_Defend_pressed():
 	main.sfxPlay("blip")
 	emit_signal("_battlechoice2", 3, 0, 0, 0)
+
+
+func _on_B_Back_pressed():
+	pass # replace with function body

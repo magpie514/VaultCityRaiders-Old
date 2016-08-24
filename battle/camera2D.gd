@@ -15,14 +15,14 @@ func zoomLinear(Z, time):
 	count = time
 	countMax = time
 	set_process(true)
-	
+
 func zoom(Z):
 	set_zoom(Vector2(Z, Z))
-	
+
 func _process(delta):
 	set_zoom(zoomVal.linear_interpolate(zoomTarget, float(float(countMax-count)/float(countMax))))
 	#set_zoom(zoomVal.cubic_interpolate(zoomTarget, zoomVal, zoomTarget, float(float(countMax-count)/float(countMax))))
 	count -= 1
-	if count == 0: 
+	if count == 0:
 		set_zoom(zoomTarget)
 		set_process(false)

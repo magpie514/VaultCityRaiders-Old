@@ -1,0 +1,185 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://battle/UI/Weapon_button.gd" type="Script" id=1]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://battle/UI/support/SkillData.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://battle/UI/CRBar.xscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=6]
+
+[sub_resource type="ColorRamp" id=4]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.363281, 0.085144, 0, 1, 0.941406, 0.780062, 0.147095, 1 )
+
+[sub_resource type="ColorRamp" id=5]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.00283813, 0, 0.363281, 1, 0.147095, 0.941406, 0.904173, 1 )
+
+[node name="WeaponButton" type="Button"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 63.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+slot = 0
+debug = true
+
+[node name="NameLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 3.0
+margin/right = 160.0
+margin/bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Action Name"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SkillData" parent="." instance=ExtResource( 3 )]
+
+margin/top = 17.0
+margin/bottom = 37.0
+
+[node name="Display" type="Control" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 44.0
+margin/right = 160.0
+margin/bottom = 60.0
+
+[node name="Durability" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -6.0
+margin/top = -3.0
+margin/right = 126.0
+margin/bottom = 6.0
+custom_fonts/font = ExtResource( 4 )
+text = "Durability:99999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorRampBar" parent="Display/Durability" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/right = 132.0
+margin/bottom = 9.0
+cr = SubResource( 4 )
+
+[node name="Ammo" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -6.0
+margin/top = 8.0
+margin/right = 126.0
+margin/bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "Ammo: 99999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorRampBar" parent="Display/Ammo" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/top = -1.0
+margin/right = 132.0
+margin/bottom = 8.0
+cr = SubResource( 5 )
+
+[node name="LevelLabel" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 120.0
+margin/top = -36.0
+margin/right = 157.0
+margin/bottom = -26.0
+custom_fonts/font = ExtResource( 4 )
+text = "L. OVER"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="B_Decrease" type="Button" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 41.0
+margin/right = 32.0
+margin/bottom = 61.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="B_Decrease"]
+
+transform/pos = Vector2( 14, 10 )
+texture = ExtResource( 6 )
+region = true
+region_rect = Rect2( 4, 41, 6, 8 )
+
+[node name="B_Increase" type="Button" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 168.0
+margin/top = 41.0
+margin/right = 198.0
+margin/bottom = 61.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="B_Increase"]
+
+transform/pos = Vector2( 16, 10 )
+texture = ExtResource( 6 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[connection signal="pressed" from="B_Decrease" to="." method="_on_B_Decrease_pressed"]
+
+[connection signal="pressed" from="B_Increase" to="." method="_on_B_Increase_pressed"]
+
+

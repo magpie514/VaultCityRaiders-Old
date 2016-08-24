@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://tools/skilledit.gd" type="Script" id=1]
-[ext_resource path="res://fonts/gothic_15.fnt" type="Font" id=2]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://battle/UI/SkillButton.xscn" type="PackedScene" id=3]
 
 [node name="SkillEdit" type="Control"]
@@ -19,6 +19,7 @@ __meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="TagSelector" type="Panel" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -27,13 +28,13 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 410.0
 margin/bottom = 60.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Header" type="Label" parent="TagSelector" groups=[ "SkillEdit" ]]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 20.0
 margin/top = 10.0
 margin/right = 390.0
@@ -47,6 +48,7 @@ max_lines_visible = -1
 
 [node name="Tag" type="OptionButton" parent="TagSelector"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -56,11 +58,12 @@ margin/top = 30.0
 margin/right = 330.0
 margin/bottom = 49.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 selected = -1
 items = [  ]
-__meta__ = { "_editor_collapsed":true }
 
 [node name="TagButtonAdd" type="Button" parent="TagSelector/Tag"]
 
@@ -74,6 +77,8 @@ margin/top = 0.0
 margin/right = 350.0
 margin/bottom = 19.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "+"
 flat = false
 
@@ -89,6 +94,8 @@ margin/top = 0.0
 margin/right = 370.0
 margin/bottom = 19.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "-"
 flat = false
 
@@ -104,6 +111,8 @@ margin/top = 0.0
 margin/right = 391.0
 margin/bottom = 19.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "R"
 flat = false
 
@@ -118,9 +127,11 @@ margin/top = 0.0
 margin/right = 395.0
 margin/bottom = 23.0
 text = "_newtag_"
+placeholder/alpha = 0.6
 max_length = 8
-editable = true
-secret = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 1.0
 
 [node name="LineEdit2" type="LineEdit" parent="TagSelector/Tag"]
 
@@ -134,12 +145,15 @@ margin/top = 0.0
 margin/right = 395.0
 margin/bottom = 23.0
 text = "_newtag_"
+placeholder/alpha = 0.6
 max_length = 8
-editable = true
-secret = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 1.0
 
-[node name="SkillEdit" type="Panel" parent="." groups=[ "SkillEdit" ]]
+[node name="SkillEdit" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -149,13 +163,14 @@ margin/left = 0.0
 margin/top = 50.0
 margin/right = 410.0
 margin/bottom = 480.0
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Name" type="Label" parent="SkillEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 10.0
 margin/right = 90.0
@@ -176,15 +191,18 @@ margin/top = 0.0
 margin/right = 390.0
 margin/bottom = 23.0
 text = "Skill name"
-max_length = 0
-editable = true
-secret = false
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 1.0
 
 [node name="Effect" type="Label" parent="SkillEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
 margin/top = 40.0
 margin/right = 90.0
@@ -205,9 +223,11 @@ margin/top = 0.0
 margin/right = 350.0
 margin/bottom = 23.0
 text = "..."
-max_length = 0
+placeholder/alpha = 0.6
 editable = false
-secret = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 1.0
 
 [node name="Button" type="Button" parent="SkillEdit/Effect"]
 
@@ -220,6 +240,8 @@ margin/top = 0.0
 margin/right = 392.0
 margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Open"
 flat = false
 
@@ -235,48 +257,24 @@ margin/top = -60.0
 margin/right = 790.0
 margin/bottom = 390.0
 popup/exclusive = true
-window/title = "Choose file"
+window/title = "Save a File"
 dialog/hide_on_ok = true
-
-[node name="sType" type="Label" parent="SkillEdit"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-margin/left = 10.0
-margin/top = 70.0
-margin/right = 90.0
-margin/bottom = 90.0
-text = "Skill type"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="OptionButton" type="OptionButton" parent="SkillEdit/sType"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 90.0
-margin/top = 0.0
-margin/right = 390.0
-margin/bottom = 19.0
-toggle_mode = false
-flat = false
-align = 0
-selected = -1
-items = [  ]
+mode = 4
+access = 0
+filters = StringArray( "*" )
+show_hidden_files = true
 
 [node name="Source" type="Label" parent="SkillEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 100.0
-margin/right = 90.0
-margin/bottom = 120.0
+margin/top = 70.0
+margin/right = 96.0
+margin/bottom = 90.0
 text = "Power source"
 percent_visible = 1.0
 lines_skipped = 0
@@ -288,53 +286,29 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 90.0
+margin/left = 310.0
 margin/top = 0.0
 margin/right = 390.0
-margin/bottom = 19.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 selected = -1
 items = [  ]
 
-[node name="Contact" type="Label" parent="SkillEdit"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-margin/left = 10.0
-margin/top = 130.0
-margin/right = 90.0
-margin/bottom = 150.0
-text = "Contact"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="CheckBox" type="CheckBox" parent="SkillEdit/Contact"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 370.0
-margin/top = 0.0
-margin/right = 396.0
-margin/bottom = 22.0
-toggle_mode = true
-flat = false
-align = 2
-
 [node name="Levels" type="Label" parent="SkillEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 160.0
+margin/top = 100.0
 margin/right = 90.0
-margin/bottom = 180.0
+margin/bottom = 120.0
 text = "Levels"
 percent_visible = 1.0
 lines_skipped = 0
@@ -346,30 +320,32 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 330.0
+margin/left = 310.0
 margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
+margin/right = 394.0
+margin/bottom = 24.0
 range/min = 1.0
 range/max = 8.0
 range/step = 1.0
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
-range/rounded = false
+range/rounded = true
 editable = true
 prefix = ""
 suffix = ""
 
 [node name="Overcost" type="Label" parent="SkillEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 190.0
+margin/top = 130.0
 margin/right = 90.0
-margin/bottom = 210.0
+margin/bottom = 150.0
 text = "Over cost"
 percent_visible = 1.0
 lines_skipped = 0
@@ -381,10 +357,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 330.0
+margin/left = 310.0
 margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
+margin/right = 394.0
+margin/bottom = 24.0
 range/min = 5.0
 range/max = 50.0
 range/step = 1.0
@@ -403,10 +379,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 20.0
-margin/top = 220.0
+margin/top = 200.0
 margin/right = 100.0
-margin/bottom = 240.0
+margin/bottom = 220.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 1"
 flat = false
 
@@ -417,11 +395,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 120.0
-margin/top = 220.0
+margin/top = 200.0
 margin/right = 200.0
-margin/bottom = 240.0
+margin/bottom = 220.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 2"
 flat = false
 
@@ -432,11 +412,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 220.0
-margin/top = 220.0
+margin/top = 200.0
 margin/right = 300.0
-margin/bottom = 240.0
+margin/bottom = 220.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 3"
 flat = false
 
@@ -447,11 +429,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 320.0
-margin/top = 220.0
+margin/top = 200.0
 margin/right = 400.0
-margin/bottom = 240.0
+margin/bottom = 220.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 4"
 flat = false
 
@@ -462,11 +446,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 20.0
-margin/top = 250.0
+margin/top = 230.0
 margin/right = 100.0
-margin/bottom = 270.0
+margin/bottom = 250.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 5"
 flat = false
 
@@ -477,11 +463,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 120.0
-margin/top = 250.0
+margin/top = 230.0
 margin/right = 200.0
-margin/bottom = 270.0
+margin/bottom = 250.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 6"
 flat = false
 
@@ -492,11 +480,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 220.0
-margin/top = 250.0
+margin/top = 230.0
 margin/right = 300.0
-margin/bottom = 270.0
+margin/bottom = 250.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 7"
 flat = false
 
@@ -507,11 +497,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 320.0
-margin/top = 250.0
+margin/top = 230.0
 margin/right = 400.0
-margin/bottom = 270.0
+margin/bottom = 250.0
 disabled = true
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Level 8"
 flat = false
 
@@ -522,19 +514,21 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 170.0
-margin/top = 280.0
+margin/top = 260.0
 margin/right = 250.0
-margin/bottom = 300.0
+margin/bottom = 280.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "OVER"
 flat = false
 
 [node name="SkillButton" parent="SkillEdit" instance=ExtResource( 3 )]
 
-margin/left = 105.0
-margin/top = 311.0
-margin/right = 305.0
-margin/bottom = 392.0
+margin/left = 110.0
+margin/top = 300.0
+margin/right = 310.0
+margin/bottom = 370.0
 
 [node name="PrintButton" type="Button" parent="SkillEdit"]
 
@@ -547,6 +541,8 @@ margin/top = 400.0
 margin/right = 80.0
 margin/bottom = 419.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Print"
 flat = false
 
@@ -559,8 +555,10 @@ size_flags/vertical = 2
 margin/left = 170.0
 margin/top = 400.0
 margin/right = 240.0
-margin/bottom = 419.0
+margin/bottom = 420.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Load"
 flat = false
 
@@ -575,18 +573,21 @@ margin/top = 400.0
 margin/right = 400.0
 margin/bottom = 419.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Save"
 flat = false
 
 [node name="LevelEdit" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 210.0
+margin/top = 180.0
 margin/right = 410.0
 margin/bottom = 480.0
 
@@ -595,6 +596,7 @@ margin/bottom = 480.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 130.0
 margin/top = 10.0
 margin/right = 280.0
@@ -607,69 +609,204 @@ max_lines_visible = -1
 
 [node name="EnergyUse" type="Label" parent="LevelEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 30.0
+margin/top = 40.0
 margin/right = 100.0
-margin/bottom = 50.0
+margin/bottom = 60.0
 text = "Energy use"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSlider" type="HSlider" parent="LevelEdit/EnergyUse"]
+[node name="SpinBox" type="SpinBox" parent="LevelEdit/EnergyUse"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
-margin/left = 100.0
+size_flags/vertical = 2
+margin/left = 290.0
 margin/top = 0.0
-margin/right = 330.0
-margin/bottom = 20.0
+margin/right = 394.0
+margin/bottom = 24.0
 range/min = 0.0
-range/max = 65535.0
+range/max = 1.67772e+07
 range/step = 1.0
 range/page = 0.0
-range/value = 0.0
+range/value = 1.67772e+07
 range/exp_edit = false
 range/rounded = true
-tick_count = 0
-ticks_on_borders = false
+editable = true
+prefix = ""
+suffix = ""
 
-[node name="Label" type="Label" parent="LevelEdit/EnergyUse"]
+[node name="Contact" type="Label" parent="LevelEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-margin/left = 330.0
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 60.0
+margin/right = 90.0
+margin/bottom = 80.0
+text = "Contact"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CheckBox" type="CheckBox" parent="LevelEdit/Contact"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 380.0
 margin/top = 0.0
-margin/right = 390.0
-margin/bottom = 20.0
-text = "99999999"
+margin/right = 406.0
+margin/bottom = 23.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
 align = 2
+
+[node name="Damage1" type="Label" parent="LevelEdit"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 80.0
+margin/right = 100.0
+margin/bottom = 100.0
+text = "Damage1"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Accuracy" type="Label" parent="LevelEdit"]
+[node name="OptionButton" type="OptionButton" parent="LevelEdit/Damage1"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 210.0
+margin/top = 0.0
+margin/right = 310.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+selected = -1
+items = [  ]
+
+[node name="SpinBox" type="SpinBox" parent="LevelEdit/Damage1"]
+
+rect/min_size = Vector2( 1, 1 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 320.0
+margin/top = 0.0
+margin/right = 394.0
+margin/bottom = 24.0
+range/min = 1.0
+range/max = 45000.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Damage2" type="Label" parent="LevelEdit"]
+
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 50.0
+margin/top = 100.0
 margin/right = 100.0
-margin/bottom = 70.0
+margin/bottom = 120.0
+text = "Damage2"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="OptionButton" type="OptionButton" parent="LevelEdit/Damage2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 210.0
+margin/top = 0.0
+margin/right = 310.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+selected = -1
+items = [  ]
+
+[node name="SpinBox" type="SpinBox" parent="LevelEdit/Damage2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 320.0
+margin/top = 0.0
+margin/right = 394.0
+margin/bottom = 24.0
+range/min = 1.0
+range/max = 45000.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="Accuracy" type="Label" parent="LevelEdit"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 120.0
+margin/right = 100.0
+margin/bottom = 140.0
 text = "Accuracy"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
 
 [node name="SpinBox" type="SpinBox" parent="LevelEdit/Accuracy"]
 
@@ -679,8 +816,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 320.0
 margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
+margin/right = 394.0
+margin/bottom = 24.0
 range/min = 5.0
 range/max = 100.0
 range/step = 1.0
@@ -692,21 +829,60 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="AD" type="Label" parent="LevelEdit"]
+[node name="AGIBonus" type="Label" parent="LevelEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 70.0
+margin/top = 140.0
 margin/right = 100.0
-margin/bottom = 90.0
+margin/bottom = 160.0
+text = "AGI Bonus"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpinBox" type="SpinBox" parent="LevelEdit/AGIBonus"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 320.0
+margin/top = 0.0
+margin/right = 394.0
+margin/bottom = 24.0
+range/min = -4000.0
+range/max = 4000.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = true
+editable = true
+prefix = ""
+suffix = ""
+
+[node name="AD" type="Label" parent="LevelEdit"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 160.0
+margin/right = 107.0
+margin/bottom = 180.0
 text = "Active Defense"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
 
 [node name="CheckBox" type="CheckBox" parent="LevelEdit/AD"]
 
@@ -714,11 +890,13 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 240.0
+margin/left = 210.0
 margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 22.0
+margin/right = 310.0
+margin/bottom = 23.0
 toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
 text = "Absolute"
 flat = false
 align = 0
@@ -731,8 +909,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 320.0
 margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
+margin/right = 394.0
+margin/bottom = 24.0
 range/min = -90.0
 range/max = 200.0
 range/step = 1.0
@@ -749,16 +927,16 @@ suffix = ""
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 90.0
+margin/top = 180.0
 margin/right = 100.0
-margin/bottom = 110.0
+margin/bottom = 200.0
 text = "Range"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
 
 [node name="SpinBox" type="SpinBox" parent="LevelEdit/Range"]
 
@@ -766,143 +944,73 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 330.0
+margin/left = 320.0
 margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
-range/min = 1.0
-range/max = 5.0
+margin/right = 394.0
+margin/bottom = 24.0
+range/min = 0.0
+range/max = 6.0
 range/step = 1.0
 range/page = 0.0
-range/value = 1.0
+range/value = 0.0
 range/exp_edit = false
 range/rounded = true
 editable = true
 prefix = ""
 suffix = ""
 
-[node name="Damage1" type="Label" parent="LevelEdit"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-margin/left = 10.0
-margin/top = 110.0
-margin/right = 100.0
-margin/bottom = 130.0
-text = "Damage1"
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
-
-[node name="OptionButton" type="OptionButton" parent="LevelEdit/Damage1"]
+[node name="FormationChoice" type="OptionButton" parent="LevelEdit/Range"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 220.0
+margin/left = 210.0
 margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 19.0
+margin/right = 310.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 selected = -1
 items = [  ]
 
-[node name="SpinBox" type="SpinBox" parent="LevelEdit/Damage1"]
-
-rect/min_size = Vector2( 1, 1 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 320.0
-margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
-range/min = 1.0
-range/max = 45000.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = true
-editable = true
-prefix = ""
-suffix = ""
-
-[node name="Damage2" type="Label" parent="LevelEdit"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-margin/left = 10.0
-margin/top = 130.0
-margin/right = 100.0
-margin/bottom = 150.0
-text = "Damage2"
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
-
-[node name="OptionButton" type="OptionButton" parent="LevelEdit/Damage2"]
+[node name="SideChoice" type="OptionButton" parent="LevelEdit/Range"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 220.0
+margin/left = 120.0
 margin/top = 0.0
-margin/right = 320.0
-margin/bottom = 19.0
+margin/right = 210.0
+margin/bottom = 20.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 flat = false
 align = 0
 selected = -1
 items = [  ]
-
-[node name="SpinBox" type="SpinBox" parent="LevelEdit/Damage2"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 320.0
-margin/top = 0.0
-margin/right = 392.0
-margin/bottom = 23.0
-range/min = 1.0
-range/max = 45000.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = true
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="Tooltip" type="Label" parent="LevelEdit"]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
 margin/left = 10.0
-margin/top = 150.0
+margin/top = 200.0
 margin/right = 100.0
-margin/bottom = 170.0
+margin/bottom = 220.0
 text = "Tooltip"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-__meta__ = { "_editor_collapsed":true }
 
 [node name="LineEdit" type="LineEdit" parent="LevelEdit/Tooltip"]
 
@@ -914,10 +1022,10 @@ margin/left = 100.0
 margin/top = 0.0
 margin/right = 390.0
 margin/bottom = 23.0
-text = ""
-max_length = 0
-editable = true
-secret = false
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 1.0
 
 [node name="Button" type="Button" parent="LevelEdit"]
 
@@ -930,6 +1038,8 @@ margin/top = 240.0
 margin/right = 400.0
 margin/bottom = 259.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "OK"
 flat = false
 
@@ -944,6 +1054,8 @@ margin/top = 240.0
 margin/right = 240.0
 margin/bottom = 259.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Revert"
 flat = false
 
@@ -958,6 +1070,8 @@ margin/top = 240.0
 margin/right = 80.0
 margin/bottom = 259.0
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
 text = "Cancel"
 flat = false
 
@@ -972,6 +1086,12 @@ margin/left = 410.0
 margin/top = 0.0
 margin/right = 800.0
 margin/bottom = 480.0
+syntax_highlighting = true
+show_line_numbers = true
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
 
 [connection signal="item_selected" from="TagSelector/Tag" to="." method="_on_Tag_item_selected"]
 
@@ -990,8 +1110,6 @@ margin/bottom = 480.0
 [connection signal="pressed" from="SkillEdit/Effect/Button" to="." method="_on_EffectButton_pressed"]
 
 [connection signal="file_selected" from="SkillEdit/Effect/FileDialog" to="." method="_on_FileDialog_file_selected"]
-
-[connection signal="item_selected" from="SkillEdit/sType/OptionButton" to="." method="_on_OptionButton_item_selected"]
 
 [connection signal="item_selected" from="SkillEdit/Source/OptionButton" to="." method="_on_OptionButton2_item_selected"]
 
@@ -1017,7 +1135,7 @@ margin/bottom = 480.0
 
 [connection signal="pressed" from="SkillEdit/PrintButton" to="." method="_on_PrintButton_pressed"]
 
-[connection signal="value_changed" from="LevelEdit/EnergyUse/HSlider" to="." method="_on_LevelEditEnergyUseHSlider_value_changed"]
+[connection signal="toggled" from="LevelEdit/Contact/CheckBox" to="." method="_on_CheckBox_toggled"]
 
 [connection signal="pressed" from="LevelEdit/Button" to="." method="_on_levelEditOKButton_pressed"]
 
