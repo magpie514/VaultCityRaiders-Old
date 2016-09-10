@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="7" version="2.1" version_name="Godot Engine v2.1.rc1.custom_build">
+<resource_file type="PackedScene" subresource_count="7" version="2.2" version_name="Godot Engine v2.2.alpha.custom_build">
 	<ext_resource path="res://battle/UI/FOE_Display.gd" type="Script" index="0"></ext_resource>
 	<ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" index="2"></ext_resource>
-	<ext_resource path="res://battle/UI/Icon.png" type="Texture" index="1"></ext_resource>
 	<ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" index="3"></ext_resource>
+	<ext_resource path="res://battle/UI/Icon.png" type="Texture" index="1"></ext_resource>
 	<ext_resource path="res://battle/UI/Bar.tscn" type="PackedScene" index="4"></ext_resource>
 	<ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" index="5"></ext_resource>
 	<main_resource>

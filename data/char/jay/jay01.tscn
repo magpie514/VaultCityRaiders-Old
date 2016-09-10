@@ -25,4 +25,12 @@ texture = ExtResource( 2 )
 region = true
 region_rect = Rect2( 340, 30, 240, 220 )
 
+[node name="Shadow" type="Sprite" parent="."]
+
+visibility/behind_parent = true
+transform/scale = Vector2( 1.40351, 1 )
+texture = ExtResource( 2 )
+region = true
+region_rect = Rect2( 5, 116, 114, 33 )
+
 

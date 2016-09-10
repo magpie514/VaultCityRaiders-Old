@@ -18,7 +18,7 @@ onready var nodes = {
 	bars = { level = get_node("EP_Display/LevelLabel/ColorRampBar") },
 }
 
-var testchar = {	stats = {	EP = 99999999,	MEP = 99999999,	over = 100,	}		}
+var testchar = {	stats = {	EP = 99999999, over = 100,	}, baseStats = {EP = 99999999} }
 
 func _ready():
 	#if debug:
@@ -35,7 +35,7 @@ func init(act, char):
 		self.set_opacity(0.5)
 		self.set_disabled(true)
 		return
-	get_node("EP_Display/LevelLabel/MaxBar").value = float(character.stats.EP)/float(character.stats.MEP)
+	get_node("EP_Display/LevelLabel/MaxBar").value = float(character.stats.EP)/float(character.baseStats.EP)
 	levelSet(0)
 
 func levelSet(lv):
@@ -52,7 +52,7 @@ func levelSet(lv):
 	nodes.labels.level.set_text(levelLabel)
 	get_node("SkillData").init(skill.levelData[level])
 	nodes.labels.EP.set_text(str(skill.levelData[level].EP))
-	nodes.bars.level.value = float(skill.levelData[level].EP)/float(character.stats.MEP)
+	nodes.bars.level.value = float(skill.levelData[level].EP)/float(character.baseStats.EP)
 
 func _on_B_Decrease_pressed():
 	if level == 8: levelSet(skill.levels)

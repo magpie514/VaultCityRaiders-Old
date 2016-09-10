@@ -12,8 +12,8 @@ script/source = "extends Sprite\n\nvar nodes = { label = null }\n\nfunc _ready()
 
 [node name="SkillData" type="Control"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0

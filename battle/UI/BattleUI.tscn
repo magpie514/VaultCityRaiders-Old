@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=1]
 [ext_resource path="res://battle/UI/PC_Display.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://battle/UI/Battle_choice.tscn" type="PackedScene" id=8]
 [ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=9]
 [ext_resource path="res://fonts/gothic_12.fnt" type="BitmapFont" id=10]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=11]
 
 [sub_resource type="GDScript" id=1]
 
@@ -22,6 +23,7 @@ __meta__ = { "__editor_plugin_screen__":"2D" }
 
 [node name="Display_Player" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/self_opacity = 0.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -80,6 +82,7 @@ margin/bottom = 108.0
 
 [node name="Display_Foe" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/self_opacity = 0.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -316,5 +319,22 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="ExtraDisplay"]
+
+visibility/self_opacity = 0.8
+transform/pos = Vector2( 15, 85 )
+texture = ExtResource( 11 )
+region = true
+region_rect = Rect2( 18, 41, 30, 30 )
+
+[node name="Sprite1" type="Sprite" parent="ExtraDisplay"]
+
+visibility/self_opacity = 0.8
+transform/pos = Vector2( 145, 85 )
+texture = ExtResource( 11 )
+flip_h = true
+region = true
+region_rect = Rect2( 18, 41, 30, 30 )
 
 

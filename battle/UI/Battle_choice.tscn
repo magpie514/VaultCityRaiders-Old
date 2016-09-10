@@ -9,6 +9,7 @@ script/source = "extends Control\n\nsignal _battlechoice1(choice)\n\nvar active 
 
 [node name="BattleChoice1" type="Control"]
 
+visibility/self_opacity = 0.8
 focus/ignore_mouse = true
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -21,6 +22,7 @@ script/script = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="."]
 
+visibility/self_opacity = 0.8
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

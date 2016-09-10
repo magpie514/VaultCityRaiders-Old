@@ -16,6 +16,7 @@ __meta__ = { "__editor_plugin_screen__":"Script" }
 
 [node name="Particles2D" type="Particles2D" parent="."]
 
+visibility/blend_mode = 1
 config/amount = 64
 config/lifetime = 1.0
 config/preprocess = 0.1
@@ -49,9 +50,9 @@ color/color_ramp = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 0.9
+wait_time = 0.8
 one_shot = true
-autostart = false
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

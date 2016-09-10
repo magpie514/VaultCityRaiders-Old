@@ -7,12 +7,12 @@
 [ext_resource path="res://battle/UI/CRBar.xscn" type="PackedScene" id=5]
 [ext_resource path="res://battle/UI/Icon.png" type="Texture" id=6]
 
-[sub_resource type="ColorRamp" id=4]
+[sub_resource type="ColorRamp" id=1]
 
 offsets = FloatArray( 0, 1 )
 colors = ColorArray( 0.363281, 0.085144, 0, 1, 0.941406, 0.780062, 0.147095, 1 )
 
-[sub_resource type="ColorRamp" id=5]
+[sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 1 )
 colors = ColorArray( 0.00283813, 0, 0.363281, 1, 0.147095, 0.941406, 0.904173, 1 )
@@ -89,7 +89,7 @@ max_lines_visible = -1
 visibility/behind_parent = true
 margin/right = 132.0
 margin/bottom = 9.0
-cr = SubResource( 4 )
+cr = SubResource( 1 )
 
 [node name="Ammo" type="Label" parent="Display"]
 
@@ -113,7 +113,7 @@ visibility/behind_parent = true
 margin/top = -1.0
 margin/right = 132.0
 margin/bottom = 8.0
-cr = SubResource( 5 )
+cr = SubResource( 2 )
 
 [node name="LevelLabel" type="Label" parent="Display"]
 
@@ -177,6 +177,8 @@ transform/pos = Vector2( 16, 10 )
 texture = ExtResource( 6 )
 region = true
 region_rect = Rect2( 11, 41, 6, 8 )
+
+[connection signal="pressed" from="." to="." method="_on_WeaponButton_pressed"]
 
 [connection signal="pressed" from="B_Decrease" to="." method="_on_B_Decrease_pressed"]
 

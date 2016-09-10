@@ -50,8 +50,8 @@ func targetSideListFill(N):
 
 func _ready():
 	get_node("SkillEdit/Effect/FileDialog").set_mode(FileDialog.MODE_OPEN_FILE)
-	get_node("SkillEdit/Source/OptionButton").add_item("EP", nodes.main.SKILL_SOURCE_EP)
-	get_node("SkillEdit/Source/OptionButton").add_item("VP", nodes.main.SKILL_SOURCE_VP)
+	get_node("SkillEdit/Source/OptionButton").add_item("EP", nodes.main.SKILL_SOURCE_USER_EP)
+	get_node("SkillEdit/Source/OptionButton").add_item("VP", nodes.main.SKILL_SOURCE_USER_VP)
 	nodes.textEdit.set_wrap(true)
 	elementListFill(get_node("LevelEdit/Damage1/OptionButton"))
 	elementListFill(get_node("LevelEdit/Damage2/OptionButton"))

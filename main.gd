@@ -1,7 +1,10 @@
 extends Node
 
-const SKILL_SOURCE_EP = 	0
-const SKILL_SOURCE_VP = 	1
+const SKILL_SOURCE_NONE =	 	0
+const SKILL_SOURCE_USER_EP = 	1
+const SKILL_SOURCE_USER_VP = 	2
+const SKILL_SOURCE_W_AMMO = 	3
+const SKILL_SOURCE_W_EP = 		4
 
 const ELEMENT_NONE =		0
 const ELEMENT_KINETIC =		1
@@ -24,55 +27,30 @@ const TARGET_HLINE =		3
 const TARGET_CONE = 		4
 const TARGET_ALL =			5
 
-var skillLib = {}
+const BATTLE_ACTION_WEAPON = 	0
+const BATTLE_ACTION_SKILL = 	1
+const BATTLE_ACTION_DEFEND =	2
+const BATTLE_ACTION_ITEM = 		3
+
+const BATTLE_DEFEND_AGI_BONUS = 2000
+
+const CHAR_STATUS_OK =			0
+const CHAR_STATUS_DOWN = 		1
 
 const elementData = {
-	ELEMENT_NONE : {
-		icon = null,
-		color = Color(0.1, 0.1, 0.1),
-		name = null
-	},
-	ELEMENT_KINETIC : {
-		icon = null,
-		color = Color(0.3, 0.3, 0.3),
-		name = "kinetic"
-	},
-	ELEMENT_FIRE : {
-		icon = null,
-		color = Color(0.7, 0.2, 0.0),
-		name = "fire"
-	},
-	ELEMENT_COLD : {
-		icon = null,
-		color = Color(0.4, 0.4, 0.8),
-		name = "cold"
-	},
-	ELEMENT_ELEC : {
-		icon = null,
-		color = Color(0.0, 0.4, 0.7),
-		name = "electric"
-	},
-	ELEMENT_LIGHT : {
-		icon = null,
-		color = Color(0.66, 0.66, 0.6),
-		name = "light"
-	},
-	ELEMENT_DARK : {
-		icon = null,
-		color = Color(0.1, 0.1, 0.1),
-		name = "dark"
-	},
-	ELEMENT_GRAVITY : {
-		icon = null,
-		color = Color(0.2, 0.0, 0.5),
-		name = "gravity"
-	},
-	ELEMENT_OUTSIDER : {
-		icon = null,
-		color = Color(0.75, 0.75, 0.1),
-		name = "???"
-	},
+	ELEMENT_NONE : 		{ icon = null, color = Color(0.1, 0.1, 0.1), name = null },
+	ELEMENT_KINETIC : 	{ icon = null, color = Color(0.3, 0.3, 0.3), name = "kinetic" },
+	ELEMENT_FIRE : 		{ icon = null, color = Color(0.7, 0.2, 0.0), name = "fire" },
+	ELEMENT_COLD : 		{ icon = null, color = Color(0.4, 0.4, 0.8), name = "cold" },
+	ELEMENT_ELEC : 		{ icon = null, color = Color(0.0, 0.4, 0.7), name = "electric" },
+	ELEMENT_LIGHT : 	{ icon = null, color = Color(0.66, 0.66, 0.6), name = "light" },
+	ELEMENT_DARK : 		{ icon = null, color = Color(0.1, 0.1, 0.1), name = "dark" },
+	ELEMENT_GRAVITY : 	{ icon = null, color = Color(0.2, 0.0, 0.5), name = "gravity" },
+	ELEMENT_OUTSIDER : 	{ icon = null, color = Color(0.75, 0.75, 0.1), name = "???" },
 }
+
+var skillLib = {}
+var weaponDef = {}
 
 func elementColor(i):
 	return elementData[i].color
@@ -83,6 +61,8 @@ onready var nodes = {
 
 var debugp = preload("res://battle/debug/debugparty.gd").new()
 var enemyp = preload("res://battle/debug/debugparty2.gd").new()
+
+var data = load("res://system/data.gd").new()
 
 var battleData = {
 	playerParty = null,
@@ -147,19 +127,28 @@ class Char:
 		if self.stats.vital > statBase.vital: self.stats.vital = statBase.vital
 		elif self.stats.vital < 0: self.stats.vital = 0
 
-func _init():
-	var f = File.new()
-	var buffer = ""
-	if f.open("res://data/skill/default.json", File.READ) == 0:
+static func loadJSON(file):
+	var dict = {}; var buffer = ""; var f = File.new()
+	if f.open(file, File.READ) == 0:
 		buffer = f.get_as_text()
-		skillLib.parse_json(buffer)
-		#print(skillLib)
+		dict.parse_json(buffer)
 		f.close()
-		f = null
-	else: print("res://data/skill/default.json not found!")
+	else: print("[!]",file, " not found!")
+	f = null; buffer = null
+	return dict
 
-func _ready():
-	pass
+func _init():
+	skillLib = loadJSON("res://data/skill/default.json"); #print(skillLib)
+	weaponDef = loadJSON("res://data/weapon/default.json"); #print(weaponDef)
+	data.validateWeaponDef(weaponDef)
+	data.validateSkillDef(skillLib)
+
+# TODO: This thing can be used to load mod weapons or special character weapons. Keep it for later.
+#	var weaponDef2 = loadJSON("res://data/weapon/default1.json")
+#	for key in weaponDef2:
+#		weaponDef[key] = Dictionary(weaponDef2[key])
+#	weaponDef2 = null
+#	print(weaponDef)
 
 func sfxPlay(name):
 	nodes.sfxPlayer.play(name)
@@ -169,3 +158,11 @@ func bgmPlay(file):
 	get_node("StreamPlayer").set_stream(bgm)
 	get_node("StreamPlayer").set_loop(true)
 	get_node("StreamPlayer").play()
+
+func bgmInit(B):
+	if not B:
+		print("[!] No BGM specified for battle.")
+		bgmPlay("res://music/EOIV_Storm.ogg")
+		#bgmPlay("res://music/ZTD_BGM37.ogg")
+	else:
+		bgmPlay(B)
