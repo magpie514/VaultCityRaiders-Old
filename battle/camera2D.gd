@@ -1,28 +1,38 @@
 extends Camera2D
 
-var zoomVal = Vector2(1.0, 1.0)
-var zoomTarget = Vector2(1.0, 1.0)
-var count = 0
-var countMax = 0
+var zoomData = [0, 0, Vector2(1.0, 1.0), 0.0] #[0]Time, [1]Max Time, [2]Current, [3]Target
+var followData = [false, null] #[0]Active, [1]Target Node
+
+static func V(i): return Vector2(float(i), float(i))
 
 func _ready():
-	pass
-
-
-func zoomLinear(Z, time):
-	zoomVal = get_zoom()
-	zoomTarget = Vector2(Z, Z) #No point on using irregular zoom
-	count = time
-	countMax = time
 	set_process(true)
 
-func zoom(Z):
-	set_zoom(Vector2(Z, Z))
+func zoomLinear(Z, time):
+	zoomData[0] = time; zoomData[1] = time
+	zoomData[2] = get_zoom(); zoomData[3] = V(Z)
+
+func zoom(Z): set_zoom(V(Z))
+
+func resetPos():
+	followData[0] = false; followData[1] = null
+	set_pos(Vector2(400, 160))
+
+func followTarget(node):
+	if node != null:
+		followData[0] = true
+		followData[1] = node
+		set_follow_smoothing(5.0)
+	else:
+		followData[0] = false
+		followData[1] = null
+		set_follow_smoothing(4.0)
 
 func _process(delta):
-	set_zoom(zoomVal.linear_interpolate(zoomTarget, float(float(countMax-count)/float(countMax))))
-	#set_zoom(zoomVal.cubic_interpolate(zoomTarget, zoomVal, zoomTarget, float(float(countMax-count)/float(countMax))))
-	count -= 1
-	if count == 0:
-		set_zoom(zoomTarget)
-		set_process(false)
+	if zoomData[0] > 0:
+		var t = float(zoomData[1] - zoomData[0]) / float(zoomData[1])
+		set_zoom(zoomData[2].linear_interpolate(zoomData[3], t))
+		zoomData[0] -= 1
+		if zoomData[0] == 0: set_zoom(zoomData[3])
+	if followData[0] and followData[1] != null:
+		set_global_pos(followData[1].get_global_pos()-Vector2(0, 80))

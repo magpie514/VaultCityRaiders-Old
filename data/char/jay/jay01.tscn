@@ -1,36 +1,25 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://test.tres" type="CanvasItemMaterial" id=1]
-[ext_resource path="res://battle/raiders.png" type="Texture" id=2]
+[ext_resource path="res://data/char/template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test.tres" type="CanvasItemMaterial" id=2]
+[ext_resource path="res://battle/raiders.png" type="Texture" id=3]
 
-[node name="Char" type="Position2D"]
+[node name="Char" instance=ExtResource( 1 )]
 
-__meta__ = { "__editor_plugin_screen__":"2D" }
+[node name="AttackPos" parent="SpritePos"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+transform/pos = Vector2( -120, -110 )
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = "idle"
+[node name="CenterPos" parent="SpritePos"]
 
-[node name="Sprite" type="Sprite" parent="."]
+transform/pos = Vector2( 0, -110 )
 
-material/material = ExtResource( 1 )
+[node name="Sprite" type="Sprite" parent="SpritePos/Sprite"]
+
+material/material = ExtResource( 2 )
 transform/pos = Vector2( -10, -100 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 340, 30, 240, 220 )
-
-[node name="Shadow" type="Sprite" parent="."]
-
-visibility/behind_parent = true
-transform/scale = Vector2( 1.40351, 1 )
-texture = ExtResource( 2 )
-region = true
-region_rect = Rect2( 5, 116, 114, 33 )
 
 

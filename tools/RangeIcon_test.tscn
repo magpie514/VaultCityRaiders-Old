@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://battle/UI/RangeIcon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://battle/UI/support/RangeIcon.tscn" type="PackedScene" id=1]
+
 
 [sub_resource type="GDScript" id=1]
 

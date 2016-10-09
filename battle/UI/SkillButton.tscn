@@ -1,0 +1,181 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://battle/UI/Skill_button.gd" type="Script" id=1]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://battle/UI/support/SkillData.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/ubuntuB_15.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://battle/UI/support/CRBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=7]
+
+
+
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.149732, 0.132808, 0.235261, 1, 0.439886, 0.742971, 0.657607, 1 )
+
+[sub_resource type="ColorRamp" id=2]
+
+offsets = FloatArray( 0, 0.0329308, 0.511526, 0.939627, 0.969265, 1 )
+colors = ColorArray( 0.11751, 0.0550802, 0.167347, 1, 0.122253, 0.0940961, 0.246145, 1, 0.0281827, 0.262661, 0.528584, 1, 0.167635, 0.519626, 0.68356, 1, 0.480755, 1, 0.332766, 1, 0.94143, 1, 0.413039, 1 )
+
+[node name="SkillButton" type="Button"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 70.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+slot = 0
+debug = true
+
+[node name="NameLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 3.0
+margin/right = 190.0
+margin/bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "Skill Name"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SkillData" parent="." instance=ExtResource( 3 )]
+
+margin/top = 20.0
+margin/bottom = 40.0
+
+[node name="EP_Display" type="Control" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 50.0
+margin/right = 160.0
+margin/bottom = 66.0
+
+[node name="EPLabel" type="Label" parent="EP_Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = -3.0
+margin/right = 120.0
+margin/bottom = 12.0
+custom_fonts/font = ExtResource( 4 )
+text = "999999999"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="LevelLabel" type="Label" parent="EP_Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 39.0
+margin/top = 9.0
+margin/right = 84.0
+margin/bottom = 19.0
+custom_fonts/font = ExtResource( 5 )
+text = "Level 9/9"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MaxBar" parent="EP_Display/LevelLabel" instance=ExtResource( 6 )]
+
+visibility/behind_parent = true
+margin/left = -42.0
+margin/top = -4.0
+margin/right = 82.0
+margin/bottom = 7.0
+cr = SubResource( 3 )
+
+[node name="ColorRampBar" parent="EP_Display/LevelLabel" instance=ExtResource( 6 )]
+
+visibility/behind_parent = true
+margin/left = -42.0
+margin/top = -2.0
+margin/right = 82.0
+margin/bottom = 7.0
+cr = SubResource( 2 )
+
+[node name="B_Decrease" type="Button" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 47.0
+margin/right = 32.0
+margin/bottom = 67.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="B_Decrease"]
+
+transform/pos = Vector2( 14, 10 )
+texture = ExtResource( 7 )
+region = true
+region_rect = Rect2( 4, 41, 6, 8 )
+
+[node name="B_Increase" type="Button" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 168.0
+margin/top = 47.0
+margin/right = 198.0
+margin/bottom = 67.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="B_Increase"]
+
+transform/pos = Vector2( 16, 10 )
+texture = ExtResource( 7 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[connection signal="pressed" from="." to="." method="_on_SkillButton_pressed"]
+
+[connection signal="pressed" from="B_Decrease" to="." method="_on_B_Decrease_pressed"]
+
+[connection signal="pressed" from="B_Increase" to="." method="_on_B_Increase_pressed"]
+
+

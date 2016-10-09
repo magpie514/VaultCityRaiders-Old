@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://music/PSIV_Battle.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sfx/hud/blip.wav" type="Sample" id=3]
+[ext_resource path="res://sfx/hud/cancel.wav" type="Sample" id=4]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/blip = { "db":0.0, "pitch":0.99, "sample":ExtResource( 3 ) }
+samples/cancel = { "db":12.0, "pitch":2.29, "sample":ExtResource( 4 ) }
+
+[node name="main" type="Node"]
+
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 2 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 2.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="UI_SFX" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 1 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+

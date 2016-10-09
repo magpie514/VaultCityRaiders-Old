@@ -1,38 +1,46 @@
 extends Panel
 
 onready var nodes = {
-	bars = { vital = get_node("Display/Vital/Bar") },
+	bars = { vital = get_node("Display/Vital/Bar"), EP = get_node("Display/EP/Bar") },
 	labels = { name = get_node("Display/Name"), vital = get_node("Display/Vital") },
 	display = get_node("Display"),
 	highlight = get_node("Highlight")
 }
 
 var character = {}
-var vital_colors = [Color(.8, .9, .8), Color(0, .9, 0), Color(.9, .9, 0), Color(.9, 0, 0), Color(0, 0, 0)]
-var blink = 1
 var active = false
-
-func bar_color(val):
-	if val >= 0.999999:	return 0
-	elif val >= 0.51:	return 1
-	elif val >= 0.26:	return 2
-	elif val >= 0.06:	return 3
-	else:				return 3 + blink
+var anim = { timer = 0, vital = 0, vital1 = 0, EP = 0, EP1 = 0, AD = 0, AD1 = 0 }
+const ANIM_TIME = 60
 
 func setVital(v, mv):
-	var val = float(v) / float(mv)
-	nodes.bars.vital.color = vital_colors[bar_color(val)]
-	if v > 0 and val < 0.0001:	val = 0.0001
-	nodes.bars.vital.set_value(val)
+	nodes.bars.vital.set_value(float(v) / float(mv))
+
+func setEP(ep, mep):
+	nodes.bars.EP.set_value(float(ep) / float(mep))
 
 func char_update(C):
-	setVital(C.stats.V, C.stats.MV)
+	if (anim.vital != C.stats.V or anim.EP != C.stats.EP or anim.AD != C.stats.AD) and anim.timer == 0:
+		anim.vital1 = C.stats.V; anim.EP1 = C.stats.EP
+		anim.AD1 = C.stats.AD
+		anim.timer = ANIM_TIME
+	if anim.timer > 0:
+		var x = float(anim.timer)/float(ANIM_TIME)
+		setVital(int(lerp(anim.vital1, anim.vital, x)), C.baseStats.V)
+		setEP(int(lerp(anim.EP1, anim.EP, x)), C.baseStats.EP)
+		get_node("Display/ADIcon").set(int(lerp(anim.AD1, anim.AD, x)), true)
+		anim.timer -= 1
+		if anim.timer == 0:
+			anim.vital = C.stats.V; anim.EP = C.stats.EP
+			anim.over = C.stats.over; anim.AD = C.stats.AD
+	else:
+		setVital(C.stats.V, C.baseStats.V)
+		setEP(C.stats.EP, C.baseStats.EP)
+		get_node("Display/ADIcon").set(C.stats.AD, true)
 
 func _process(delta):
 	char_update(character)
-	if active: nodes.highlight.set_self_opacity(0.7 + (cos(OS.get_ticks_msec() * 0.007) * 0.3 ))
-	else:
-		nodes.highlight.set_self_opacity(0.0)
+	if active:			nodes.highlight.set_self_opacity(0.7 + (cos(OS.get_ticks_msec() * 0.007) * 0.3 ))
+	else:				nodes.highlight.set_self_opacity(0.0)
 
 func init(C):
 	if C == null:
@@ -44,11 +52,3 @@ func init(C):
 		char_update(character)
 		set_process(true)
 		show()
-
-
-func _ready():
-	hide()
-
-func _on_BlinkTimer_timeout():
-	if blink == 0:	blink = 1
-	else:			blink = 0

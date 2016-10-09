@@ -2,6 +2,7 @@ extends Node
 
 var debugEffect = preload("res://battle/effect/debug02.tscn")
 var choiceHighlighter = preload("res://battle/UI/BattleChoice_Highlighter.tscn")
+var damageLabel = preload("res://battle/UI/DamageLabel.tscn")
 var decision = false
 var phase setget set_phase
 var currentChoice = 0
@@ -15,7 +16,7 @@ onready var nodes = {
 	battleChoice1 = get_node("BattleUI/BattleChoice1"),
 	battleChoice2 = get_node("BattleUI/BattleChoice2"),
 	battleUI = get_node("BattleUI"),
-	spots = get_node("BattleView/Viewport/BG/BattleSpots"),
+	spots = null,
 }
 
 const BLANK_SPRITE = "res://data/char/blank/blank.tscn"
@@ -28,17 +29,15 @@ onready var battleState = {
 	turn = 1,
 	fxNode = null,
 }
-#TODO: Needs a way to define party formation. Just a simple array will do?
 
 #==== Battle phases ===================================================================================================
-
 func battlePhase0():
 	phase = 0; print("Combat phase 0: Party action")
 	get_node("BattleView/Viewport/Highlighter").hide()
 	nodes.mainCamera.make_current()
 	nodes.mainCamera.zoom(1.5)
 	nodes.battleChoice1.start()
-	cameraCenter()
+	nodes.mainCamera.resetPos()
 	nodes.battleUI.setTurn(battleState.turn)
 	nodes.battleUI.clearHighlight()
 	for i in range(0, 6):
@@ -56,7 +55,7 @@ func battlePhase2():
 	phase = 2; print("Combat phase 2: Processing")
 	get_node("BattleView/Viewport/Highlighter").hide()
 	#get_node("BattleUI/ActionDisplay").init("test", 500000, false) #Assign a reference to this node.
-	cameraCenter()
+	nodes.mainCamera.resetPos()
 	battleState.actionCurrent = 0
 	battleState.actions = 4
 	collectActions()
@@ -102,6 +101,64 @@ func set_phase(p):
 	elif p == 7: battlePhase7()
 #======================================================================================================================
 
+#==== Character functions =============================================================================================
+#TODO: This should be moved to a character class later on.
+func charInit(side, slot):
+	var charscn = null; var char = null
+	var bslot = null
+	var P = getSidePointer(side)
+	var displayRoot = ""; var sideRoot = ""
+	if side:
+		displayRoot = "BattleUI/Display_Player/P"; 	sideRoot = "PlayerSide/P"
+	else:
+		displayRoot = "BattleUI/Display_Foe/P"; 	sideRoot = "EnemySide/P"
+
+	if P.formation[slot] != null:
+		char = P.character[P.formation[slot]]
+		charscn = load(char.charscn).instance() if char.charscn else load(BLANK_SPRITE).instance()
+		if char.specialData != null:
+			var data = char.specialData
+			if data.weapon != null:
+				data.weaponDef = main.loadJSON(data.weapon)
+				main.data.validateWeaponDef(data.weaponDef) #;print(data.weaponDef)
+		if char.equip.weapon[0] != null: char.equip.weapon[0].def = main.weaponInit(char, char.equip.weapon[0].tag)
+		if char.equip.weapon[1] != null: char.equip.weapon[1].def = main.weaponInit(char, char.equip.weapon[1].tag)
+		if charscn != null: #nodes.spots.get_node(str(sideRoot, slot)).add_child(charscn)
+			bslot = nodes.spots.get_node(str(sideRoot, slot))
+			nodes.spots.add_child(charscn)
+			charscn.set_global_pos(bslot.get_global_pos())
+			charscn.set_z(bslot.get_z())
+
+		if side == false: charscn.set_scale(charscn.get_scale() * Vector2(-1, 1))
+		char.battleData = { pos = [side, slot], scn = charscn }
+	get_node(str(displayRoot, slot)).init(char)
+
+
+func charUpdate(side, slot):
+	var partyPtr = getSidePointer(side)
+	var charReal = partyPtr.formation[slot]
+	if charReal != null:
+		var char = partyPtr.character[charReal]
+		char.stats.AD = char.baseStats.AD
+	else: return
+
+func charCheckAction(char): return true
+
+func charIsAble(side, char):
+	return false if char.status == main.CHAR_STATUS_DOWN else true
+
+func getCharPointer(side, slot):
+	var partyPtr = getSidePointer(side)
+	var slotReal = partyPtr.formation[slot]
+	return partyPtr.character[slotReal]
+
+func getCharSpriteNode(side, slot):
+	#return nodes.spots.get_node(str("PlayerSide/P", slot, "/Char")) if side == true else nodes.spots.get_node(str("EnemySide/P", slot, "/Char"))
+	return getCharPointer(side, slot).battleData.scn
+
+func getCharPos(side, slot):
+	return getCharSpriteNode(side, slot).get_global_pos()
+#======================================================================================================================
 
 
 #==== Camera functions ================================================================================================
@@ -109,11 +166,17 @@ func cameraLookAt(side, slot):
 	cameraLook(getCharPos(side, slot))
 
 func cameraLook(xy):
+	nodes.mainCamera.followTarget(null)
 	var v = get_node("BattleView/Viewport").get_rect()
 	nodes.mainCamera.set_pos(xy + Vector2(0, -80)) #TODO: Find a proper value to subtract
 
 func cameraCenter():
 	cameraLook(Vector2(400, 240))
+
+func cameraFollow(side, slot):
+	var target = getCharSpriteNode(side, slot)
+	var trueTarget = null if target == null else target.spritePos
+	nodes.mainCamera.followTarget(trueTarget)
 #======================================================================================================================
 
 func connectUISignals():
@@ -126,14 +189,13 @@ func _ready():
 
 func playerPartyInit(P):
 	if P == null:
-		print("[!] No player party specified for battle.")
-		party = main.debugp.party
+		print("[!] No player party specified for battle."); party = main.debugp.party
 	else: party = P
 
 func enemyPartyInit(P):
 	if P == null:
-		print("[!] No enemy party specified for battle.")
-		enemyParty = main.enemyp.party
+		print("[!] No enemy party specified for battle.");
+		enemyParty = main.enemyPartyGenerate(["RAYPOD", "RAYPOD", "RAYPOD", "RAYPOD", "RAYPOD", "RAYPOD"])
 	else: enemyParty = P
 
 func backgroundInit(B):
@@ -150,7 +212,6 @@ func init(battleData):
 	playerPartyInit(battleData.playerParty);	enemyPartyInit(battleData.enemyParty)
 	backgroundInit(battleData.background); 		main.bgmInit(battleData.bgm)
 	get_node("BattleView/Viewport").add_child(choiceHighlighter.instance())
-
 	for i in range(0, 6):
 		charInit(true, i); charInit(false, i)
 		playerChoices[i] = { active = false, side = false, char = null, charSlot = 0, action = [0, 0, 0], target = 0 }
@@ -158,54 +219,15 @@ func init(battleData):
 		battleState.actionStack[i] = { active = false, side = false, char = null, charSlot = 0, action = [0,0,0], target = 0 }
 
 
-func charInit(side, slot):
-	var charscn = null;
-	var char = null
-	var P = getSidePointer(side)
-	var displayRoot = ""
-	var sideRoot = ""
-	if side:
-		displayRoot = "BattleUI/Display_Player/P"; 	sideRoot = "PlayerSide/P"
-	else:
-		displayRoot = "BattleUI/Display_Foe/P"; 	sideRoot = "EnemySide/P"
-
-	if P.formation[slot] != null:
-		char = P.character[P.formation[slot]]
-		if char.charscn: charscn = load(char.charscn).instance()
-		else: charscn = load(BLANK_SPRITE).instance()
-		if char.equip.weapon[0] != null: char.equip.weapon[0].def = main.weaponDef[char.equip.weapon[0].tag]
-			#print(char.equip.weapon[0].def)
-		if char.equip.weapon[1] != null: char.equip.weapon[1].def = main.weaponDef[char.equip.weapon[1].tag]
-			#print(char.equip.weapon[1].def)
-		if charscn != null: nodes.spots.get_node(str(sideRoot, slot)).add_child(charscn)
-		if side == false: charscn.set_scale(charscn.get_scale() * Vector2(-1, 1))
-	get_node(str(displayRoot, slot)).init(char)
-
-
-func charUpdate(side, slot):
-	var partyPtr = getSidePointer(side)
-	var charReal = partyPtr.formation[slot]
-	if charReal != null:
-		var char = partyPtr.character[charReal]
-		char.stats.AD = char.baseStats.AD
-	else: return
-
 func continueBattle(): return true
 
-func charCheckAction(char): return true
-
-func charIsAble(char): return true
+func getSidePointer(side): return party if side else enemyParty
 
 func sortByAGI(a, b):
 	#TODO: Implement a function to favor collisions of identical/similar speeds based on difficulty mode.
 	#On easy mode, collisions should always favor the player.
 	if a.active == false: return false
-	if a.AGI > b.AGI: return true
-	else: return false
-
-func getSidePointer(side):
-	if side:	return party
-	else:		return enemyParty
+	return true if a.AGI > b.AGI else false
 
 func printAction(A):
 	var loc = getSidePointer(A.side)
@@ -214,11 +236,8 @@ func printAction(A):
 	if A.action[0] == main.BATTLE_ACTION_WEAPON:
 		var wep = A.char.equip.weapon[A.action[1] / 2]  #either 0 or 1, for main or side arm.
 		var wepnam = wep.def.name
-		var skname = ""
-		var lvStr = ""; if A.action[2] == 8: lvStr = "Over"
-		else: lvStr = str(A.action[2] + 1)
-		if A.action[1] % 2 == 0:	skname = wep.def.attack1.name
-		else:						skname = wep.def.attack2.name
+		var lvStr = "Over" if A.action[2] == 8 else str(A.action[2] + 1)
+		var skname = wep.def.attack1.name if A.action[1] % 2 == 0 else wep.def.attack2.name
 		return str(nam, " uses weapon ", wepnam, "'s skill ", skname, " (level ",  lvStr, ") on ",  tnam, ".")
 	elif A.action[0] == main.BATTLE_ACTION_SKILL:
 		return str(nam, " uses skill ", A.action[1], " lv.", A.action[2]," on ", tnam, ".")
@@ -228,7 +247,7 @@ func printAction(A):
 func actionPrepare(side, charSlot, action, skillSlot, level, target):
 	var partyPtr = getSidePointer(side)
 	var char = partyPtr.character[partyPtr.formation[charSlot]]
-	var AGI = char.stats.AGI
+	var AGI = char.baseStats.AGI * char.stats.AGImod
 	if action == main.BATTLE_ACTION_DEFEND: AGI += main.BATTLE_DEFEND_AGI_BONUS
 	return {
 		active = true, side = side,
@@ -236,14 +255,6 @@ func actionPrepare(side, charSlot, action, skillSlot, level, target):
 		action = [action, skillSlot, level], target = target,
 		AGI = AGI #TODO: Add action bonus.
 	}
-
-func getCharSpriteNode(side, slot):
-	if side == true:
-		return nodes.spots.get_node(str("PlayerSide/P", slot, "/Char"))
-	else: return nodes.spots.get_node(str("EnemySide/P", slot))
-
-func getCharPos(side, slot):
-	return getCharSpriteNode(side, slot).get_global_pos()
 
 func collectActions():
 	battleState.actions = 0
@@ -256,7 +267,7 @@ func collectActions():
 		if playerChoices[i].active == true:
 			battleState.actionStack[battleState.actions] = playerChoices[i]
 			battleState.actions += 1
-		if charIsAble(enemyParty.formation[i]):
+		if charIsAble(false, getCharPointer(false, i)):
 			battleState.actionStack[battleState.actions] = AIChoice(false, i)
 			battleState.actions += 1
 	battleState.actionStack.sort_custom(self, "sortByAGI")
@@ -270,7 +281,7 @@ func beginCharChoice(slot):
 			var n = party.formation[slot]
 			get_node("BattleUI").setHighlight(true, slot)
 			var char = party.character[n]
-			if charIsAble(char):
+			if charIsAble(true, char):
 				if not char.npc:
 					nodes.battleChoice2.init(char)
 					if slot > 1: nodes.battleChoice2.get_node("Main/B_Back").show()
@@ -298,11 +309,30 @@ func _receive_battlechoice2(action, slot, power, target):
 		get_node("BattleUI/BattleChoice2/Main").stop()
 		self.phase = 2
 
+func damageLabel(dmg, crit, ovr):
+	var dmglabel = damageLabel.instance()
+	nodes.viewport.add_child(dmglabel)
+	dmglabel.init(dmg, crit, ovr)
+	return dmglabel
+
 func processDamage(A, dmg, D): #Attacker, damage, defender
 	#TODO: Apply elemental modifiers, status effects, active defense and buffs/debuffs here
-	D.stats.V -= dmg[1]
-	D.stats.V -= dmg[3]
-	#TODO: Check for death and other states.
+	var ADmod = 100.0 / D.stats.AD
+	var crit = true if randi()%100 < 10 else false
+	var val = int(dmg[1] * ADmod) + int(dmg[3] * ADmod)
+	if crit: val = int(float(val) * 1.5)
+	var ovr = true if val > D.baseStats.V * 2 else false
+	D.stats.V -= val
+
+	var dmglabel = damageLabel(val, crit, ovr)
+	dmglabel.set_pos(getCharPos(false, 1))
+
+	if D.stats.V > 0: get_node("Timer").set_wait_time(0.9)
+	else:
+		D.status = main.CHAR_STATUS_DOWN
+		var t = getCharSpriteNode(false, 1)
+		t.get_node("Char/AnimationPlayer").play("death")
+		get_node("Timer").set_wait_time(2.9)
 
 func actionProcessEffect(A):
 	var loc = getSidePointer(A.side)
@@ -310,20 +340,19 @@ func actionProcessEffect(A):
 	var nam = A.char.name
 	if A.action[0] == main.BATTLE_ACTION_WEAPON:
 		var wep = A.char.equip.weapon[A.action[1] / 2]  #either 0 or 1, for main or side arm.
-		var WA = null
-		if A.action[1] % 2 == 0:	WA = wep.def.attack1
-		else:						WA = wep.def.attack2
+		var WA = wep.def.attack1 if A.action[1] % 2 == 0 else wep.def.attack2
 		processDamage(A.char, WA.levelData[A.action[2]].damage, target)
 	elif A.action[0] == main.BATTLE_ACTION_SKILL:
 		print("skill pewpew")
 		#return str(nam, " uses skill ", A.action[1], " lv.", A.action[2]," on ", tnam, ".")
 	elif A.action[0] == main.BATTLE_ACTION_DEFEND:
-		A.char.stats.AD = 300
+		A.char.stats.AD = 999
+		A.char.stats.EP -= 100
+		get_node("Timer").set_wait_time(0.01)
 	else:
 		print("???")
 
 func _receive_actionNext():
-	#TODO: Process final damage and effects here.
 	actionProcessEffect(battleState.actionStack[battleState.actionCurrent])
 	if battleState.actionCurrent < battleState.actions:
 		battleState.fxNode.disconnect("actionNext", self, "_receive_actionNext")
@@ -336,10 +365,9 @@ func getActionFX(A):
 	var loc = getSidePointer(A.side)
 	if A.action[0] == main.BATTLE_ACTION_WEAPON:
 		var wep = A.char.equip.weapon[A.action[1] / 2]  #either 0 or 1, for main or side arm.
-		var WA = null
-		if A.action[1] % 2 == 0:	WA = wep.def.attack1
-		else:						WA = wep.def.attack2
-		scene = load(wep.def.attack1.effect)
+		var WA = wep.def.attack1 if A.action[1] % 2 == 0 else wep.def.attack2
+		nodes.battleUI.get_node("ActionDisplay").init(WA.name, A.side)
+		scene = load(WA.effect)
 		return(scene.instance())
 	elif A.action[0] == main.BATTLE_ACTION_SKILL:
 		return(debugEffect.instance())
@@ -347,20 +375,24 @@ func getActionFX(A):
 		return(debugEffect.instance())
 
 
-func actionEffectInit(A):
+func actionFXInit(A):
 	battleState.fxNode = getActionFX(A)
-	getCharSpriteNode(A.side, A.charSlot).add_child(battleState.fxNode)
+	var charSprite = getCharSpriteNode(A.side, A.charSlot)
+	#TODO: Define a way to determine where the effect comes from. Either the attackpos marker, character's bottom or middle.
 	battleState.fxNode.connect("actionNext", self, "_receive_actionNext")
 	battleState.fxNode.init(self, [A.side, A.charSlot], [false, 1])
+	charSprite.add_child(battleState.fxNode)
 
 func actionInit(A):
 	if A.active:
 		print("[", battleState.actionCurrent, "/", battleState.actions - 1, "] ", printAction(A))
-		cameraLookAt(A.side, A.charSlot)
+		#cameraLookAt(A.side, A.charSlot)
+		cameraFollow(A.side, A.charSlot)
 		get_node("BattleUI").setHighlight(A.side, A.charSlot)
-		actionEffectInit(A)
+		actionFXInit(A)
 	else:
 		battleState.actionCurrent += 1
+		get_node("Timer").set_wait_time(0.01)
 		get_node("Timer").start()
 
 func _receive_bgAnimDone():
@@ -371,7 +403,7 @@ func _receive_battlechoice1(choice):
 	if choice == 1:		self.phase = 1
 	elif choice == 2:	print("ruuun~")
 
-func _on_Timer_timeout(): #Crappy way to skip a frame.
+func _on_Timer_timeout():
 	if battleState.actionCurrent < battleState.actions:
 		actionInit(battleState.actionStack[battleState.actionCurrent])
 	else: set_phase(5)

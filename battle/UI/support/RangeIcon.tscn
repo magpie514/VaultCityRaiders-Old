@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://battle/UI/RangeIcon.gd" type="Script" id=1]
+[ext_resource path="res://battle/UI/support/RangeIcon.gd" type="Script" id=1]
+
 
 [node name="RangeIcon" type="Control"]
 

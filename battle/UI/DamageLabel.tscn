@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://fonts/ubuntuB_20.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D\n\nvar value = 0\nvar timer = 0\nvar shown = false\nonready var label = get_node(\"Label\")\nconst TIMER_COUNT = 30\nconst TIMER_MAX = 100\n\n\n\nfunc init(v, crit, ovr):\n\ttimer = TIMER_MAX\n\tvalue = v\n\tshown = false\n\tlabel.set_text(str(v))\n\tlabel.set_percent_visible(0.0)\n\tif crit: get_node(\"CritLabel\").show()\n\tif ovr: get_node(\"OverkillLabel\").show()\n\tset_process(true)\n\n\nfunc _process(delta):\n\tvar f = 0.0\n\tif not shown:\n\t\tlabel.set_percent_visible(float(TIMER_MAX - timer) / float(TIMER_COUNT))\n\t\tif timer <= TIMER_MAX - TIMER_COUNT:\n\t\t\tlabel.set_percent_visible(1.0)\n\t\t\tshown = true\n\telse:\n\t\tif timer <= TIMER_COUNT:\n\t\t\tf = float(timer) / float(TIMER_COUNT)\n\t\t\tset_opacity(f)\n\t\t\tlabel.set_scale(Vector2(1.0 + ((1.0 - f) * 3.0), f))\n\ttimer -= 1\n\tif timer == 0:\n\t\tset_process(false)\n\t\tqueue_free()\n"
+
+[node name="DamageLabel" type="Node2D"]
+
+transform/pos = Vector2( 1, 0 )
+script/script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 0
+size_flags/vertical = 0
+margin/left = -37.0
+margin/top = -8.0
+margin/right = 35.0
+margin/bottom = 7.0
+custom_fonts/font = ExtResource( 1 )
+text = "999999"
+align = 1
+valign = 3
+clip_text = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CritLabel" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 1, 0.8 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -29.0
+margin/top = 7.0
+margin/right = 27.0
+margin/bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Critical"
+align = 1
+valign = 3
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="OverkillLabel" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 1, 0.8 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -29.0
+margin/top = -15.0
+margin/right = 27.0
+margin/bottom = -6.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.445312, 0, 1 )
+text = "Overkill"
+align = 1
+valign = 3
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

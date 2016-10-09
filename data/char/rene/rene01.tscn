@@ -1,32 +1,23 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://battle/raiders.png" type="Texture" id=1]
+[ext_resource path="res://data/char/template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://battle/raiders.png" type="Texture" id=2]
 
-[node name="Char" type="Position2D"]
+[node name="Char" instance=ExtResource( 1 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AttackPos" parent="SpritePos"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = ""
+transform/pos = Vector2( -60, -110 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="CenterPos" parent="SpritePos"]
+
+transform/pos = Vector2( 0, -100 )
+
+[node name="Sprite" type="Sprite" parent="SpritePos/Sprite"]
 
 transform/pos = Vector2( -3, -87 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 region = true
 region_rect = Rect2( 9, 247.817, 106, 207 )
-
-[node name="Shadow" type="Sprite" parent="."]
-
-visibility/behind_parent = true
-transform/pos = Vector2( 0, 3 )
-texture = ExtResource( 1 )
-region = true
-region_rect = Rect2( 5, 116, 114, 33 )
 
 

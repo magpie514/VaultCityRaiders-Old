@@ -2,7 +2,7 @@
 
 [ext_resource path="res://tools/skilledit.gd" type="Script" id=1]
 [ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://battle/UI/SkillButton.xscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/UI/SkillButton.tscn" type="PackedScene" id=3]
 
 [node name="SkillEdit" type="Control"]
 
@@ -129,8 +129,9 @@ margin/bottom = 23.0
 text = "_newtag_"
 placeholder/alpha = 0.6
 max_length = 8
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
+caret/caret_blink = true
 caret/caret_blink_speed = 1.0
 
 [node name="LineEdit2" type="LineEdit" parent="TagSelector/Tag"]
@@ -147,8 +148,9 @@ margin/bottom = 23.0
 text = "_newtag_"
 placeholder/alpha = 0.6
 max_length = 8
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
+caret/caret_blink = true
 caret/caret_blink_speed = 1.0
 
 [node name="SkillEdit" type="Panel" parent="."]
@@ -192,8 +194,9 @@ margin/right = 390.0
 margin/bottom = 23.0
 text = "Skill name"
 placeholder/alpha = 0.6
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
+caret/caret_blink = true
 caret/caret_blink_speed = 1.0
 
 [node name="Effect" type="Label" parent="SkillEdit"]
@@ -225,8 +228,9 @@ margin/bottom = 23.0
 text = "..."
 placeholder/alpha = 0.6
 editable = false
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
+caret/caret_blink = true
 caret/caret_blink_speed = 1.0
 
 [node name="Button" type="Button" parent="SkillEdit/Effect"]
@@ -1023,8 +1027,9 @@ margin/top = 0.0
 margin/right = 390.0
 margin/bottom = 23.0
 placeholder/alpha = 0.6
+expand_to_len = false
 focus_mode = 2
-caret/caret_blink = false
+caret/caret_blink = true
 caret/caret_blink_speed = 1.0
 
 [node name="Button" type="Button" parent="LevelEdit"]

@@ -9,26 +9,38 @@ transform/pos = Vector2( 170, 0 )
 [node name="P3" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 190, -90 )
+z/z = 1
+z/relative = false
 
 [node name="P4" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 270, 0 )
+z/z = 2
+z/relative = false
 
 [node name="P5" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 340, 100 )
+z/z = 3
+z/relative = false
 
 [node name="P0" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 60, -90 )
+z/z = 1
+z/relative = false
 
 [node name="P1" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 110, 0 )
+z/z = 2
+z/relative = false
 
 [node name="P2" type="Position2D" parent="PlayerSide"]
 
 transform/pos = Vector2( 160, 100 )
+z/z = 3
+z/relative = false
 
 [node name="EnemySide" type="Position2D" parent="."]
 
@@ -37,25 +49,37 @@ transform/pos = Vector2( -170, 0 )
 [node name="P3" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -190, -90 )
+z/z = 1
+z/relative = false
 
 [node name="P4" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -270, 0 )
+z/z = 2
+z/relative = false
 
 [node name="P5" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -340, 100 )
+z/z = 3
+z/relative = false
 
 [node name="P0" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -60, -90 )
+z/z = 1
+z/relative = false
 
 [node name="P1" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -110, 0 )
+z/z = 2
+z/relative = false
 
 [node name="P2" type="Position2D" parent="EnemySide"]
 
 transform/pos = Vector2( -160, 100 )
+z/z = 3
+z/relative = false
 
 

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://battle/raiders.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "tool\nextends Position2D\n\nexport(int, 0, 2048) var length = 4\nexport(int, 0, 512) var width = 84\nexport(int, 0, 24) var vibrate = 0\nexport(float, 0.0, 1.0, 0.01) var colorRng = 1.0\nexport(ColorRamp) var colorRamp\n\n\n\nonready var nodes = {\n\torig = get_node(\"Origin\"),\n\tbody = get_node(\"Body\")\n}\n\nfunc _process(delta):\n\tvar l = float(length) / 4.0\n\tvar w = (float(width + (randi() % (vibrate + 1)))) / 84.0\n\tnodes.body.set_scale(Vector2(l, w))\n\tnodes.orig.set_scale(Vector2(1.0, w))\n\tnodes.body.set_offset(Vector2(-4, -42))\n\tnodes.body.set_pos(Vector2(-8, 0))\n\tnodes.body.set_modulate(colorRamp.interpolate(colorRng))\n\tnodes.orig.set_modulate(colorRamp.interpolate(colorRng))\n\nfunc _ready():\n\tset_process(true)\n"
+
+[sub_resource type="ColorRamp" id=4]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0, 0, 0, 1, 1, 1, 1, 1 )
+
+[node name="Beam" type="Position2D"]
+
+script/script = SubResource( 3 )
+length = 4
+width = 84
+vibrate = 0
+colorRng = 1.0
+colorRamp = SubResource( 4 )
+
+[node name="Origin" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -8, -42 )
+region = true
+region_rect = Rect2( 3, 24, 8, 84 )
+
+[node name="Body" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+transform/pos = Vector2( -8, 0 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -4, -42 )
+region = true
+region_rect = Rect2( 0, 24, 4, 84 )
+
+

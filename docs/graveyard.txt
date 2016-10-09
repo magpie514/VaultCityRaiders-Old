@@ -21,3 +21,14 @@ func ColorRampInterpolate(CR, x):
 	print(x2)
 	get_node("ElementIcon/Label").set_text(str(pos))
 	return colors[pos-1].linear_interpolate(colors[pos], x2)
+
+	
+#	var aaa = RawArray()
+#	aaa.resize(32)
+#	for i in range(0, 32):
+#		aaa[i] = 0x00
+#	aaa[0] = 0x10
+#	var a = Marshalls.raw_to_base64(aaa)
+#	print(a)
+#	print(aaa)
+#	print(Marshalls.base64_to_raw(a))

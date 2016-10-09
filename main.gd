@@ -15,6 +15,7 @@ const ELEMENT_LIGHT = 		5
 const ELEMENT_DARK = 		6
 const ELEMENT_GRAVITY =		7
 const ELEMENT_OUTSIDER =	8
+const ELEMENT_SPIRIT =		9
 
 const TARGET_SIDE_ENEMY =	0
 const TARGET_SIDE_OWN =		1
@@ -46,36 +47,40 @@ const elementData = {
 	ELEMENT_LIGHT : 	{ icon = null, color = Color(0.66, 0.66, 0.6), name = "light" },
 	ELEMENT_DARK : 		{ icon = null, color = Color(0.1, 0.1, 0.1), name = "dark" },
 	ELEMENT_GRAVITY : 	{ icon = null, color = Color(0.2, 0.0, 0.5), name = "gravity" },
+	ELEMENT_SPIRIT : 	{ icon = null, color = Color(0.2, 0.4, 0.5), name = "spirit" },
 	ELEMENT_OUTSIDER : 	{ icon = null, color = Color(0.75, 0.75, 0.1), name = "???" },
 }
 
-var skillLib = {}
-var weaponDef = {}
+var skillDef = {}; var skillDefMods = {}
+var weaponDef = {}; var weaponDefMods = {}
 
-func elementColor(i):
-	return elementData[i].color
+func elementColor(i): return elementData[i].color
 
-onready var nodes = {
-	sfxPlayer = get_node("UI_SFX")
-}
+onready var nodes = { sfxPlayer = get_node("UI_SFX") }
 
 var debugp = preload("res://battle/debug/debugparty.gd").new()
-var enemyp = preload("res://battle/debug/debugparty2.gd").new()
-
+var enemyDef = {}
 var data = load("res://system/data.gd").new()
 
 var battleData = {
-	playerParty = null,
-	enemyParty = null,
-	background = "",
-	bgm = "",
+	playerParty = null, enemyParty = null,
+	background = "", bgm = "",
 	boss = false,
 }
 
 static func newArray(size):
-	var a = []
-	a.resize(size)
-	return a
+	var a = []; a.resize(size); return a
+
+static func loadJSON(file):
+	var dict = {}; var buffer = ""; var f = File.new()
+	if f.open(file, File.READ) == 0:
+		buffer = f.get_as_text()
+		dict.parse_json(buffer)
+		f.close()
+	else: print("[!]",file, " not found!")
+	f = null; buffer = null
+	return dict
+
 
 func rangeResolve(si, fo, ra, sl):
 	var result = [[0,0,0],[0,0,0]]
@@ -102,47 +107,83 @@ func rangeResolve(si, fo, ra, sl):
 	return result
 
 func battleStart(playerParty, enemyParty, background, bgm, boss):
-	battleData.playerParty = playerParty
-	battleData.enemyParty = enemyParty
-	battleData.background = background
-	battleData.bgm = bgm
+	battleData.playerParty = playerParty; battleData.enemyParty = enemyParty
+	battleData.background = background; battleData.bgm = bgm
 	battleData.boss = boss
 	get_tree().change_scene("res://battle/Battle.tscn")
 
 class Char:
-	var name = ""
-	var race = 0
-	var stats = { vital = 0, ep = 0, over = 0, ad = 0, lp = 0 }
-	var statBase = {
-		vital = 0, lp = 0, ep = 0,
-		awakening = false,
-		ad = 0,
-		strength = 0, wisdom = 0, speed = 0,
+	var data = {}
+
+
+
+func weaponInit(C, WT): #weaponInit(Char C, string WT)
+	if WT == null: return null
+	else:
+		var s = WT.left(1)
+		if s == "@":
+			if C.specialData != null:
+				if C.specialData.weaponDef != null: return C.specialData.weaponDef[WT]
+			else: return null
+		elif s == ":":
+			return weaponDefMods[WT]
+		else:
+			return weaponDef[WT]
+
+func enemyWeaponInit(WP):
+	var D = weaponDef[WP]
+	return {
+		tag = WP, def = D,
+		customname = "",
+		durability = D.durability,
+		capacity = D.ammoCapacity,
 	}
-	var combatSkill = []
-	var fieldSkill = []
-	var passiveSkill = []
 
-	func vitalCheck():
-		if self.stats.vital > statBase.vital: self.stats.vital = statBase.vital
-		elif self.stats.vital < 0: self.stats.vital = 0
+func enemyInit(D):
+	var C = {
+		name = D.name,
+		status = CHAR_STATUS_OK,
+		charscn = D.charscn,
+		baseStats = Dictionary(D.baseStats),
+		specialData = Dictionary(D.specialData) if D.specialData else null,
+		stats = {V = D.baseStats.V, EP = D.baseStats.EP, AD = D.baseStats.AD, over = 0, AGImod = 1.0 },
+		equip = {
+			weapon = [enemyWeaponInit(D.equip.weapon[0]), enemyWeaponInit(D.equip.weapon[1])],
+			armor = null,
+		},
+		skill = [null, null, null, null],
+	}
+	return C
 
-static func loadJSON(file):
-	var dict = {}; var buffer = ""; var f = File.new()
-	if f.open(file, File.READ) == 0:
-		buffer = f.get_as_text()
-		dict.parse_json(buffer)
-		f.close()
-	else: print("[!]",file, " not found!")
-	f = null; buffer = null
-	return dict
+func partyBlank():
+	return {
+		init = false,
+		formation = [null, null, null, null, null, null],
+		character = [null, null, null, null, null, null],
+	}
+
+func enemyPartyGenerate(F):
+	print("[I] Generating enemy party formation: ", F)
+	var P = partyBlank()
+	for i in range(0, 6):
+		if F[i] == null:
+			P.formation[i] = null; P.character[i] = null
+		else:
+			P.formation[i] = i
+			P.character[i] = enemyInit(enemyDef[F[i]])
+	P.init = true
+	return P
+
+
+
 
 func _init():
-	skillLib = loadJSON("res://data/skill/default.json"); #print(skillLib)
-	weaponDef = loadJSON("res://data/weapon/default.json"); #print(weaponDef)
+	skillDef = loadJSON("res://data/skill/default.json");
+	weaponDef = loadJSON("res://data/weapon/default.json");
+	var tempEnemyDefs = preload("res://battle/debug/debugparty2.gd").new()
+	enemyDef = Dictionary(tempEnemyDefs.enemyDef)
 	data.validateWeaponDef(weaponDef)
-	data.validateSkillDef(skillLib)
-
+	data.validateSkillDef(skillDef)
 # TODO: This thing can be used to load mod weapons or special character weapons. Keep it for later.
 #	var weaponDef2 = loadJSON("res://data/weapon/default1.json")
 #	for key in weaponDef2:

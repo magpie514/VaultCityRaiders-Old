@@ -4,8 +4,9 @@
 [ext_resource path="res://battle/UI/WeaponButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://battle/UI/Bar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/UI/support/Bar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=6]
+
 
 [node name="WeaponWidget" type="Control"]
 

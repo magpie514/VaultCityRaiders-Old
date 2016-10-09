@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://battle/effect/debug01.gd" type="Script" id=1]
+[ext_resource path="res://battle/effect/fxlib.gd" type="Script" id=1]
 [ext_resource path="res://battle/effect/Sparkle.png" type="Texture" id=2]
 
-[sub_resource type="ColorRamp" id=1]
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends AnimationPlayer\n\nfunc _ready():\n\tget_node(\"..\").attachCaster(0)\n\tget_node(\"../LV0/Particles2D\").set_emitting(true)"
+
+[sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.336283, 1 )
 colors = ColorArray( 1, 1, 1, 1, 0.148438, 0, 1, 1, 0.0510249, 0, 0.34375, 1 )
@@ -14,7 +18,27 @@ transform/scale = Vector2( 0.9375, 0.9375 )
 script/script = ExtResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"Script" }
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+script/script = SubResource( 1 )
+
+[node name="LV0" type="Node2D" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="LV0"]
 
 visibility/blend_mode = 1
 config/amount = 64
@@ -45,14 +69,7 @@ params/anim_initial_pos = 0.0
 randomness/linear_velocity = 1.0
 randomness/gravity_strength = 1.0
 randomness/hue_variation = 0.1
-color/color_ramp = SubResource( 1 )
-
-[node name="Timer" type="Timer" parent="."]
-
-process_mode = 1
-wait_time = 0.8
-one_shot = true
-autostart = true
+color/color_ramp = SubResource( 2 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

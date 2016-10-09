@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://battle/raiders.png" type="Texture" id=1]
+[ext_resource path="res://battle/effect/FX/beam.tscn" type="PackedScene" id=2]
+[ext_resource path="res://battle/effect/Sparkle.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "tool\nextends Position2D\n\nexport(int, 0, 2048) var length = 4\nexport(int, 0, 512) var width = 84\nexport(int, 0, 24) var vibrate = 0\nexport(float, 0.0, 1.0, 0.01) var colorRng = 1.0\nexport(ColorRamp) var colorRamp\n\n\n\nonready var nodes = {\n\torig = get_node(\"Origin\"),\n\tbody = get_node(\"Body\")\n}\n\nfunc _process(delta):\n\tvar l = float(length) / 4.0\n\tvar w = (float(width + (randi() % (vibrate + 1)))) / 84.0\n\tnodes.body.set_scale(Vector2(l, w))\n\tnodes.orig.set_scale(Vector2(1.0, w))\n\tnodes.body.set_offset(Vector2(-4, -42))\n\tnodes.body.set_pos(Vector2(-8, 0))\n\tnodes.body.set_modulate(colorRamp.interpolate(colorRng))\n\tnodes.orig.set_modulate(colorRamp.interpolate(colorRng))\n\nfunc _ready():\n\tset_process(true)\n"
+
+[sub_resource type="ColorRamp" id=5]
+
+offsets = FloatArray( 0, 0.210046, 0.415525, 0.86758, 0.940639, 1 )
+colors = ColorArray( 0.507812, 1, 1, 1, 1, 1, 1, 1, 0.279755, 0.695312, 0.695312, 1, 0.943731, 0.976196, 0.976196, 1, 0, 0.179688, 0.179688, 1, 0, 0, 0, 1 )
+
+[sub_resource type="ColorRamp" id=6]
+
+offsets = FloatArray( 0, 0.246575, 0.406393, 0.634703, 0.835616, 1 )
+colors = ColorArray( 0.679688, 0.679688, 0.679688, 1, 0, 1, 1, 1, 0.161029, 0.685386, 1, 1, 0.570312, 1, 1, 1, 0.243137, 0.839216, 0.839216, 1, 0.00268555, 0.120325, 0.171875, 1 )
+
+[node name="Position2D 2" type="Position2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+texture = ExtResource( 1 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 453, 494, 118, 33 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+transform/pos = Vector2( 0, -201 )
+transform/scale = Vector2( 6, 2 )
+texture = ExtResource( 1 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 453, 610, 118, 30 )
+
+[node name="Beam" type="Position2D" parent="." instance=ExtResource( 2 )]
+
+transform/rot = -90.0
+script/script = SubResource( 3 )
+length = 593
+width = 238
+vibrate = 0
+colorRng = 1.0
+colorRamp = SubResource( 5 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+visibility/blend_mode = 1
+config/amount = 88
+config/lifetime = 2.0
+config/preprocess = 0.1
+config/emitting = false
+config/half_extents = Vector2( 100, 0 )
+config/texture = ExtResource( 3 )
+params/direction = 180.0
+params/spread = 0.0
+params/linear_velocity = 64.0
+params/spin_velocity = 2.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 64.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 2.0
+params/final_size = 0.1
+params/hue_variation = 0.05
+params/anim_speed_scale = 0.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.75
+randomness/spin_velocity = 0.4
+randomness/radial_accel = 1.0
+color/color_ramp = SubResource( 6 )
+
+[node name="Sprite 2" type="Sprite" parent="."]
+
+visibility/blend_mode = 1
+transform/pos = Vector2( 0, -96 )
+transform/scale = Vector2( 2, 0.8 )
+texture = ExtResource( 1 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 453, 610, 118, 30 )
+
+

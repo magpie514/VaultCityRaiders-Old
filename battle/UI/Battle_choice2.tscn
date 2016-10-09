@@ -1,0 +1,677 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://battle/UI/Battle_choice2.gd" type="Script" id=1]
+[ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=2]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://battle/UI/support/CRBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://battle/UI/support/ADIcon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=8]
+[ext_resource path="res://battle/UI/WeaponWidget.tscn" type="PackedScene" id=9]
+[ext_resource path="res://battle/UI/SkillButton.tscn" type="PackedScene" id=10]
+
+[sub_resource type="ColorRamp" id=1]
+
+offsets = FloatArray( 0, 0.163743, 0.502924, 0.935673, 1 )
+colors = ColorArray( 0.429688, 0, 0, 1, 1, 0, 0, 1, 0.878906, 0.824618, 0.0102997, 1, 0.280572, 0.917969, 0.0681305, 1, 0.777344, 1, 0.796478, 1 )
+
+[sub_resource type="ColorRamp" id=2]
+
+offsets = FloatArray( 0, 0.0935673, 0.415205, 0.888889, 1 )
+colors = ColorArray( 0, 0.0482788, 0.441406, 1, 0.0567322, 0.180662, 0.660156, 1, 0.118103, 0.415184, 0.703125, 1, 0.499237, 0.88519, 0.960938, 1, 0.601562, 0.934631, 1, 1 )
+
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.832031, 0.493562, 0.133255, 1, 0.894531, 0.752577, 0.195679, 1 )
+
+[node name="BattleChoice2" type="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 370.0
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="Main" type="Panel" parent="."]
+
+visibility/self_opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 372.0
+script/script = ExtResource( 2 )
+direction = 3
+
+[node name="NameLabel" type="Label" parent="Main"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "Name"
+align = 1
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="B_Back" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 130.0
+margin/right = 150.0
+margin/bottom = 150.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back"
+flat = false
+
+[node name="B_Weapon" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 160.0
+margin/right = 150.0
+margin/bottom = 200.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Weapon"
+flat = false
+
+[node name="B_Skill" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 200.0
+margin/right = 150.0
+margin/bottom = 240.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Skill"
+flat = false
+
+[node name="B_Defend" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 280.0
+margin/right = 150.0
+margin/bottom = 320.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Defend"
+flat = false
+
+[node name="B_Item" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 240.0
+margin/right = 150.0
+margin/bottom = 280.0
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Item"
+flat = false
+
+[node name="B_Switch" type="Button" parent="Main"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 320.0
+margin/right = 150.0
+margin/bottom = 360.0
+custom_fonts/font = ExtResource( 3 )
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Switch"
+flat = false
+
+[node name="CharData" type="Control" parent="Main"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 20.0
+margin/right = 160.0
+margin/bottom = 120.0
+
+[node name="Vital" type="Label" parent="Main/CharData"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 12.0
+margin/right = 29.0
+margin/bottom = 21.0
+custom_fonts/font = ExtResource( 4 )
+text = "Vital"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorFrame" type="ColorFrame" parent="Main/CharData/Vital"]
+
+visibility/self_opacity = 0.6
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = -3.0
+margin/right = 152.0
+margin/bottom = 7.0
+color = Color( 0.133333, 0.133333, 0.14902, 1 )
+
+[node name="ColorRampBar" parent="Main/CharData/Vital" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/left = -1.0
+margin/top = -2.0
+margin/right = 152.0
+margin/bottom = 8.0
+cr = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Main/CharData/Vital"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 88.0
+margin/top = -3.0
+margin/right = 152.0
+margin/bottom = 9.0
+custom_fonts/font = ExtResource( 6 )
+text = "99999/99999"
+align = 2
+valign = 3
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EP" type="Label" parent="Main/CharData"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 29.0
+margin/bottom = 41.0
+custom_fonts/font = ExtResource( 4 )
+text = "EP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorFrame" type="ColorFrame" parent="Main/CharData/EP"]
+
+visibility/self_opacity = 0.6
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = -4.0
+margin/right = 147.0
+margin/bottom = 6.0
+color = Color( 0.133333, 0.133333, 0.14902, 1 )
+
+[node name="ColorRampBar" parent="Main/CharData/EP" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/left = -1.0
+margin/top = -2.0
+margin/right = 152.0
+margin/bottom = 8.0
+cr = SubResource( 2 )
+
+[node name="Label" type="Label" parent="Main/CharData/EP"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 52.0
+margin/top = -2.0
+margin/right = 152.0
+margin/bottom = 10.0
+custom_fonts/font = ExtResource( 6 )
+text = "99999999/99999999"
+align = 2
+valign = 3
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Over" type="Label" parent="Main/CharData"]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 52.0
+margin/right = 29.0
+margin/bottom = 61.0
+custom_fonts/font = ExtResource( 4 )
+text = "Over"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ColorFrame" type="ColorFrame" parent="Main/CharData/Over"]
+
+visibility/self_opacity = 0.6
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 7.0
+margin/top = -4.0
+margin/right = 147.0
+margin/bottom = 6.0
+color = Color( 0.133333, 0.133333, 0.14902, 1 )
+
+[node name="ColorRampBar" parent="Main/CharData/Over" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/left = -1.0
+margin/top = -2.0
+margin/right = 152.0
+margin/bottom = 8.0
+cr = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Main/CharData/Over"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 126.0
+margin/top = -2.0
+margin/right = 152.0
+margin/bottom = 10.0
+custom_fonts/font = ExtResource( 6 )
+text = "100%"
+align = 2
+valign = 3
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ADIcon" parent="Main/CharData" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 145, 80 )
+
+[node name="WeaponChoice" type="Panel" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+visibility/self_opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -220.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 372.0
+script/script = ExtResource( 2 )
+direction = 3
+
+[node name="B_WeaponBack" type="Button" parent="WeaponChoice"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 170.0
+margin/top = 10.0
+margin/right = 210.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="WeaponChoice/B_WeaponBack"]
+
+transform/pos = Vector2( 20, 10 )
+texture = ExtResource( 8 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[node name="WeaponLabel" type="Label" parent="WeaponChoice"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 10.0
+margin/right = 160.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Choose attack"
+align = 1
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WeaponWidget0" parent="WeaponChoice" instance=ExtResource( 9 )]
+
+editor/display_folded = true
+margin/top = 30.0
+margin/bottom = 40.0
+
+[node name="Durability" parent="WeaponChoice/WeaponWidget0"]
+
+editor/display_folded = true
+
+[node name="Ammo" parent="WeaponChoice/WeaponWidget0"]
+
+editor/display_folded = true
+
+[node name="WeaponWidget1" parent="WeaponChoice" instance=ExtResource( 9 )]
+
+editor/display_folded = true
+margin/top = 200.0
+margin/bottom = 210.0
+
+[node name="WeaponButton0" parent="WeaponChoice/WeaponWidget1"]
+
+editor/display_folded = true
+slot = 2
+
+[node name="WeaponButton1" parent="WeaponChoice/WeaponWidget1"]
+
+slot = 3
+
+[node name="Durability" parent="WeaponChoice/WeaponWidget1"]
+
+editor/display_folded = true
+
+[node name="Ammo" parent="WeaponChoice/WeaponWidget1"]
+
+editor/display_folded = true
+
+[node name="SkillChoice" type="Panel" parent="."]
+
+visibility/visible = false
+visibility/self_opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -220.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 372.0
+script/script = ExtResource( 2 )
+direction = 3
+
+[node name="B_SkillBack" type="Button" parent="SkillChoice"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 170.0
+margin/top = 10.0
+margin/right = 210.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="SkillChoice/B_SkillBack"]
+
+transform/pos = Vector2( 20, 10 )
+texture = ExtResource( 8 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[node name="SkillLabel" type="Label" parent="SkillChoice"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 170.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Choose skill"
+align = 1
+valign = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="S0" parent="SkillChoice" instance=ExtResource( 10 )]
+
+margin/left = 10.0
+margin/top = 70.0
+margin/right = 210.0
+margin/bottom = 140.0
+
+[node name="S1" parent="SkillChoice" instance=ExtResource( 10 )]
+
+margin/left = 10.0
+margin/top = 144.0
+margin/right = 210.0
+margin/bottom = 214.0
+slot = 1
+
+[node name="S2" parent="SkillChoice" instance=ExtResource( 10 )]
+
+margin/left = 10.0
+margin/top = 217.0
+margin/right = 210.0
+margin/bottom = 287.0
+slot = 2
+
+[node name="S3" parent="SkillChoice" instance=ExtResource( 10 )]
+
+margin/left = 10.0
+margin/top = 290.0
+margin/right = 210.0
+margin/bottom = 360.0
+slot = 3
+
+[node name="OB_Button" type="Button" parent="SkillChoice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 40.0
+margin/right = 210.0
+margin/bottom = 60.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Overburst"
+flat = false
+
+[node name="ItemChoice" type="Panel" parent="."]
+
+visibility/visible = false
+visibility/self_opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -220.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 372.0
+script/script = ExtResource( 2 )
+direction = 3
+
+[node name="B_ItemBack" type="Button" parent="ItemChoice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 170.0
+margin/top = 10.0
+margin/right = 210.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="ItemChoice/B_ItemBack"]
+
+transform/pos = Vector2( 20, 10 )
+texture = ExtResource( 8 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[node name="OBChoice" type="Panel" parent="."]
+
+visibility/visible = false
+visibility/self_opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -220.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 372.0
+script/script = ExtResource( 2 )
+direction = 3
+
+[node name="B_OBBack" type="Button" parent="OBChoice"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 170.0
+margin/top = 10.0
+margin/right = 210.0
+margin/bottom = 30.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[node name="Sprite" type="Sprite" parent="OBChoice/B_OBBack"]
+
+transform/pos = Vector2( 20, 10 )
+texture = ExtResource( 8 )
+region = true
+region_rect = Rect2( 11, 41, 6, 8 )
+
+[connection signal="pressed" from="Main/B_Back" to="." method="_on_B_Back_pressed"]
+
+[connection signal="pressed" from="Main/B_Weapon" to="." method="_on_B_Weapon_pressed"]
+
+[connection signal="pressed" from="Main/B_Skill" to="." method="_on_B_Skill_pressed"]
+
+[connection signal="pressed" from="Main/B_Defend" to="." method="_on_B_Defend_pressed"]
+
+[connection signal="pressed" from="WeaponChoice/B_WeaponBack" to="." method="_on_B_WeaponBack_pressed"]
+
+[connection signal="attackChoice" from="WeaponChoice/WeaponWidget0/WeaponButton0" to="." method="_on_attackChoice"]
+
+[connection signal="attackChoice" from="WeaponChoice/WeaponWidget0/WeaponButton1" to="." method="_on_attackChoice"]
+
+[connection signal="attackChoice" from="WeaponChoice/WeaponWidget1/WeaponButton0" to="." method="_on_attackChoice"]
+
+[connection signal="attackChoice" from="WeaponChoice/WeaponWidget1/WeaponButton1" to="." method="_on_attackChoice"]
+
+[connection signal="pressed" from="SkillChoice/B_SkillBack" to="." method="_on_B_SkillBack_pressed"]
+
+[connection signal="skillChoice" from="SkillChoice/S0" to="." method="_on_skillChoice"]
+
+[connection signal="skillChoice" from="SkillChoice/S1" to="." method="_on_skillChoice"]
+
+[connection signal="skillChoice" from="SkillChoice/S2" to="." method="_on_skillChoice"]
+
+[connection signal="skillChoice" from="SkillChoice/S3" to="." method="_on_skillChoice"]
+
+[connection signal="pressed" from="SkillChoice/OB_Button" to="." method="_on_OB_Button_pressed"]
+
+[connection signal="pressed" from="ItemChoice/B_ItemBack" to="." method="_on_B_ItemBack_pressed"]
+
+[connection signal="pressed" from="OBChoice/B_OBBack" to="." method="_on_B_OBBack_pressed"]
+
+
+[editable path="WeaponChoice/WeaponWidget0"]
+[editable path="WeaponChoice/WeaponWidget1"]

@@ -1,6 +1,5 @@
 (D) 2016-09-04 Set overdrive skills as slot 4 and 5. +skill
 (D) 2016-09-06 All skills (including weapons) are known at start of the battle. Load them all then. +battle +core
-2016-09-04 Camera needs to focus on attacker then target unless directed otherwise. +battleanim
 2016-09-04 Character info display should be animated. +ui +battle
 2016-09-04 Firearms need to define damage from ammo type. +equip
 2016-09-04 Overdrives should be a simple skill using only Overed version? +skill
@@ -8,9 +7,11 @@
 2016-09-04 Skills might need a weapon requirement. +battle
 2016-09-09 Add parser to get weapon pointer. Look into default weaponDef, then in extradefs, if not found return null. +core +weapon
 2016-09-09 Not possible now, but make sure character init is made out of combat, specially to load references to weapon/skill data. +core
-2016-09-10 AD raise with defense command shouldn't be fixed. Change based on equip? +battle 
-x 2016-09-10 (D) 2016-09-04 Nebulously get damage data to wail on poor RAYHAMMER pod #1. +battle
+2016-09-10 AD raise with defense command shouldn't be fixed. Change based on equip? +battle
+2016-10-04 Add way to supress internal timer, enabling a safe state for malformed ActionFX that don't have a proper timer or fail to attach. +battle +core 
 x 2016-09-04 (C) 2016-09-04 Add skill json validation. Can't let those floats mess stuff up. +skill +json
 x 2016-09-04 2015-11-11 Add party loading mechanics +party
 x 2016-09-06 2016-09-04 Add equipment data to characters so names and data can be obtained. +equip
+x 2016-09-10 (D) 2016-09-04 Nebulously get damage data to wail on poor RAYHAMMER pod #1. +battle
+x 2016-09-10 2016-09-04 Camera needs to focus on attacker then target unless directed otherwise. +battleanim
 x 2016-09-10 2016-09-04 Pass a character pointer to actionStack for faster access? +battle +core

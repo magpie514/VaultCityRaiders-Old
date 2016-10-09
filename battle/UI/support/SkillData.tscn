@@ -3,8 +3,10 @@
 [ext_resource path="res://battle/UI/support/SkillData.gd" type="Script" id=1]
 [ext_resource path="res://battle/UI/Icon.png" type="Texture" id=2]
 [ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://battle/UI/ADIcon.xscn" type="PackedScene" id=4]
-[ext_resource path="res://battle/UI/RangeIcon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/UI/support/ADIcon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://battle/UI/support/RangeIcon.tscn" type="PackedScene" id=5]
+
+
 
 [sub_resource type="GDScript" id=1]
 
@@ -116,7 +118,6 @@ max_lines_visible = -1
 
 [node name="AGIIcon" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 122, 11 )
 texture = ExtResource( 2 )
 vframes = 4

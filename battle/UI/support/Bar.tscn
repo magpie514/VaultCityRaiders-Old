@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "tool\nextends Control\n\nexport var color = Color(1.0, 1.0, 1.0, 1.0)\nexport var value = float(1.0) setget set_value\nonready var rect = get_size()\n\nfunc set_value(v):\n\tvalue = clamp(v, 0.0, 1.0)\n\tupdate()\n\nfunc _draw():\n\tvar f\n\tif value > 0.01: \t\tf = value\n\telif value > 0.00001:\tf = 0.01\n\telse:\t\t\t\t\tf = 0\n\tdraw_rect(Rect2(Vector2(), rect * Vector2(f, 1.0)), color)\n"
+
+[node name="Bar" type="Control"]
+
+rect/min_size = Vector2( 0, 1 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 120.0
+margin/bottom = 30.0
+script/script = SubResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+color = Color( 1, 1, 1, 1 )
+value = 1.0
+
+

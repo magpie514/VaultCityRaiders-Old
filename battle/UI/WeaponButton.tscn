@@ -4,8 +4,10 @@
 [ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://battle/UI/support/SkillData.tscn" type="PackedScene" id=3]
 [ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://battle/UI/CRBar.xscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/UI/support/CRBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://battle/UI/Icon.png" type="Texture" id=6]
+
+
 
 [sub_resource type="ColorRamp" id=1]
 

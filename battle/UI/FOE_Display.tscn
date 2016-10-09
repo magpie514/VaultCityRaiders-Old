@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://battle/UI/FOE_Display.gd" type="Script" id=1]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=2]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://battle/UI/support/Bar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/UI/support/ADIcon.tscn" type="PackedScene" id=6]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "tool\nextends Control\n\nexport(ColorRamp) var cr\nexport var value = 1.0 setget set_value\nonready var rect = get_size()\n\nfunc set_value(v):\n\tvalue = clamp(v, 0.0, 1.0)\n\tupdate()\n\nfunc _draw():\n\tvar f = value\n\tif value > 0.01: \t\tf = value\n\telif value > 0.00001:\tf = 0.01\n\telse:\t\t\t\t\tf = 0\n\tdraw_rect(Rect2(Vector2(), rect * Vector2(f, 1.0)), cr.interpolate(f))\n"
+
+[sub_resource type="ColorRamp" id=2]
+
+offsets = FloatArray( 0, 0.163743, 0.502924, 0.935673, 1 )
+colors = ColorArray( 0.429688, 0, 0, 1, 1, 0, 0, 1, 0.878906, 0.824618, 0.0102997, 1, 0.280572, 0.917969, 0.0681305, 1, 0.777344, 1, 0.796478, 1 )
+
+[sub_resource type="ColorRamp" id=3]
+
+offsets = FloatArray( 0, 0.0935673, 0.415205, 0.888889, 1 )
+colors = ColorArray( 0, 0.0482788, 0.441406, 1, 0.0567322, 0.180662, 0.660156, 1, 0.118103, 0.415184, 0.703125, 1, 0.499237, 0.88519, 0.960938, 1, 0.601562, 0.934631, 1, 1 )
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Sprite\n\nvar nodes = { label = null }\n\nfunc _ready():\n\tnodes.label = get_node(\"ADLabel\")\n\t\nfunc set(val, absolute):\n\tvar ADlabel = \"\"\n\tif absolute == true:\n\t\tset_modulate(Color(.6, .6, .6))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,0))\n\telif val == 0:\n\t\tset_modulate(Color(.8, .8, .8))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,1,1))\n\telif val > 0:\n\t\tADlabel = \"+\"\n\t\tset_modulate(Color(.5, .5, .5))\n\t\tnodes.label.add_color_override(\"font_color\", Color(.6,.8,1))\n\telse:\n\t\tset_modulate(Color(.4, .4, .4))\n\t\tnodes.label.add_color_override(\"font_color\", Color(1,0,0))\n\tnodes.label.set_text(str(ADlabel, val))"
+
+[node name="Foe_Display" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 36.0
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="Highlight" type="Sprite" parent="."]
+
+visibility/self_opacity = 0.0
+visibility/blend_mode = 1
+transform/pos = Vector2( 80, 17.3333 )
+transform/scale = Vector2( 1.35593, 1.33333 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0.15625, 1, 1 )
+region = true
+region_rect = Rect2( 5, 96, 118, 27 )
+
+[node name="Display" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 160.0
+margin/bottom = 36.0
+
+[node name="Name" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 28.0
+margin/top = 0.0
+margin/right = 159.0
+margin/bottom = 14.0
+custom_fonts/font = ExtResource( 3 )
+text = "Name"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Vital" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 31.0
+margin/top = 13.0
+margin/right = 56.0
+margin/bottom = 22.0
+custom_fonts/font = ExtResource( 4 )
+text = "Vital"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Bar" parent="Display/Vital" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/left = -2.0
+margin/top = -1.0
+margin/right = 127.0
+margin/bottom = 9.0
+script/script = SubResource( 1 )
+cr = SubResource( 2 )
+
+[node name="EP" type="Label" parent="Display"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 31.0
+margin/top = 25.0
+margin/right = 56.0
+margin/bottom = 34.0
+custom_fonts/font = ExtResource( 4 )
+text = "EP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Bar" parent="Display/EP" instance=ExtResource( 5 )]
+
+visibility/behind_parent = true
+margin/left = -2.0
+margin/top = -1.0
+margin/right = 127.0
+margin/bottom = 9.0
+script/script = SubResource( 1 )
+cr = SubResource( 3 )
+
+[node name="ADIcon" parent="Display" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 13, 12 )
+script/script = SubResource( 4 )
+
+
