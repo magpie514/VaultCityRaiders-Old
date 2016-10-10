@@ -72,9 +72,9 @@ func skillAdd(t):
 	print("Adding new skill to tag '", t, "'")
 	return {
 		name = "Skill Name",
-		effect = "res://battle/effect/debug01.xscn",
+		effect = "res://battle/effect/debug01.tscn",
 		levels = 0,
-		powerSource = nodes.main.SKILL_SOURCE_EP,
+		powerSource = nodes.main.SKILL_SOURCE_USER_EP,
 		overCost = 25,
 		levelData = [ skillLevelNew(0), null, null, null, null, null, null, null, skillLevelNew(8) ]
 	}

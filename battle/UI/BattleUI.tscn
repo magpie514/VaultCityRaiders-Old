@@ -1,22 +1,31 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=1]
 [ext_resource path="res://battle/UI/PC_Display.tscn" type="PackedScene" id=2]
 [ext_resource path="res://battle/UI/FOE_Display.tscn" type="PackedScene" id=3]
 [ext_resource path="res://battle/UI/Action_display.gd" type="Script" id=4]
-[ext_resource path="res://battle/UI/Battle_choice2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://battle/UI/Battle_choice.tscn" type="PackedScene" id=6]
-[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=7]
-[ext_resource path="res://fonts/ubuntuB_20.fnt" type="BitmapFont" id=8]
-[ext_resource path="res://fonts/gothic_12.fnt" type="BitmapFont" id=9]
-[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=10]
+[ext_resource path="res://fonts/ubuntuB_13.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=7]
+[ext_resource path="res://battle/UI/Battle_choice2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://battle/UI/Battle_choice.tscn" type="PackedScene" id=9]
+[ext_resource path="res://fonts/ubuntuB_20.fnt" type="BitmapFont" id=10]
+[ext_resource path="res://fonts/gothic_12.fnt" type="BitmapFont" id=11]
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nfunc start():\n\tget_node(\"Display_Foe\").start()\n\tget_node(\"Display_Player\").start()\n\tget_node(\"ExtraDisplay\").start()\n\n\nfunc setHighlight(side, slot):\n\tfor i in range(0, 6): \n\t\tget_node(str(\"Display_Player/P\", i)).active = false\n\t\tget_node(str(\"Display_Foe/P\", i)).active = false\n\tif side: get_node(str(\"Display_Player/P\", slot)).active = true\n\telse: get_node(str(\"Display_Foe/P\", slot)).active = true\n\nfunc clearHighlight():\n\tfor i in range(0, 6): \n\t\tget_node(str(\"Display_Player/P\", i)).active = false\n\t\tget_node(str(\"Display_Foe/P\", i)).active = false\n\t\t\nfunc setTurn(turn):\n\tget_node(\"ExtraDisplay/TurnCount\").set_text(str(turn))"
+script/source = "extends Control\n\nfunc start():\n\tget_node(\"Display_Foe\").start()\n\tget_node(\"Display_Player\").start()\n\tget_node(\"ExtraDisplay\").start()\n\nfunc setHighlight(side, slot):\n\tfor i in range(0, 6):\n\t\tget_node(str(\"Display_Player/P\", i)).active = false\n\t\tget_node(str(\"Display_Foe/P\", i)).active = false\n\tif side: get_node(str(\"Display_Player/P\", slot)).active = true\n\telse: get_node(str(\"Display_Foe/P\", slot)).active = true\n\nfunc clearHighlight():\n\tfor i in range(0, 6):\n\t\tget_node(str(\"Display_Player/P\", i)).active = false\n\t\tget_node(str(\"Display_Foe/P\", i)).active = false\n\nfunc setTurn(turn):\n\tget_node(\"ExtraDisplay/TurnCount\").set_text(str(turn))\n\n"
 
-[node name="BattleUI" type="Node"]
+[node name="BattleUI" type="Control"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
 script/script = SubResource( 1 )
 __meta__ = { "__editor_plugin_screen__":"2D" }
 
@@ -145,25 +154,43 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 638.0
-margin/top = 116.0
-margin/right = 798.0
-margin/bottom = 156.0
+margin/left = 620.0
+margin/top = 108.0
+margin/right = 800.0
+margin/bottom = 140.0
 script/script = ExtResource( 4 )
 
 [node name="Panel" type="Panel" parent="ActionDisplay"]
 
-visibility/self_opacity = 0.75
+visibility/self_opacity = 0.8
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -8.0
-margin/top = -8.0
-margin/right = 162.0
-margin/bottom = 18.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 180.0
+margin/bottom = 32.0
 script/script = ExtResource( 1 )
 direction = 3
+
+[node name="Type" type="Label" parent="ActionDisplay/Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 180.0
+margin/bottom = 15.0
+custom_fonts/font = ExtResource( 5 )
+text = "SkillType"
+align = 1
+valign = 3
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Name" type="Label" parent="ActionDisplay/Panel"]
 
@@ -172,17 +199,44 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 6.0
-margin/right = 170.0
-margin/bottom = 26.0
-text = "PARTY ACTION NAME"
+margin/top = 16.0
+margin/right = 180.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 6 )
+text = "ACTION NAME"
 align = 1
-valign = 1
+valign = 3
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="BattleChoice2" parent="." instance=ExtResource( 5 )]
+[node name="Sprite" type="Sprite" parent="ActionDisplay/Panel"]
+
+visibility/self_opacity = 0.8
+transform/pos = Vector2( -15, 15.5 )
+transform/scale = Vector2( 1, 0.868421 )
+texture = ExtResource( 7 )
+flip_h = true
+region = true
+region_rect = Rect2( 18, 41, 30, 38 )
+
+[node name="Sprite2" type="Sprite" parent="ActionDisplay/Panel"]
+
+visibility/self_opacity = 0.8
+transform/pos = Vector2( 195, 16.5 )
+transform/scale = Vector2( 1, 0.868421 )
+texture = ExtResource( 7 )
+region = true
+region_rect = Rect2( 18, 41, 30, 38 )
+
+[node name="Timer" type="Timer" parent="ActionDisplay"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="BattleChoice2" parent="." instance=ExtResource( 8 )]
 
 visibility/visible = false
 margin/left = 640.0
@@ -190,7 +244,7 @@ margin/top = 108.0
 margin/right = 800.0
 margin/bottom = 480.0
 
-[node name="BattleChoice1" parent="." instance=ExtResource( 6 )]
+[node name="BattleChoice" parent="." instance=ExtResource( 9 )]
 
 visibility/visible = false
 margin/left = 640.0
@@ -223,7 +277,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 160.0
 margin/bottom = 14.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 6 )
 text = "Turn"
 align = 1
 percent_visible = 1.0
@@ -240,7 +294,7 @@ margin/left = 50.0
 margin/top = 10.0
 margin/right = 110.0
 margin/bottom = 40.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 10 )
 text = "99"
 align = 1
 valign = 1
@@ -258,7 +312,7 @@ margin/left = 0.0
 margin/top = 40.0
 margin/right = 160.0
 margin/bottom = 54.0
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 6 )
 text = "Field Effect"
 align = 1
 percent_visible = 1.0
@@ -275,7 +329,7 @@ margin/left = 0.0
 margin/top = 53.0
 margin/right = 160.0
 margin/bottom = 66.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 11 )
 text = "None"
 align = 1
 valign = 1
@@ -287,7 +341,7 @@ max_lines_visible = -1
 
 visibility/self_opacity = 0.8
 transform/pos = Vector2( 15, 89 )
-texture = ExtResource( 10 )
+texture = ExtResource( 7 )
 region = true
 region_rect = Rect2( 18, 41, 30, 38 )
 
@@ -295,9 +349,11 @@ region_rect = Rect2( 18, 41, 30, 38 )
 
 visibility/self_opacity = 0.8
 transform/pos = Vector2( 145, 89 )
-texture = ExtResource( 10 )
+texture = ExtResource( 7 )
 flip_h = true
 region = true
 region_rect = Rect2( 18, 41, 30, 38 )
+
+[connection signal="timeout" from="ActionDisplay/Timer" to="ActionDisplay/Panel" method="stop"]
 
 

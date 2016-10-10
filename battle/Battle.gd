@@ -1,26 +1,27 @@
 extends Node
 
-var debugEffect = preload("res://battle/effect/debug02.tscn")
-var choiceHighlighter = preload("res://battle/UI/BattleChoice_Highlighter.tscn")
-var damageLabel = preload("res://battle/UI/DamageLabel.tscn")
+const BLANK_SPRITE = "res://data/char/blank/blank.tscn"
+
 var decision = false
 var phase setget set_phase
 var currentChoice = 0
-onready var playerChoices = main.newArray(6)
 var bgAnimDone = false
 var party = null
 var enemyParty = null
+var debugEffect = preload("res://battle/effect/debug02.tscn")
+var choiceHighlighter = preload("res://battle/UI/BattleChoice_Highlighter.tscn")
+var damageLabel = preload("res://battle/UI/DamageLabel.tscn")
+
+onready var playerChoices = main.newArray(6)
 onready var nodes = {
 	mainCamera = get_node("BattleView/Viewport/Camera2D"),
 	viewport = get_node("BattleView/Viewport"),
-	battleChoice1 = get_node("BattleUI/BattleChoice1"),
+	battleChoice1 = get_node("BattleUI/BattleChoice"),
 	battleChoice2 = get_node("BattleUI/BattleChoice2"),
+	actionDisplay = get_node("BattleUI/ActionDisplay"),
 	battleUI = get_node("BattleUI"),
 	spots = null,
 }
-
-const BLANK_SPRITE = "res://data/char/blank/blank.tscn"
-
 
 onready var battleState = {
 	actionStack = main.newArray(12),
@@ -79,6 +80,7 @@ func battlePhase5():
 
 func battlePhase6():
 	phase = 6; print("Combat phase 6: End of turn")
+	nodes.actionDisplay.stop()
 	if continueBattle():
 		battleState.turn += 1; set_phase(0)
 	else: set_phase(7)
@@ -236,7 +238,7 @@ func printAction(A):
 	if A.action[0] == main.BATTLE_ACTION_WEAPON:
 		var wep = A.char.equip.weapon[A.action[1] / 2]  #either 0 or 1, for main or side arm.
 		var wepnam = wep.def.name
-		var lvStr = "Over" if A.action[2] == 8 else str(A.action[2] + 1)
+		var lvStr = main.actionLevelStr(A.action[2])
 		var skname = wep.def.attack1.name if A.action[1] % 2 == 0 else wep.def.attack2.name
 		return str(nam, " uses weapon ", wepnam, "'s skill ", skname, " (level ",  lvStr, ") on ",  tnam, ".")
 	elif A.action[0] == main.BATTLE_ACTION_SKILL:
@@ -331,7 +333,7 @@ func processDamage(A, dmg, D): #Attacker, damage, defender
 	else:
 		D.status = main.CHAR_STATUS_DOWN
 		var t = getCharSpriteNode(false, 1)
-		t.get_node("Char/AnimationPlayer").play("death")
+		t.get_node("AnimationPlayer").play("death")
 		get_node("Timer").set_wait_time(2.9)
 
 func actionProcessEffect(A):
@@ -360,13 +362,14 @@ func _receive_actionNext():
 		get_node("Timer").start()
 	else: set_phase(5)
 
+
 func getActionFX(A):
 	var scene = null
 	var loc = getSidePointer(A.side)
 	if A.action[0] == main.BATTLE_ACTION_WEAPON:
 		var wep = A.char.equip.weapon[A.action[1] / 2]  #either 0 or 1, for main or side arm.
 		var WA = wep.def.attack1 if A.action[1] % 2 == 0 else wep.def.attack2
-		nodes.battleUI.get_node("ActionDisplay").init(WA.name, A.side)
+		nodes.actionDisplay.init(str(WA.name, " LV.", main.actionLevelStr(A.action[2])), wep.def.name, A.side)
 		scene = load(WA.effect)
 		return(scene.instance())
 	elif A.action[0] == main.BATTLE_ACTION_SKILL:
@@ -382,6 +385,7 @@ func actionFXInit(A):
 	battleState.fxNode.connect("actionNext", self, "_receive_actionNext")
 	battleState.fxNode.init(self, [A.side, A.charSlot], [false, 1])
 	charSprite.add_child(battleState.fxNode)
+	battleState.fxNode.changeAnim(str("LV", A.action[2]))
 
 func actionInit(A):
 	if A.active:

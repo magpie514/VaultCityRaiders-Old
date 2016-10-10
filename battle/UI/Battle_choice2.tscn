@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://battle/UI/Battle_choice2.gd" type="Script" id=1]
 [ext_resource path="res://battle/UI/Panel_Slider.gd" type="Script" id=2]
-[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://battle/UI/support/CRBar.tscn" type="PackedScene" id=5]
-[ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=6]
-[ext_resource path="res://battle/UI/support/ADIcon.tscn" type="PackedScene" id=7]
-[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=8]
-[ext_resource path="res://battle/UI/WeaponWidget.tscn" type="PackedScene" id=9]
-[ext_resource path="res://battle/UI/SkillButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://fonts/gothic_17.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://battle/UI/Icon.png" type="Texture" id=4]
+[ext_resource path="res://fonts/ubuntuMono_11.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://battle/UI/support/CRBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/UbuntuC_13.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://battle/UI/support/ADIcon.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/gothic_15.fnt" type="BitmapFont" id=9]
+[ext_resource path="res://battle/UI/WeaponWidget.tscn" type="PackedScene" id=10]
+[ext_resource path="res://battle/UI/SkillButton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ColorRamp" id=1]
 
@@ -66,7 +67,7 @@ margin/bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
 text = "Name"
 align = 1
-valign = 2
+valign = 3
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -87,6 +88,13 @@ shortcut = null
 text = "Back"
 flat = false
 
+[node name="Sprite" type="Sprite" parent="Main/B_Back"]
+
+transform/pos = Vector2( 9, 10 )
+texture = ExtResource( 4 )
+region = true
+region_rect = Rect2( 4, 41, 6, 8 )
+
 [node name="B_Weapon" type="Button" parent="Main"]
 
 focus/ignore_mouse = false
@@ -96,7 +104,7 @@ size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 160.0
 margin/right = 150.0
-margin/bottom = 200.0
+margin/bottom = 210.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -111,9 +119,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 200.0
+margin/top = 210.0
 margin/right = 150.0
-margin/bottom = 240.0
+margin/bottom = 260.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -128,9 +136,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 280.0
+margin/top = 260.0
 margin/right = 150.0
-margin/bottom = 320.0
+margin/bottom = 310.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -145,25 +153,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
-margin/top = 240.0
-margin/right = 150.0
-margin/bottom = 280.0
-custom_fonts/font = ExtResource( 3 )
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Item"
-flat = false
-
-[node name="B_Switch" type="Button" parent="Main"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 320.0
+margin/top = 310.0
 margin/right = 150.0
 margin/bottom = 360.0
 custom_fonts/font = ExtResource( 3 )
@@ -171,7 +161,7 @@ disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Switch"
+text = "Item"
 flat = false
 
 [node name="CharData" type="Control" parent="Main"]
@@ -197,7 +187,7 @@ margin/left = 4.0
 margin/top = 12.0
 margin/right = 29.0
 margin/bottom = 21.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Vital"
 percent_visible = 1.0
 lines_skipped = 0
@@ -217,7 +207,7 @@ margin/right = 152.0
 margin/bottom = 7.0
 color = Color( 0.133333, 0.133333, 0.14902, 1 )
 
-[node name="ColorRampBar" parent="Main/CharData/Vital" instance=ExtResource( 5 )]
+[node name="ColorRampBar" parent="Main/CharData/Vital" instance=ExtResource( 6 )]
 
 visibility/behind_parent = true
 margin/left = -1.0
@@ -236,7 +226,7 @@ margin/left = 88.0
 margin/top = -3.0
 margin/right = 152.0
 margin/bottom = 9.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "99999/99999"
 align = 2
 valign = 3
@@ -256,7 +246,7 @@ margin/left = 4.0
 margin/top = 32.0
 margin/right = 29.0
 margin/bottom = 41.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "EP"
 percent_visible = 1.0
 lines_skipped = 0
@@ -276,7 +266,7 @@ margin/right = 147.0
 margin/bottom = 6.0
 color = Color( 0.133333, 0.133333, 0.14902, 1 )
 
-[node name="ColorRampBar" parent="Main/CharData/EP" instance=ExtResource( 5 )]
+[node name="ColorRampBar" parent="Main/CharData/EP" instance=ExtResource( 6 )]
 
 visibility/behind_parent = true
 margin/left = -1.0
@@ -295,7 +285,7 @@ margin/left = 52.0
 margin/top = -2.0
 margin/right = 152.0
 margin/bottom = 10.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "99999999/99999999"
 align = 2
 valign = 3
@@ -315,7 +305,7 @@ margin/left = 4.0
 margin/top = 52.0
 margin/right = 29.0
 margin/bottom = 61.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Over"
 percent_visible = 1.0
 lines_skipped = 0
@@ -335,7 +325,7 @@ margin/right = 147.0
 margin/bottom = 6.0
 color = Color( 0.133333, 0.133333, 0.14902, 1 )
 
-[node name="ColorRampBar" parent="Main/CharData/Over" instance=ExtResource( 5 )]
+[node name="ColorRampBar" parent="Main/CharData/Over" instance=ExtResource( 6 )]
 
 visibility/behind_parent = true
 margin/left = -1.0
@@ -354,7 +344,7 @@ margin/left = 126.0
 margin/top = -2.0
 margin/right = 152.0
 margin/bottom = 10.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "100%"
 align = 2
 valign = 3
@@ -363,7 +353,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ADIcon" parent="Main/CharData" instance=ExtResource( 7 )]
+[node name="ADIcon" parent="Main/CharData" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 145, 80 )
 
@@ -402,7 +392,7 @@ flat = false
 [node name="Sprite" type="Sprite" parent="WeaponChoice/B_WeaponBack"]
 
 transform/pos = Vector2( 20, 10 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 region = true
 region_rect = Rect2( 11, 41, 6, 8 )
 
@@ -416,7 +406,7 @@ margin/left = 20.0
 margin/top = 10.0
 margin/right = 160.0
 margin/bottom = 30.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 9 )
 text = "Choose attack"
 align = 1
 valign = 2
@@ -424,7 +414,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="WeaponWidget0" parent="WeaponChoice" instance=ExtResource( 9 )]
+[node name="WeaponWidget0" parent="WeaponChoice" instance=ExtResource( 10 )]
 
 editor/display_folded = true
 margin/top = 30.0
@@ -438,7 +428,7 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="WeaponWidget1" parent="WeaponChoice" instance=ExtResource( 9 )]
+[node name="WeaponWidget1" parent="WeaponChoice" instance=ExtResource( 10 )]
 
 editor/display_folded = true
 margin/top = 200.0
@@ -463,7 +453,6 @@ editor/display_folded = true
 
 [node name="SkillChoice" type="Panel" parent="."]
 
-visibility/visible = false
 visibility/self_opacity = 0.8
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -495,7 +484,7 @@ flat = false
 [node name="Sprite" type="Sprite" parent="SkillChoice/B_SkillBack"]
 
 transform/pos = Vector2( 20, 10 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 region = true
 region_rect = Rect2( 11, 41, 6, 8 )
 
@@ -509,7 +498,7 @@ margin/left = 10.0
 margin/top = 10.0
 margin/right = 170.0
 margin/bottom = 30.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 9 )
 text = "Choose skill"
 align = 1
 valign = 2
@@ -517,14 +506,14 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="S0" parent="SkillChoice" instance=ExtResource( 10 )]
+[node name="S0" parent="SkillChoice" instance=ExtResource( 11 )]
 
 margin/left = 10.0
 margin/top = 70.0
 margin/right = 210.0
 margin/bottom = 140.0
 
-[node name="S1" parent="SkillChoice" instance=ExtResource( 10 )]
+[node name="S1" parent="SkillChoice" instance=ExtResource( 11 )]
 
 margin/left = 10.0
 margin/top = 144.0
@@ -532,7 +521,7 @@ margin/right = 210.0
 margin/bottom = 214.0
 slot = 1
 
-[node name="S2" parent="SkillChoice" instance=ExtResource( 10 )]
+[node name="S2" parent="SkillChoice" instance=ExtResource( 11 )]
 
 margin/left = 10.0
 margin/top = 217.0
@@ -540,7 +529,7 @@ margin/right = 210.0
 margin/bottom = 287.0
 slot = 2
 
-[node name="S3" parent="SkillChoice" instance=ExtResource( 10 )]
+[node name="S3" parent="SkillChoice" instance=ExtResource( 11 )]
 
 margin/left = 10.0
 margin/top = 290.0
@@ -558,6 +547,7 @@ margin/left = 10.0
 margin/top = 40.0
 margin/right = 210.0
 margin/bottom = 60.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -566,6 +556,7 @@ flat = false
 
 [node name="ItemChoice" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 visibility/self_opacity = 0.8
 focus/ignore_mouse = false
@@ -597,12 +588,13 @@ flat = false
 [node name="Sprite" type="Sprite" parent="ItemChoice/B_ItemBack"]
 
 transform/pos = Vector2( 20, 10 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 region = true
 region_rect = Rect2( 11, 41, 6, 8 )
 
 [node name="OBChoice" type="Panel" parent="."]
 
+editor/display_folded = true
 visibility/visible = false
 visibility/self_opacity = 0.8
 focus/ignore_mouse = false
@@ -634,7 +626,7 @@ flat = false
 [node name="Sprite" type="Sprite" parent="OBChoice/B_OBBack"]
 
 transform/pos = Vector2( 20, 10 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 region = true
 region_rect = Rect2( 11, 41, 6, 8 )
 

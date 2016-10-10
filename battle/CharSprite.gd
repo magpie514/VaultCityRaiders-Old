@@ -19,7 +19,9 @@ func shake(time):
 func _process(delta):
 	if moveData[2] != null and moveData[0] > 0:
 		var t = float(moveData[0])/float(moveData[1])
-		spritePos.set_global_pos(moveData[2].cubic_interpolate(moveData[3], moveData[2]*1.2, moveData[3]*0.8, t))
+		var handleEnd = moveData[2].linear_interpolate(moveData[3], 1.7)
+		var handleStart = moveData[3].linear_interpolate(moveData[2], 1.2)
+		spritePos.set_global_pos(moveData[2].cubic_interpolate(moveData[3], handleEnd, handleStart, t))
 		moveData[0] -= 1
 		if moveData[0] == 0:
 			moveData[2] = null

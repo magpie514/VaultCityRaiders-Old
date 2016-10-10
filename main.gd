@@ -68,6 +68,8 @@ var battleData = {
 	boss = false,
 }
 
+func actionLevelStr(i): return "Over" if i == 8 else str(i + 1)
+
 static func newArray(size):
 	var a = []; a.resize(size); return a
 

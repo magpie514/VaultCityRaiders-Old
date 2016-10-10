@@ -4,7 +4,7 @@
 [ext_resource path="res://battle/raiders.png" type="Texture" id=2]
 [ext_resource path="res://battle/effect/Sparkle.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 
 resource/name = "New Anim"
 length = 5.20717
@@ -91,7 +91,7 @@ tracks/15/interp = 1
 tracks/15/imported = false
 tracks/15/keys = { "times":FloatArray( 0, 1.8, 3.7 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 1.0 ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 resource/name = "New Anim (2)"
 length = 3.99766
@@ -163,17 +163,17 @@ tracks/12/interp = 2
 tracks/12/imported = false
 tracks/12/keys = { "times":FloatArray( 0.3, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1e-05, 1e-05 ), Vector2( 6, 2 ) ] }
 
-[sub_resource type="ColorRamp" id=2]
+[sub_resource type="ColorRamp" id=3]
 
 offsets = FloatArray( 0, 0.109589, 0.39726, 0.60274, 0.739726, 1 )
 colors = ColorArray( 0.5, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1 )
 
-[sub_resource type="ColorRamp" id=5]
+[sub_resource type="ColorRamp" id=4]
 
 offsets = FloatArray( 0, 0.210046, 0.415525, 0.86758, 0.940639, 1 )
 colors = ColorArray( 0.507812, 1, 1, 1, 1, 1, 1, 1, 0.279755, 0.695312, 0.695312, 1, 0.943731, 0.976196, 0.976196, 1, 0, 0.179688, 0.179688, 1, 0, 0, 0, 1 )
 
-[sub_resource type="ColorRamp" id=6]
+[sub_resource type="ColorRamp" id=5]
 
 offsets = FloatArray( 0, 0.246575, 0.406393, 0.634703, 0.835616, 1 )
 colors = ColorArray( 0.679688, 0.679688, 0.679688, 1, 0, 1, 1, 1, 0.161029, 0.685386, 1, 1, 0.570312, 1, 1, 1, 0.243137, 0.839216, 0.839216, 1, 0.00268555, 0.120325, 0.171875, 1 )
@@ -187,8 +187,8 @@ transform/pos = Vector2( 442, 232 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-"anims/New Anim" = SubResource( 3 )
-"anims/New Anim (2)" = SubResource( 4 )
+"anims/New Anim" = SubResource( 1 )
+"anims/New Anim (2)" = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -201,28 +201,28 @@ autoplay = "New Anim"
 transform/rot = 0.4
 length = 1879
 width = 0
-colorRamp = SubResource( 2 )
+colorRamp = SubResource( 3 )
 
 [node name="Beam 2" parent="Position2D" instance=ExtResource( 1 )]
 
 transform/rot = -7.55138
 length = 1879
 width = 0
-colorRamp = SubResource( 2 )
+colorRamp = SubResource( 3 )
 
 [node name="Beam 3" parent="Position2D" instance=ExtResource( 1 )]
 
 transform/rot = -3.65613
 length = 1879
 width = 0
-colorRamp = SubResource( 2 )
+colorRamp = SubResource( 3 )
 
 [node name="Beam 4" parent="Position2D" instance=ExtResource( 1 )]
 
 transform/rot = 11.6785
 length = 1879
 width = 0
-colorRamp = SubResource( 2 )
+colorRamp = SubResource( 3 )
 
 [node name="Position2D 2" type="Position2D" parent="."]
 
@@ -250,7 +250,7 @@ transform/rot = -90.0
 length = 593
 width = 238
 vibrate = 12
-colorRamp = SubResource( 5 )
+colorRamp = SubResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="Position2D 2"]
 
@@ -280,7 +280,7 @@ params/anim_initial_pos = 0.0
 randomness/linear_velocity = 0.75
 randomness/spin_velocity = 0.4
 randomness/radial_accel = 1.0
-color/color_ramp = SubResource( 6 )
+color/color_ramp = SubResource( 5 )
 
 [node name="Sprite 2" type="Sprite" parent="Position2D 2"]
 

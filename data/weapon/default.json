@@ -5,7 +5,7 @@
     "ammoCapacity": 32,
     "ammoClass": 0,
     "attack1": {
-      "effect": "res://battle/effect/debug01.xscn",
+      "effect": "res://battle/effect/debug01.tscn",
       "levelData": [
         {
           "ACC": 100,
@@ -63,7 +63,7 @@
       "powerSource": 3
     },
     "attack2": {
-      "effect": "res://battle/effect/debug02.tscn",
+      "effect": "res://battle/effect/debug01.tscn",
       "levelData": [
         {
           "ACC": 90,

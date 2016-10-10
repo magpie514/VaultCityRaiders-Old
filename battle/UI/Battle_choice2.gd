@@ -19,6 +19,8 @@ func init(char):
 	get_node("Main/CharData/Over/Label").set_text(str(char.stats.over, "%"))
 	get_node("Main/CharData/Over/ColorRampBar").value = float(char.stats.over) / 100.0
 	get_node("Main/CharData/Over").set_text(str("Over" if char.baseStats.awakening else "???"))
+	get_node("SkillChoice/OB_Button").set_disabled(true if char.stats.over < 100 else false)
+	get_node("SkillChoice/OB_Button").set_text(str("Overburst" if char.baseStats.awakening else "???"))
 	get_node("Main").start()
 
 func _on_B_Skill_pressed():
